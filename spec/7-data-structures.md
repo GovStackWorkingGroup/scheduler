@@ -18,71 +18,71 @@ Typical data structure requirements and format representations relevant to this 
 
 
 
-| Worklist             | ID                                                                                                        | Unique ID of a specific session                                  |
-| -------------------- | --------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| Start\_Date          | Starting date of the session                                                                              |                                                                  |
-| Start\_Time          | ending date of the session                                                                                |                                                                  |
-| End\_Date            | Starting time of the session                                                                              |                                                                  |
-| End\_Time            | ending time of the session                                                                                |                                                                  |
-| Tolerance            | Duration in days,hours,mins to wait beyond scheduled start date time before concluding session as no show |                                                                  |
-| Session\_Location    | GPS coordinates and address of the location from where session is delivered                               |                                                                  |
-| Alerts               | List of alert IDs that link to specific alert messages and associated details for this session            |                                                                  |
-| Subscriber IDs       | List of Subscriber IDs that have booked appointment for this session                                      |                                                                  |
-| Resource IDs         | List of resource  IDs that have been allocated for this session                                           |                                                                  |
-| Status               | Latest updated status of this session(inactive/pending/triggered/in progress/completed/failed/etc)        |                                                                  |
-| Host\_Entity         | ID of the entity which hosts this session                                                                 |                                                                  |
-| Creation datetime    | When this session was created                                                                             |                                                                  |
-| Episode\_Name        | Name tag of the Episode to which this session belongs                                                     |                                                                  |
-| Event\_Name          | Name tag of the Event to which this session belongs                                                       |                                                                  |
-| CRUD\_Log            | History of transactions done on configuration of this session entry                                       |                                                                  |
-| Session name         | Name of this session                                                                                      |                                                                  |
-| Subscriber limit     | Max number of subscribers that this session can accommodate                                               |                                                                  |
-| Session Charges      | Amount                                                                                                    |                                                                  |
-| Currency             | Currency of charges                                                                                       |                                                                  |
-| Terms and conditions | Terms and conditions to be accepted by subscriber                                                         |                                                                  |
-| instructions         | Instructions to be followed by sucbscriber and resources                                                  |                                                                  |
-| Log                  | Log\_ID                                                                                                   | Unique identifier of a specific transaction                      |
-| Category             | Unique identifier of a specific type of transaction  (Based on what change did the administrator affect)  |                                                                  |
-| Log\_data            | Transaction summary                                                                                       |                                                                  |
-| Entity ID            | Entity of person who did this transaction                                                                 |                                                                  |
-| Creation Datetime    | When this log was created                                                                                 |                                                                  |
-| CRUD\_Log            | Details of transaction done and who did it                                                                |                                                                  |
-| BB Config            | Block\_ID                                                                                                 | Name of internal block which is to be configured                 |
-| Config\_data         | Latest Configuration settings of various parameters in this block given in JSON format                    |                                                                  |
-| CRUD\_Log            | ID of user and application which did any CRUD transaction                                                 |                                                                  |
-| Alert List           | ID                                                                                                        | Unique identifier of a specific alert message bound to a session |
-| Category             | Type of alert message (appointment alert/ process trigger/ healthalert/crimealert/etc.)                   |                                                                  |
-| Entity ID            | Entity which owns this alert message                                                                      |                                                                  |
-| Target Resources     | Unique identifiers of specific Resources enrolled in a specific session                                   |                                                                  |
-| Target Subscribers   | Unique identifiers of a specific subscribers enrolled in a specific session                               |                                                                  |
-| Epoch                | Date-Time when this alert must be generated                                                               |                                                                  |
-| AlertMessage         | Alert message to be sent (Common to all recipients)                                                       |                                                                  |
-| Status               | Status of alert (pending/sent/delivered)                                                                  |                                                                  |
-| CRUD\_Log            | Configuration history of this Alert entry                                                                 |                                                                  |
-| Resources            | ID                                                                                                        | Unique identifier of a specific Resource                         |
-| Phone                | Resource phone number                                                                                     |                                                                  |
-| Email                | Resource email address                                                                                    |                                                                  |
-| Alert\_URL           | Resource URL to send alerts                                                                               |                                                                  |
-| Category             | Identifies the resource class e.g doctor, nurse, admin, ambulance,etc.                                    |                                                                  |
-| Name                 | Name of resource                                                                                          |                                                                  |
-| Entity               | Organization which owns this resource                                                                     |                                                                  |
-| Location             | Address of the resource                                                                                   |                                                                  |
-| Alert\_Mode          | Whether alert should be sent to this resource by mail/phone/messaging/URL                                 |                                                                  |
-| CRUD\_Log            | Configuration history of this Resource entry                                                              |                                                                  |
-| Status               | Status of this resource (enabled/disabled)                                                                |                                                                  |
-| Subscribers          | ID                                                                                                        | Unique identifier of a specific subscriber                       |
-| Phone                | Subscriber phone number                                                                                   |                                                                  |
-| Email                | Subscriber email address                                                                                  |                                                                  |
-| Alert URL            | Subscriber URL to send alerts                                                                             |                                                                  |
-| Entity               | Organization that the subscriber represents (subscriber may be individual participants also).             |                                                                  |
-| Alert\_Mode          | Whether alert should be sent to this subscriber by mail/phone/messaging/URL                               |                                                                  |
-| CRUD\_Log            | Configuration history of this Subscriber entry                                                            |                                                                  |
-| Status               | Status of this subscriber(Enabled/disabled)                                                               |                                                                  |
-| Location             | Address of subscriber                                                                                     |                                                                  |
-| Entity               | ID                                                                                                        | Unique identifier of a Entity                                    |
-| Category             | Class of entity (Hospital, clinic,etc)                                                                    |                                                                  |
-| Name                 | Name of entity                                                                                            |                                                                  |
-| Phone                | Phone number of the entity                                                                                |                                                                  |
-| Email                | Email of the entity                                                                                       |                                                                  |
-| Status               | Whether this entity is active or not for scheduling                                                       |                                                                  |
-| CRUD\_Log            | Transaction history of this document                                                                      |                                                                  |
+| Worklist    | ID                   | Unique ID of a specific session                                                                           |
+| ----------- | -------------------- | --------------------------------------------------------------------------------------------------------- |
+| Worklist    | Start\_Date          | Starting date of the session                                                                              |
+| Worklist    | Start\_Time          | ending date of the session                                                                                |
+| Worklist    | End\_Date            | Starting time of the session                                                                              |
+| Worklist    | End\_Time            | ending time of the session                                                                                |
+| Worklist    | Tolerance            | Duration in days,hours,mins to wait beyond scheduled start date time before concluding session as no show |
+| Worklist    | Session\_Location    | GPS coordinates and address of the location from where session is delivered                               |
+| Worklist    | Alerts               | List of alert IDs that link to specific alert messages and associated details for this session            |
+| Worklist    | Subscriber IDs       | List of Subscriber IDs that have booked appointment for this session                                      |
+| Worklist    | Resource IDs         | List of resource  IDs that have been allocated for this session                                           |
+| Worklist    | Resource IDs         | Latest updated status of this session(inactive/pending/triggered/in progress/completed/failed/etc)        |
+| Worklist    | Host\_Entity         | ID of the entity which hosts this session                                                                 |
+| Worklist    | Creation datetime    | When this session was created                                                                             |
+| Worklist    | Episode\_Name        | Name tag of the Episode to which this session belongs                                                     |
+| Worklist    | Event\_Name          | Name tag of the Event to which this session belongs                                                       |
+| Worklist    | CRUD\_Log            | History of transactions done on configuration of this session entry                                       |
+| Worklist    | Session name         | Name of this session                                                                                      |
+| Worklist    | Subscriber limit     | Max number of subscribers that this session can accommodate                                               |
+| Worklist    | Session Charges      | Amount                                                                                                    |
+| Worklist    | Currency             | Currency of charges                                                                                       |
+| Worklist    | Terms and conditions | Terms and conditions to be accepted by subscriber                                                         |
+| Worklist    | instructions         | Instructions to be followed by sucbscriber and resources                                                  |
+| Log         | Log\_ID              | Unique identifier of a specific transaction                                                               |
+| Log         | Category             | Unique identifier of a specific type of transaction  (Based on what change did the administrator affect)  |
+| Log         | Log\_data            | Transaction summary                                                                                       |
+| Log         | Entity ID            | Entity of person who did this transaction                                                                 |
+| Log         | Creation Datetime    | When this log was created                                                                                 |
+| Log         | CRUD\_Log            | Details of transaction done and who did it                                                                |
+| Log         | Block\_ID            | Name of internal block which is to be configured                                                          |
+| Log         | Config\_data         | Latest Configuration settings of various parameters in this block given in JSON format                    |
+| Log         | CRUD\_Log            | ID of user and application which did any CRUD transaction                                                 |
+| Alert List  | ID                   | Unique identifier of a specific alert message bound to a session                                          |
+| Alert List  | Category             | Type of alert message (appointment alert/ process trigger/ healthalert/crimealert/etc.)                   |
+| Alert List  | Entity ID            | Entity which owns this alert message                                                                      |
+| Alert List  | Target Resources     | Unique identifiers of specific Resources enrolled in a specific session                                   |
+| Alert List  | Target Subscribers   | Unique identifiers of a specific subscribers enrolled in a specific session                               |
+| Alert List  | Epoch                | Date-Time when this alert must be generated                                                               |
+| Alert List  | AlertMessage         | Alert message to be sent (Common to all recipients)                                                       |
+| Alert List  | Status               | Status of alert (pending/sent/delivered)                                                                  |
+| Alert List  | CRUD\_Log            | Configuration history of this Alert entry                                                                 |
+| Resources   | ID                   | Unique identifier of a specific Resource                                                                  |
+| Resources   | Phone                | Resource phone number                                                                                     |
+| Resources   | Email                | Resource email address                                                                                    |
+| Resources   | Alert\_URL           | Resource URL to send alerts                                                                               |
+| Resources   | Category             | Identifies the resource class e.g doctor, nurse, admin, ambulance,etc.                                    |
+| Resources   | Name                 | Name of resource                                                                                          |
+| Resources   | Entity               | Organization which owns this resource                                                                     |
+| Resources   | Location             | Address of the resource                                                                                   |
+| Resources   | Alert\_Mode          | Whether alert should be sent to this resource by mail/phone/messaging/URL                                 |
+| Resources   | CRUD\_Log            | Configuration history of this Resource entry                                                              |
+| Resources   | Status               | Status of this resource (enabled/disabled)                                                                |
+| Subscribers | ID                   | Unique identifier of a specific subscriber                                                                |
+| Subscribers | Phone                | Subscriber phone number                                                                                   |
+| Subscribers | Email                | Subscriber email address                                                                                  |
+| Subscribers | Alert URL            | Subscriber URL to send alerts                                                                             |
+| Subscribers | Entity               | Organization that the subscriber represents (subscriber may be individual participants also).             |
+| Subscribers | Alert\_Mode          | Whether alert should be sent to this subscriber by mail/phone/messaging/URL                               |
+| Subscribers | CRUD\_Log            | Configuration history of this Subscriber entry                                                            |
+| Subscribers | Status               | Status of this subscriber(Enabled/disabled)                                                               |
+| Subscribers | Location             | Address of subscriber                                                                                     |
+| Entity      | ID                   | Unique identifier of a Entity                                                                             |
+| Entity      | Category             | Class of entity (Hospital, clinic,etc)                                                                    |
+| Entity      | Name                 | Name of entity                                                                                            |
+| Entity      | Phone                | Phone number of the entity                                                                                |
+| Entity      | Email                | Email of the entity                                                                                       |
+| Entity      | Status               | Whether this entity is active or not for scheduling                                                       |
+| Entity      | CRUD\_Log            | Transaction history of this document                                                                      |
