@@ -10,6 +10,8 @@ The data requirements of these heterogenous use cases are reduced into a compreh
 
 Typical data structure requirements and format representations relevant to this building block have been TMF646\_Appointment\_API\_Specification\_R19.0.0\_fixed ([https://www.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed](https://www.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed)). However, the schema and data elements are optimized for minimizing footprint and external dependencies, given that this building block handles time-critical alerts.
 
+## Scheduler Building Block Resource Model
+
 <figure><img src=".gitbook/assets/image5.png" alt=""><figcaption><p><a href="https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520">https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520</a></p></figcaption></figure>
 
 ### Data elements
