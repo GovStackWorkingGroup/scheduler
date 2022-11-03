@@ -20,7 +20,7 @@ This sub-block maintains records of all event schedules, including date-time slo
 
 This block can register, update and list resources including personnel, equipment, vehicles, facilities\[1] \[2] , etc. The block also enables non-duplication of subscriber and resource entries and captures details of each resource such as communication addresses, owner entity, resource type, etc. The scheduler automatically populates new resources with details as and when encountered within requests of various sessions which can then be reused to schedule participation in multiple sessions, episodes and subsequent events based on implementation needs. Each resource may be tagged to a specific type  (doctor, nurse, ambulance, equipment, etc.) and there can be resources of same type, each with different ID.
 
-### IV. Appointment\[1] \[2]  Management:
+### IV. Appointment  Management:
 
 This subblock facilitates booking of subscribers into specific sessions, episodes and events posted on the Scheduler(Worklist). It provides utilities for discovery of event details, available session slots, and captures subscriber enrolment details into specific events. It generates unique tokens for subscriber appointments in respective sessions of the event. In use cases where the subscriber is a target device/software, the admin of this BB  is expected to configure the subscription and associated Alerts in the event schedule. It is to be noted that event management is to do with planning and running an event and appointment management is to do with enrolment of beneficiaries of an event. This module also provides APIs to check status, cancel or reschedule respective appointments.
 
