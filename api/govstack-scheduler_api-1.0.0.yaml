@@ -12,9 +12,6 @@ info:
 externalDocs:
   description: Find out more about scheduler
   url: https://www.govstack.global/
-servers:
-  - url: http://ss2.egovstack.net/r1/eGovStack/COM/11222456/SchedulerBB/creg/
-    description: Scheduler BB Security server
 tags:
   - name: Event
     description: Event  API
