@@ -176,14 +176,14 @@ paths:
         content:
           json:
             schema:
-              $ref: '#/components/schemas/Eventconfig'
+              $ref: '#/components/schemas/Event_Details'
       responses:
         '200':
           description: success, Event updated
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Eventconfig'
+                $ref: '#/components/schemas/Event_Details'
         '400':
           description: Invalid Event_id supplied
         '403':
@@ -259,20 +259,20 @@ paths:
           explode: true
           schema:
             type: string
-        - name: Eventdetails
+        - name: Event_Details
           in: query
           required: false
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/Eventdetails'
+            $ref: '#/components/schemas/Event_Details'
       responses:
         '200':
           description: success,Event details
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Eventconfig'
+                $ref: '#/components/schemas/Event_Details'
         '400':
           description: Invalid EventId
         '403':
@@ -299,13 +299,13 @@ paths:
           explode: true
           schema:
             type: string
-        - name: Eventfilter
+        - name: Event_Filter
           in: query
           required: true
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/Eventfilter'
+            $ref: '#/components/schemas/Event_Filter'
       responses:
         '200':
           description: success,Event list
@@ -574,7 +574,7 @@ paths:
         content:
           json:
             schema:
-              $ref: '#/components/schemas/alertconfig'
+              $ref: '#/components/schemas/Alert_Details'
       responses:
         '200':
           description: success
@@ -618,13 +618,13 @@ paths:
           explode: true
           schema:
             type: integer
-        - name: alertconfig
+        - name: Alert_Details
           in: query
           required: false
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/alertconfig'
+            $ref: '#/components/schemas/Alert_Details'
       responses:
         '200':
           description: sucessfully updated
@@ -670,14 +670,14 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/alertdetails'
+            $ref: '#/components/schemas/Alert_Details'
       responses:
         '200':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/alertconfig'
+                $ref: '#/components/schemas/Alert_Details'
         '400':
           description: Invalid alertId supplied
         '403':
@@ -862,7 +862,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/alertdetails'
+            $ref: '#/components/schemas/Alert_Details'
       responses:
         '200':
           description: success
@@ -1050,7 +1050,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/resourcedetails'
+            $ref: '#/components/schemas/Resource_Details'
       responses:
         '200':
           description: success
@@ -1242,7 +1242,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/resourcedetails'
+            $ref: '#/components/schemas/Resource_Details'
       responses:
         '200':
           description: success
@@ -1378,7 +1378,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/subscriberdetails'
+            $ref: '#/components/schemas/Subscriber_Details'
       responses:
         '200':
           description: success
@@ -1570,7 +1570,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/subscriberdetails'
+            $ref: '#/components/schemas/Subscriber_Details'
       responses:
         '200':
           description: success
@@ -1628,7 +1628,7 @@ paths:
           content:
             json:
               schema:
-                $ref: '#/components/schemas/status_list'
+                $ref: '#/components/schemas/Status_List'
         '403':
           description: requestor doesnot have permission to get information
         '404':
@@ -1677,7 +1677,7 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/log_details'
+            $ref: '#/components/schemas/Log'
         - name: logfilter
           in: query
           required: true
@@ -1726,7 +1726,7 @@ paths:
         content:
           json:
             schema:
-              $ref: '#/components/schemas/Entity_Config'
+              $ref: '#/components/schemas/Entity_Details'
       responses:
         '200':
           description: success
@@ -1775,7 +1775,7 @@ paths:
         content:
           json:
             schema:
-              $ref: '#/components/schemas/Entity_Config'
+              $ref: '#/components/schemas/Entity_Details'
       responses:
         '200':
           description: success
@@ -1821,14 +1821,14 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/entitydetails'
+            $ref: '#/components/schemas/Entity_Details'
       responses:
         '200':
           description: success
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Entity_Config'
+                $ref: '#/components/schemas/Entity_Details'
         '400':
           description: Invalid entity_id supplied
         '403':
@@ -1871,14 +1871,14 @@ paths:
           style: form
           explode: true
           schema:
-            $ref: '#/components/schemas/entityfilter'
+            $ref: '#/components/schemas/Entity_Filter'
       responses:
         '200':
           description: success
           content:
             json:
               schema:
-                $ref: '#/components/schemas/entity_info'
+                $ref: '#/components/schemas/Entity_Info'
         '400':
           description: Invalid entityId supplied
         '403':
@@ -1997,7 +1997,6 @@ paths:
           description: Unexpected error
 components:
   schemas:
-   Parameters:
     subscriberconfig:
       type: object
       properties:
@@ -2107,7 +2106,6 @@ components:
           type: string
         Status:
           type: string
-        
     resourcefilter:
       type: object
       properties:
@@ -2380,7 +2378,6 @@ components:
         alert_name:
           type: string
     slots_inner:
-      required: true
       type: object
       properties:
         from:
