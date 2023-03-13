@@ -4,8 +4,8 @@ A Set of microservices are defined to provide all functionalities as services of
 
 ## API standards: <a href="#_heading-h.3o7alnk" id="_heading-h.3o7alnk"></a>
 
-* The microservice interfaces are defined as per OPENAPI Ver3.0 standards. For details see [https://swagger.io/specification/#:\~:text=The%20OpenAPI%20Specification%20(OAS)%20defines,or%20through%20network%20traffic%20inspection](https://swagger.io/specification/).
-* TMF630\_REST\_API\_Design\_Guidelines have been referenced as guidelines in the process : for details see ([https://www.tmforum.org/resources/standard/tmf630-rest-api-design-guidelines-4-2-0/](https://www.tmforum.org/resources/standard/tmf630-rest-api-design-guidelines-4-2-0/))&#x20;
+* The microservice interfaces are defined as per OPENAPI Ver3.0 standards (for details see: [https://swagger.io/specification/#:\~:text=The%20OpenAPI%20Specification%20(OAS)%20defines,or%20through%20network%20traffic%20inspection](https://swagger.io/specification/)).
+* TMF630\_REST\_API\_Design\_Guidelines have been referenced as guidelines in the process (for details see: [https://www.tmforum.org/resources/standard/tmf630-rest-api-design-guidelines-4-2-0/](https://www.tmforum.org/resources/standard/tmf630-rest-api-design-guidelines-4-2-0/)).
 
 ## &#x20;Summary of scheduler services
 
@@ -28,14 +28,14 @@ A Set of microservices are defined to provide all functionalities as services of
 | 15 | get\_Session\_alerts (Session ID, alertdetails\[field names]                         | Returns requested details of alerts that have been allocated to a specified session                                                                                         |
 | 16 | Send session Alert(Session ID, Alert ID)                                             | Called by internal tracker to notifiy subscribers/resources at scheduled times directly/through IMPubsub / messaging BB and obtain a response Token                         |
 | 17 | create\_Resource(Resourceconfig \[fieldnames, field values])                         | Returns new Resource ID after storing Resource details in local registry                                                                                                    |
-| 18 | update\_Resource(Resource Id, Resourceconfig \[field names, field values])           | Update values of particular fields of given Resource ID Note: status field can be used to enable or disable further usage of this Resource.                                 |
+| 18 | update\_Resource(Resource Id, Resourceconfig \[field names, field values])           | Update values of particular fields of given Resource ID Note: status field can be used to enable or disable further usage of this Resource                                  |
 | 19 | get\_Resource\_details(Resource Id,Resourcedetails \[field names])                   | Returns requested details of Resource for given Resource id                                                                                                                 |
 | 20 | get\_Resource\_list(entity ID, Resourcefilter\[field names])                         | Returns IDs of Resources of given entity selected as per filter field names                                                                                                 |
 | 21 | allocate\_Resource(Session\_ID, Resource ID)                                         | Returns success add a Resource to list of Resources to be sent to specified resources, subscribers in the specified Session                                                 |
 | 22 | deallocate\_ Resource(Session ID, Resource Id(s))                                    | Returns success after removing specified Resources from specified Session                                                                                                   |
 | 23 | get\_Session\_Resources (Session ID, Resourcedetails\[field names, field values]     | Returns requested details of Resources that have been allocated to a specified session                                                                                      |
 | 24 | create\_Subscriber(Subscriberconfig \[fieldnames, field values])                     | Returns new Subscriber ID after storing Subscriber details in local registry                                                                                                |
-| 25 | update\_Subscriber(Subscriber Id, Subscriberconfig \[field names, field values])     | Update values of particular fields of given Subscriber ID Note: status field can be used to enable or disable further usage of this Subscriber.                             |
+| 25 | update\_Subscriber(Subscriber Id, Subscriberconfig \[field names, field values])     | Update values of particular fields of given Subscriber ID Note: status field can be used to enable or disable further usage of this Subscriber                              |
 | 26 | get\_Subscriber\_details(Subscriber Id,Subscriberdetails \[field names])             | Returns requested details of Subscriber for given Subscriber id                                                                                                             |
 | 27 | get\_Subscriber\_list(entity ID, Subscriberfilter\[field names])                     | Returns IDs of Subscribers of given entity selected as per filter field names                                                                                               |
 | 28 | allocate\_Subscriber(Session\_ID, Subscriber ID)                                     | Returns success add an Subscriber to list of Subscribers to be sent to specified resources, subscribers in the specified Session                                            |
@@ -43,10 +43,10 @@ A Set of microservices are defined to provide all functionalities as services of
 | 30 | get\_Session\_Subscribers (Session ID, Subscriberdetails\[field names, field values] | Returns requested details of Subscribers that have been allocated to a specified session                                                                                    |
 | 31 | Show\_status(category: Alert/Event/Episode/Session/resource /subscriber, ID)         | Report logged status of objects in specified category and ID in a specified period                                                                                          |
 | 32 | get\_Log\_report(logdetails, logfilter)                                              | Publish chronological transaction report of specified category and ID                                                                                                       |
-| 33 | Request session Status (Target BB ID, Token ID)                                      | This internally generated request by schedule tracker to an external BB to obtain current status of a session was triggered earlier by Scheduler BB.                        |
+| 33 | Request session Status (Target BB ID, Token ID)                                      | This internally generated request by schedule tracker to an external BB to obtain current status of a session was triggered earlier by Scheduler BB                         |
 | 34 | Update session Status(source BB ID, Token ID)                                        | An external BB or its Pubsub proactively informs status of a specific session it was triggered for by sheduler                                                              |
 | 35 | create\_Entity(Entityconfig \[fieldnames, field values])                             | Returns new Entity ID after storing Entity details in local registry                                                                                                        |
-| 36 | update\_Entity(Entity Id, Entityconfig \[field names, field values])                 | Update values of particular fields of given Entity ID Note: status field can be used to enable or disable further usage of this Entity.                                     |
+| 36 | update\_Entity(Entity Id, Entityconfig \[field names, field values])                 | Update values of particular fields of given Entity ID Note: status field can be used to enable or disable further usage of this Entity                                      |
 | 37 | get\_Entity\_details(Entity Id,Entitydetails \[field names])                         | Returns requested details of Entity for given Entity id                                                                                                                     |
 | 38 | get\_Entity\_list(entity ID, Entityfilter\[field names])                             | Returns IDs of Entities of given entity selected as per filter field names                                                                                                  |
 | 39 | affiliate\_Entity(Entity\_ID,Target\_ID,Target\_Category)                            | Returns success after binding Entity ID to specific target ID of an internal register of a given category (Resource/subscriber/worklist/alert)                              |
@@ -56,7 +56,7 @@ A Set of microservices are defined to provide all functionalities as services of
 
 &#x20;Detailed API schemas written in YAML that define RESTAPI endpoints for each of the services mentioned above are available on SwaggerHub located at [https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8](https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8)&#x20;
 
-An example of APIs defined for above services is given below purely for illustration:
+An example of APIs defined for the above services is given below purely for illustration:
 
 ```
 openapi: 3.0.1
