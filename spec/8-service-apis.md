@@ -1,5 +1,11 @@
 # 8 Service APIs
 
+This section provides a reference for APIs that should be implemented by this Building Block. The APIs defined here establish a blueprint for how the Building Block will interact with other Building Blocks. Additional APIs may be implemented by the Building Block, but the listed APIs define a minimal set of functionality that should be provided by any implementation of this Building Block.&#x20;
+
+The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here.
+
+
+
 A Set of microservices are defined to provide all functionalities as services of this BB, considering the use cases discussed.  These microservices are through RESTful API end points to other GovStack building blocks and applications to receive requests with relevant inputs and return processed results.  A summary of the services of this BB are summarized in the table below.
 
 ## API standards: <a href="#_heading-h.3o7alnk" id="_heading-h.3o7alnk"></a>
