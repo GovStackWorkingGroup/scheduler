@@ -1,61 +1,89 @@
 # 6 Functional Requirements
 
-## Internal functional blocks :
+## Internal functional components:
 
-A common set of unique internal functional requirements to orchestrate the services of the scheduler BB derived from the use cases above can be grouped into logically separate internal subblocks as shown below. The REST APIs defined in appendix-1 route service requests to appropriate internal
+A common set of unique internal functional components are required to orchestrate the services of the scheduler BB as shown below. The REST APIs interfaces route service requests to/from external building blocks and appropriate internal blocks in appropriate formats. A brief description of the generic functionality of each of these components has been given below from a minimum viable product perspective. Detailed design and feature lists of these blocks can be customized by developers to optimally match specific target implementation needs.
 
-<figure><img src=".gitbook/assets/image1.png" alt=""><figcaption></figcaption></figure>
+<table data-view="cards"><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td>     Event Management</td><td></td></tr><tr><td></td><td>   Resource Management</td><td></td></tr><tr><td></td><td>Subscriber Management</td><td></td></tr><tr><td></td><td>       Alert Management</td><td></td></tr><tr><td></td><td>Tracking and Alerting</td><td></td></tr><tr><td></td><td>          Administration</td><td></td></tr><tr><td></td><td>    PubSub Interface</td><td></td></tr><tr><td></td><td>      Messaging Interface</td><td></td></tr><tr><td></td><td>             IM Interface</td><td></td></tr></tbody></table>
 
-blocks and format responses from results collated across relevant internal blocks. A brief description of the generic functionality of each of these blocks has been given below from a minimum viable product perspective. Detailed design and feature lists of these blocks can be customized by developers to optimally match specific target needs.
+### 1. Event management&#x20;
 
-### I. Event Scheduling(planner):&#x20;
+* The scheduler MUST enable an event organizer to create/update/delete/modify/list schedule details of multiple events.&#x20;
+* Each event MUST have a specified starting and ending date-time of an event,  at least one subscriber and at least one alert message to be notified to the subscriber.&#x20;
+* An event MAY have multiple subscribers and resources participating and multiple messages to be sent at specific date-times before/during/after the event to specific subscribers and resources.&#x20;
+* This BB must enable setting up an Event as a placeholder in advance with place holders and later specific resources, alerts, subscribers may be added subsequently.&#x20;
+* It MUST be possible to also feed any details already known during creation of the new event schedule.&#x20;
+* An event schedule MUST allow setting up in advance with place holders and later specific resources, alerts, subscribers may be added subsequently.&#x20;
+* It MUST be possible to also feed any details already known during creation of the new event schedule.
+* The scheduler MUST not allow addition/modification of any details of an event after the scheduled event is over.
+* In case of events workshops, training sessions, medical camps, marketplace exhibitions, etc., that may host repeated events at different places by different resources for different subscribers, the Events could have same name, but each instance would have a unique ID. The scheduler MUST not allow events with same name and same host entity to overlap at same date-time epochs.
+* Building blocks/applications MAY asynchronously update status of an event to the Scheduler in three possible ways- proactively through call-back end points of the scheduler or through IM-pub-sub modules of triggered building blocks or in response to a status polling request to triggered resource from the scheduler&#x20;
 
-This sub-block can create/update/cancel sessions and add them to specific episodes within an Event. To facilitate planning, tracking, and triggering specific alerts needed for driving the activities as per schedule, this subblock maintains a worklist that captures details of all scheduled events including a list of resources allocated and subscribers booked for the session. It enables the listing of sessions, episodes, events, resources, and subscribers with different filter options. IT can also search for a specific type of resources of a given entity, which are unallocated during a given date-time range, and to find timeslots in a given date range where all specified resources are unallocated. All event-related information is stored in the worklist sub-block.
+### 2. Resource management:&#x20;
 
-### II. Worklist management :
+* The scheduler MUST enable an event organizer to create/update/modify/list multiple Resources (persons/facilities/equipment/vehicles/etc.) as needed for taking part in various events.  All the details about the Resource MUST be stored in a common internal repository so that the resources may be affiliated to multiple entities and booked into multiple events as needed.
+* A Resource MUST be affiliated with at least one entity with specific working hours during registration. Subsequently the same Resource may be affiliated into multiple entities such that the week-days and working hours allocated to affiliated entities do not overlap with each other. &#x20;
+* Each Resource MUST be defined with a specific category (doctors/nurses/ ambulance /meeting room/ etc.) that helps in grouping, searching and selection of the resource.
+* Contact details of Resource (email/SMS/webhook/etc. along with a default option) MUST be registered along with the Resource. &#x20;
+* A Resource may be booked into multiple non-overlapping. The event slots for booking a resource MUST be restricted to the working hours of the resource in a specific entity  the Resource is registered into. **** &#x20;
 
-This sub-block maintains records of all event schedules, including date-time slots of all resources, and subscribers of each session, episode and event, along with a schedule of associated alerts to be generated before/during/after each session. The planner may add/cancel worklist entries, and the Tracking subblock may use this worklist to track and generate alerts appropriately.
+### 3. Subscriber management:&#x20;
 
-### III. Resource Management:
+* The scheduler MUST enable an event organizer to create/update/modify/list subscribers (persons/facilities/equipment/vehicles/etc.)  as needed for taking part in various events. All the details about the subscriber MUST be stored in a a common internal repository so that the subscribers may be enrolled into multiple events as their contact details be reused to send alerts as needed.
+* A Subscriber may be affiliated into multiple Events that do not overlap with each other in date-time.&#x20;
+* Contact details of subscriber (email/sms/webhook/etc along with default option) MUST be registered along with the subscriber.&#x20;
 
-This block can register, update and list resources including personnel, equipment, vehicles, facilities\[1] \[2], etc. The block also enables non-duplication of subscriber and resource entries and captures details of each resource such as communication addresses, owner entity, resource type, etc. The scheduler automatically populates new resources with details as and when encountered within requests of various sessions which can then be reused to schedule participation in multiple sessions, episodes and subsequent events based on implementation needs. Each resource may be tagged to a specific type (doctor, nurse, ambulance, equipment, etc.) and there can be resources of the same type, each with a different ID.
+### 4. Alert Management:
 
-### IV. Appointment  Management:
+* The scheduler MUST enable an event organizer to create/update/delete/modify/list Alert message templates that can be reused in multiple events. ( e.g  appointment reminders to various patients, triggering periodic transfer of salaries, etc.,). &#x20;
+* The scheduler MUST enable an event organizer to create/update/delete/modify/list multiple Alert schedules associated with an event. Each alert schedule MUST which subscribers and resources should be notified at epoch (date-time) using whichalert message template. All scheduled alerts of one or more events are stored in a common Alert\_List.
+* Scheduler MUST have the capability to send alerts tagged to a specific token number to targets either directly to a Rest-API of target building block or through Messaging building block or through its IM building block Pub-Sub room. The choice is  an implementation time decision, but it is preferred to use direct alerting sparingly for synchronous (time-critical) alerts, other asynchronous alerts can use  Messaging building block based alerts suits for endpoints on mobile client apps, while pub-sub should be chosen only when it is okay the art has no control of who should  read it in pub-sub room
+* &#x20;Recipients of such alerts MAY return acknowledgement of the alert and further status updates to the scheduler in any of the following possible ways, with the token number as reference-&#x20;
+  * proactive updates from application of alerted participant either directly to schedule or through its respective IM-PubSub&#x20;
+  * in response to a status polling request from scheduler to the alerted participant.&#x20;
 
-This subblock facilitates the booking of subscribers into specific sessions, episodes and events posted on the Scheduler(Worklist). It provides utilities for the discovery of event details, available session slots, and captures subscriber enrolment details into specific events. It generates unique tokens for subscriber appointments in respective sessions of the event. In use cases where the subscriber is a target device/software, the admin of this BB  is expected to configure the subscription and associated Alerts in the event schedule. It is to be noted that event management is to do with planning and running an event and appointment management is to do with the enrolment of beneficiaries of an event. This module also provides APIs to check the status, and cancel or reschedule respective appointments.
+### 5.  Tracking and Alerting: <a href="#_heading-h.3j2qqm3" id="_heading-h.3j2qqm3"></a>
 
-### V. Alert Management:
+* The scheduler internally MUST track and initiate sending of appropriate alert messages at specified date-time epochs to the Resources and Subscribers specified in the alert configuration for respective specific events.
+* The alert messages will be routed to appropriate channels (email/SMS/URL) to corresponding end-points indicated in the resource/subscriber registry.
+* The tracker MUST  log  all alerts sent including acknowledgements received and delivery confirmations.&#x20;
+* The scheduler MAY also receive attendance updates from any subscriber and resource and update in appropriate log.
 
-This subblock enables the creation, updating and binding of message templates that can be used in various notifications required by an Event Schedule. The sub-block also enables categorization of alert types such as reminders, activity triggers, status notifications, etc and allocated standardized timing of alters such as a day/hour/min before or at onset of an event, repeat interval, etc., which helps reuse notifications for various subscribers and resources of a session. The subblock expects appropriate UI inputs from the administrator for configuration of Alert templates.
+### 6. Logging and Reporting
 
-### VI. Schedule Tracking and triggering: <a href="#_heading-h.3j2qqm3" id="_heading-h.3j2qqm3"></a>
+* This sub-block MUST periodically log specified internal metrics (e.g. latency, queue depth, errors, system resource consumption, number of retries, etc. form critical indicators of performance of the scheduler building block).&#x20;
+* This subblock MUST internally monitor logged indicators, detect anomalies and escalate reports to administrators for timely housekeeping, capacity management, backup and audit purposes.&#x20;
+* This subblock MUST enable organizers, auditors, administrators to query specific metrics, trends and statistics from the logged data and get reports accordingly.&#x20;
 
-This block continuously monitors the worklist for onset of various alerts and generates appropriate alert messages to trigger appropriate target users and systems at appropriate times, based on the event schedule. It will run as an independent process thread with the capability to track thousands of parallel events and generate heterogenous notifications. This block shall be configured to send messages through IM directly to a target BB, or publish it in its local IM+PUBSUB module or through messaging BB, and in either case receive token number status notifications (for example an event was started, ended or no show). Details logged by this sub-block should be used by the reporting subblock to generate appropriate indicators and for seeking status updates.
+### &#x20;7. Administration:
 
-### VII. BB Administration**:**
+* This component MUST enables to BB admins to configure rules for monitoring, detection and escalation of any performance/security conditions to the administrator proactively.  The exact parameters and statistical indicators may be decided at implementation time.
+* This subblock MUST enable setup and updates of various end-point address (IM/other BBs/PubSub/Applications/etc.) and associated communication settings such as  back-off mechanisms, error handling, network breakdown resilience mechanisms, latency limits, etc. stored in various interfaces of the building block
+* This sub-block MAY provide native UIs to administrators of this BB through an API Gateway, as decided during implementation time. &#x20;
 
-This subblock provides control over all functionality and configurations to the BB administrator. For example, registered users of the system can be enabled/disabled from using specific features of the BB. This block also enables the administrator to set up rules for automatic status polling, report generation, configure rules to send notifications confirming the creation/modification/cancellation of events or not when forced by the administrator. It also enables the administrator to set up the interface parameters  (such as URLs) to interact with specific external blocks (such as messaging, workflow, etc.). It also configures alert rules for any performance/security conditions that need to be escalated to the administrator proactively. It can be used to configure communication requirements such as back-off mechanisms, error handling, network breakdown resilience mechanisms, latency limits, setup/update/Log system monitoring parameters, etc. This sub-block provides a presentation (UI) layer and controlled access to administrative users of this BB. This subblock orchestrates all the protocols and interfaces necessary to interact with the API gateway and Internet access management functions of the Security Building Block to enable authenticated user access. This block also provides the bridge to route data exchange between Administrator requests (such as configuration forms) to reach the various BB subblocks and route responses (such as reports, etc.).  from BB sub-blocks to a front-end UI, the actual configuration parameters are a design-time choice.  Based on traffic and performance requirements, such a bridge can also be a separate sunblock. However, the actual choice may be a consideration during design time.
+### 8. IM Interface:
 
-### VIII. Logging and Reporting:
+* This sub-block runs protocols to communicate with information mediator BB for exposing scheduler services to external BBs and applications
+* It also provides specific calls to APIs of information mediator BB to access services of external applications and building blocks.&#x20;
+* It also handles any errors and failures in data exchange between the scheduler and other BBs/Apps (such as backoff and retries, etc)
+* It routes error information if any to the logger subblock.&#x20;
+* It maintains a list of endpoint addresses of IM, other BBs and Applications&#x20;
 
-This subblock maintains logs of user-driven transactions, activities originating from this BB as well as status updates coming from external sources. All logs contain a date time stamp, an optional location stamp, details of the information source and the status of transaction. For example, the Scheduler can log all alerts it generates and all events that are created/updated/cancelled. It can also log external status such as completion of a consultation session or no-show from another application that tracks delivery of specific services in an event. In some implementations, some subscriber users or systems may also generate acknowledgement of having received triggers/notifications from the scheduler within a certain period of time, failing which a rule may force the scheduler to resend the trigger/notification for a given number of retries before logging a communication success or failure. The System monitoring block can also log latency and utilization status as to how close is the event traffic load compared to the system capacity. The security implementation of the BB may also log any security threats or faults detected in the system. This subblock also generates different types of pre-configured reports and emits them in response to specific queries over a chosen date range. The block enables the formation of report templates through a selection of parameters from logs. The reports may be generated on demand or at a configurable frequency. The scheduler does not need to retain copies of reports generated, except for logging what reports were generated by whom and when, as it can recreate the same from data whenever needed. Preconfigured templates can be created to save time and add flexibility in report generation. While this subblock can be designed to generate various types of reports, a minimum set of reports may be predefined to help monitor and audit the scheduler building block for performance, Schedule compliance, transactional status, and statistical indicators spanning across events.
+### 9. Pubsub interface:
 
-### &#x20;IX. System Monitoring:
+* This sub-block MUST provide a mechanism for the Scheduler building block to publish alerts and other messages to other building blocks through specific rooms in a PuBSub building block
+* It MUST enable scheduler to subscribe with PubSub rooms of other building blocks (such as messaging, Accounting, payments, etc,) for example, to receive status updates on completion of an ongoing event).&#x20;
+* It MUST also use the logging sub block to maintain history of PubSub transactions handled by Scheduler BB.
+* This block Should maintain end point address of specific rooms dedicated to the scheduler Building block to publish Alert notifications.&#x20;
 
-This sub-block is meant to monitor internal processes of the Scheduler building block and log certain parameters that may help in housekeeping and capacity management. For example, since the scheduler responds to multiple users, tracks multiple event schedules and triggers a multitude of messages and acquires several responses from target systems, may apply queuing mechanisms internally as needed, it should also log typical latency, queue depth, errors, system resource consumption, retries, etc. that may form critical indicators for how the performance of the scheduler building block is going. This sub-block provides configurability to administrators to select specific parameters to track at regular intervals. These measurements will be used by the reporting block to generate meaningful trends and alerts as needed for capacity and performance management.
+### &#x20;**10.** Messaging interface:
 
-### &#x20;X. IM Interface:
+* The messaging interface SHOULD provides the necessary protocol, data format and information and interface to interact with the messaging building block for sending of notifications to specific target users / applications through a variety of channels (SMS/email/etc.)&#x20;
+* This sub-block SHOULD also routes response messages coming through messaging building block from users/applications to update status of specific events &#x20;
+* It SHOULD sends relevant information to the logging subblock to maintain history of all messaging transactions of this building block, which are useful for audit purposes.
 
-This sub-block runs protocols to communicate through information mediator BB for external BBs and applications to use the scheduler building block services. It also provides specific API abstraction needed to access services from external applications and building blocks. It also handles any errors and failures in data exchange between the scheduler and other BBs/Apps and routes appropriate information to the logger subblock. It maintains a list of IM and endpoint addresses of external BBs and Applications and updates it with inputs from the  Administrative sub-block from time to time as needed.
+### 11. Entity management
 
-### &#x20;XI. Pubsub interface:
-
-This block maintains the endpoint address of specific rooms dedicated to the scheduler Building block to publish Alert notifications. This block handles receiving notifications from PUBSUBs of other building blocks (such as messaging, Accounting, payments, etc) to get and route status updates upon the onset of their respective events. (for example to update the completion status of an ongoing event). The PubSub sends appropriate status information to the logging subblock to maintain history of PubSub transactions handled by Scheduler BB.
-
-### &#x20;**XII.** Messaging interface:
-
-The messaging interface provides the necessary protocol, data format and information to interact with the messaging building block for sending notifications to specific target users/applications through a variety of channels (SMS/email/Webhooks/etc.) This block also routes response messages from target users/applications to the schedule tracker for triggering specific internal actions. It sends relevant information to the logging subblock to maintain a history of all messaging transactions of this building block, which is useful for audit purposes. It should be noted that the messaging interface does not employ any specific mechanism to actually send messages to the endpoints.
-
-## Out of scope: <a href="#_heading-h.qsh70q" id="_heading-h.qsh70q"></a>
-
-Evaluation of any criteria other than time-based evaluations for the generation of a trigger. The scheduler can be used to trigger activities based on time only. The triggered applications or BBs may implement their own logic to evaluate other conditions before action. (e.g. an Accounts BB may get triggered every month by the Scheduler, but it may check if an approved payroll is available before initiating payments). This exclusion also applies to alerts based purely on human decision.
+* This subblock MUST enable registration of new entities that may host events using the scheduler.&#x20;
+* When a new resource / alert / event is registered, if the scheduler finds that the associated host is not specified, it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity. For subscribers, entity is an optional field and may be left blank without specific affiliation
+* When a new resource / alert /subscriber event is registered, if the scheduler finds that a specified host entity is not found in the entity list. it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity.

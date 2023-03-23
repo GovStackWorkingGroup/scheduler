@@ -1,6 +1,6 @@
 # 2 Description
 
-The scheduling building block provides an engine for setting up time-based triggers for various events of an automated business process. The Scheduling building block provides services needed for planning, booking, tracking, triggering, notifying and reporting the status of events. This BB hosts all functionality requirements necessary to orchestrate and expose these services through RESTful APIs. Each event must be identified by a type field and tagged to specific date-time slots of resources (personnel, facilities, equipment, etc.) that are necessary to participate in the event.  This building block capability may be referred to by other Names such as Appointment booking, Activity manager, and Calendar management. This BB can be used for scheduling events in a wide variety of applications and use cases such as
+The scheduling building block provides an engine for serving schedule time-based alerts to synchronize activities of an automated business process called an "Event". Each event is identified by an ID field and have specific name, date, time and duration. An event may empanel multiple resources (personnel, facilities, equipment, etc.) from different entities to perform various activities. An event may also enroll subscribers to benefit from activities of the event. The scheduler may have to alert(trigger) specific resources and subscribers   at specific times before, during and after the event with specific messages in order to carry out respective activities. The scheduler building block contains various functionalities necessary to enable planning, booking, tracking, triggering, notifying and status reporting needs of multiple events.  It hosts several micro-services that orchestrate these functionalities, exposed through RESTful APIs. This Building can be used for scheduling events in a wide variety of applications and use cases such as
 
 **Health sector:**
 
@@ -14,9 +14,9 @@ The scheduling building block provides an engine for setting up time-based trigg
 
 •  Shipment planning and tracking in supply chain management.
 
-•  Periodic announcements for public awareness and programs.
+•  Announcements for public awareness and programs
 
-•  Regular maintenance checks for equipment.
+•  Maintenance checks for equipment
 
 **Agriculture sector:**
 

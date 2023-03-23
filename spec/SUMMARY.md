@@ -11,3 +11,5 @@
 * [8 Service APIs](8-service-apis.md)
 * [9 Workflows](9-workflows.md)
 * [10 Other Resources](10-other-resources.md)
+* [11 Key Decision Log](11-key-decision-log.md)
+* [Extras](extras.md)
