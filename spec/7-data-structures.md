@@ -12,7 +12,7 @@ Typical data structure requirements and format representations relevant to this 
 
 ## Scheduler Building Block Data Model
 
-<figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model (5).png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model (8).png" alt=""><figcaption></figcaption></figure>
 
 ### Data elements
 

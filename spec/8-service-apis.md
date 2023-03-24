@@ -80,8 +80,8 @@ A Set of microservices are defined to provide all functionalities as services of
 
 
 
-## Scheduler BB APIs:
+## Scheduler BB API schema:
 
-&#x20;Detailed API schemas written in YAML that define RESTAPI endpoints for each of the services mentioned above are available on SwaggerHub located at [https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8](https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8) , where one can find  exact definition and conventions in OpenAPI scripts
+Detailed API schemas written in YAML that define RESTAPI endpoints for each of the services mentioned and associated data structures mentioned above are available on GitHub located at
 
-An example of APIs defined for above services is given below purely for illustration:
+[https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json)
