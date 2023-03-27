@@ -10,7 +10,7 @@ The internal data requirements of the Scheduler operations from heterogenous use
 
 ## Standards
 
-Typical data structure requirements and format representations relevant to this Building Block have been [TMF646\_Appointment\_API\_Specification\_R19.0.0\_fixed](https://es.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed). However, the schema and data elements are optimized for minimizing footprint and external dependencies, given that this Building Block handles time-critical alerts.
+Typical data structure requirements and format representations relevant to this Building Block have been [TMF646\_Appointment\_API\_Specification\_R19.0.0\_fixed](https://es.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed). However, the schema and data elements are optimized for minimizing footprint and external dependencies, given that this Building Block handles time-critical alerts. The common minimum datasets have been illustrated in the schema below (source: [https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv\_51a931a4-75d0-441e-94f5-3f254d223520\&page=0\_0#](https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv\_51a931a4-75d0-441e-94f5-3f254d223520\&page=0\_0)) and described in the table below.&#x20;
 
 ## Scheduler Building Block Data Model
 
