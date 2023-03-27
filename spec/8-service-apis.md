@@ -88,8 +88,6 @@ In common for all microservices of the Scheduler Building Block, the API expects
 
 ## Scheduler Building Block APIs
 
-Detailed API schemas written in YAML that define REST API endpoints for each of the services mentioned above are available on SwaggerHub located a [https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8](https://app.swaggerhub.com/apis/GovStack/govstack-scheduler\_bb\_api/0.0.8) , where one can find  exact definition and conventions in OpenAPI scripts.
-
-An example of APIs defined for the above services is given below purely for illustration:
+Detailed API schemas written in YAML that define REST API endpoints for each of the services mentioned above are available on GitHub located at
 
 [https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json)
