@@ -90,4 +90,4 @@ In common for all microservices of the Scheduler Building Block, the API expects
 
 Detailed API schemas written in YAML that define REST API endpoints for each of the services mentioned above are available on GitHub located at
 
-[https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f490d409f78d54bc73da19c04e3cfe0b02d0d944/api/psramkumar-govstack-scheduler\_api-1.0.0-resolved.json)
+[https://github.com/GovStackWorkingGroup/bb-scheduler/blob/44204307ca961961754da4d854d11f3c1af51ba6/api/govstack-scheduler\_apis-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/44204307ca961961754da4d854d11f3c1af51ba6/api/govstack-scheduler\_apis-1.0.0-resolved.json)
