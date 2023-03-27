@@ -6,7 +6,7 @@ description: >-
 
 # 9 Workflows
 
-In current scope, Use-cases of Post-Partum care and Unconditional Social Benefit transfer programs were considered to derive key digital functionalities required to orchestrate services from this Building Block. In this section we identify workflows to manifest some of the main services. These may be enhanced or customized as needed for specific implementation needs.The following common preconditions may be needed to be met before utilizing these services:
+In current scope, example drawn from user-journey steps of use-cases of Post-Partum care and Unconditional Social Benefit transfer programs were considered to derive key digital functionalities required to orchestrate services from this Building Block. In this section we identify workflows to manifest some of the main services. These may be enhanced or customized as needed for specific implementation needs.The following common preconditions may be needed to be met before utilizing these services:
 
 * Entities that Host an Event registered in the Scheduler before scheduling respective events;
 * Subscriber, Organizer, and Resources are registered in Scheduler before being used in Event;
