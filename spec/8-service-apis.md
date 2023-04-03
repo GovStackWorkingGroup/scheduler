@@ -86,6 +86,30 @@ In common for all microservices of the Scheduler Building Block, the API expects
 
 ## Scheduler Building Block APIs
 
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event/new" method="post" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event/new_appointment" method="post" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event/modifications" method="put" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event" method="delete" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event/appointment" method="delete" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
+{% swagger src=".gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" path="/event/list_details" method="get" %}
+[psramkumar-govstack-scheduler_api-1.0.0-resolved.json](.gitbook/assets/psramkumar-govstack-scheduler_api-1.0.0-resolved.json)
+{% endswagger %}
+
 Detailed API schemas written in YAML that define REST API endpoints for each of the services mentioned above are available on GitHub located at
 
 [https://github.com/GovStackWorkingGroup/bb-scheduler/blob/d205b40edb0bf3ffb33de57b3b90d774e2fb9616/api/govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/d205b40edb0bf3ffb33de57b3b90d774e2fb9616/api/govstack-scheduler\_api-1.0.0-resolved.json)
