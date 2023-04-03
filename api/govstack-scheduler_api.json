@@ -1884,11 +1884,11 @@
       }
     },
     "/log/new": {
-      "put": {
+      "post": {
         "tags": [
           "log"
         ],
-        "summary": "update attendence of specific participants of event(s) and returns success or error code",
+        "summary": "log new messages received from participants of event(s) and returns success or error code",
         "parameters": [
           {
             "name": "requestor_id",
