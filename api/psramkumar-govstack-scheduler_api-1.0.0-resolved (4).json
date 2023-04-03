@@ -77,7 +77,7 @@
             "in": "query",
             "required": true,
             "style": "form",
-            "explode": true,
+            "explode": false,
             "schema": {
               "$ref": "#/components/schemas/event_details"
             }
