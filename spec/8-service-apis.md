@@ -84,10 +84,8 @@ In common for all microservices of the Scheduler Building Block, the API expects
 | Get:/Log/List\_details | filter\[fields],\[details] | Error code or success code with details of matching Logs | Fetches the details of all Logged information that match the given filtering input fields and values]. |
 | Put:/Log/new           | \[log details]             | Error code or success code                               | Adds new log to log list with date time stamp                                                          |
 
-
-
 ## Scheduler Building Block APIs
 
 Detailed API schemas written in YAML that define REST API endpoints for each of the services mentioned above are available on GitHub located at
 
-[https://github.com/GovStackWorkingGroup/bb-scheduler/blob/9ab8390fcb7cd7001bef78340afe8b9774fbe413/api/govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/9ab8390fcb7cd7001bef78340afe8b9774fbe413/api/govstack-scheduler\_api-1.0.0-resolved.json)
+[https://github.com/GovStackWorkingGroup/bb-scheduler/blob/d205b40edb0bf3ffb33de57b3b90d774e2fb9616/api/govstack-scheduler\_api-1.0.0-resolved.json](https://github.com/GovStackWorkingGroup/bb-scheduler/blob/d205b40edb0bf3ffb33de57b3b90d774e2fb9616/api/govstack-scheduler\_api-1.0.0-resolved.json)
