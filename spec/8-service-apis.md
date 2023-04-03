@@ -27,7 +27,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 
 {% embed url="https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f25360e34ba029cc8c68d1f6cd752da30e06928a/api/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" %}
 
-### Service Group: Event Management
+### Service Group: Event management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/event/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -53,7 +53,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### Service Group: Entity management&#x20;
+### Service Group: Entity management
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/entity/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -71,7 +71,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### Service Group: Resource Management
+### Service Group: Resource management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/resource/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -93,7 +93,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### Service Group: Subscriber management
+### Service Group: Subscriber management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/subscriber/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -111,7 +111,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### **Service Group: Alert Message Management:**
+### Service Group: Alert Message management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/message/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -129,25 +129,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### **Service Group: Alert Schedule Management:**
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
-{% endswagger %}
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
-{% endswagger %}
-
-### Service Group: Affiliation management
+### Service Group: Affiliation management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/affiliation/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
@@ -165,9 +147,27 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 
-### &#x20;Service Group: Logging and Reporting
+### Service Group: Alert Schedule management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/log/new" method="put" %}
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
+{% endswagger %}
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/alert_schedule/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
+{% endswagger %}
+
+### Service Group: Log management&#x20;
+
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json" path="/log/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/govstack-scheduler_api.json)
 {% endswagger %}
 

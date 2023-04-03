@@ -99,21 +99,21 @@ end
 
 #### 3. Allocating resource\[s] to an Event
 
-An Organizer may allocate specific resources into a predefined event by request to the Scheduler through the host application with specific resource\_ids and event\_id.  If the event period falls outside of the work-days-hours of the resource in the associated host entity, it will return an error code. In the normal course, the Scheduler returns allocates each resource into the given entity and returns success. The Host application will publish the status to the Organizer accordingly.
+An Organizer may allocate multiple chosen resources into a predefined event by request to the Scheduler through the host application with specific resource\_ids and event\_id.  If the event period falls outside of the work-days-hours of the resource in the associated host entity, it will return an error code. In the normal course, the Scheduler returns generates an appointment id for each resource bound into the given entity and returns success and adds the resource id as a participant of specific event in event list. The Host application will publish the status to the Organizer accordingly.
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App: Submit chosen resources<br> for allocation to event
 loop for each chosen resource
-    Host_App->>Scheduler:Post/event/new/participant<br>(Event_Id,partipant_type=<br>'resource',resource id)
+    Host_App->>Scheduler:Post/event/new_appointment<br>(Event_Id,partipant_type=<br>'resource',resource id)
     Scheduler->>Resource_list: Get/resource/list_details<br>{work_days_hours}in <br>{resource_id,event_id}
     Scheduler->>Event_list: Get/event/list_details<br>{period}in{event_id}
-    alt if day and timezone of period lies inside<br>affiliated work_days_hours
+    alt if day and timezone of period lies outside <br>affiliated work_days_hours
       Scheduler->>Host_App: return error code
-      Host_App->>Organizer: Confirmation allocation
+      Host_App->>Organizer: publish error
     else
-      Scheduler->>Host_App: return success code
-      Host_App->>Organizer: Confirmation allocation
+      Scheduler->>Host_App: return success code<br> with unique appointment id
+      Host_App->>Organizer: Confirmation allocation<br>and appoinemnt id
     end
 end
 ```
@@ -134,7 +134,7 @@ Host_App->> Organizer: publish <br>resource list
 
 #### 5.  Appointment Scheduling for resource or subscriber to a specific event
 
-An organizer may enroll a subscriber or resource to a specific event through a host app by giving selecting the participant and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type, the scheduler first checks its subscriber\_list or Resrouce list if participant\_id exists and returns an error code if it is not found. The host app may then prompt the organizer to first register the Subscriber/Resource details.  In the normal course, the Scheduler will add a registered participant as subscriber or resource to the event list and confirm successful enrolment to the user through the host app.
+An organizer may enroll a subscriber or resource to a specific event through a host app by giving selecting the participant and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type, the scheduler first checks its subscriber\_list or Resrouce list if participant\_id exists and returns an error code if it is not found. The host app may then prompt the organizer to first register the Subscriber/Resource details.  In the normal course, the Scheduler will add a registered participant as subscriber or resource to the event list and confirm successful enrolment to the user through the host app and issue a unique appointment id for the particular participant and event.
 
 ```mermaid
 sequenceDiagram
