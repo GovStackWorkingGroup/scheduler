@@ -65,32 +65,48 @@ A common set of unique internal functional components are required to orchestrat
 * This sub-block MUST enable setup and updates of various end-point addresses (Information Mediator/other Building Blocks/PubSub/Applications/etc.) and associated communication settings such as back-off mechanisms, error handling, network breakdown resilience mechanisms, latency limits, etc. stored in various interfaces of the Building Block.
 * This sub-block MAY provide native user interfaces to administrators of this Building Block through an API Gateway, as decided during implementation time. &#x20;
 
-### 9. Information Mediator Interface
+### 9. External Interfaces:
 
-* This sub-block runs protocols to communicate with the information mediator Building Block for exposing scheduler services to external Building Blocks and applications.
-* It also provides specific calls to APIs of information mediator Building Block to access services of external applications and Building Blocks.&#x20;
-* It also handles any errors and failures in data exchange between the Scheduler and other Building Blocks/Apps (such as backoff and retries, etc.).
-* It routes error information if any to the logger sub-block.&#x20;
-* It maintains a list of endpoint addresses of Information Mediator, other Building Blocks, and Applications.
-* These are dedicated  API interfaces defined the Information mediator building block and hence not defined here
+1.  **Information mediator interface:**
 
-### 10. Pub/Sub interface
 
-* This sub-block MUST provide a mechanism for the Scheduler Building Block to publish alerts and other messages to other Building Blocks through specific rooms in a Pub/Sub Building Block.
-* It MUST enable the Scheduler to subscribe with Pub/Sub rooms of other Building Blocks (such as messaging, Accounting, payments, etc,) for example, to receive status updates on the completion of an ongoing event).&#x20;
-* It MUST also use the logging sub-block to maintain history of Pub/Sub transactions handled by the Scheduler Building Block.
-* This Block Should maintain endpoint address of specific rooms dedicated to the scheduler Building Block to publish Alert notifications.
-* These are dedicated API interfaces defined the Pub-sub (Informediator building block ) and hence not defined here&#x20;
 
-### &#x20;**11.** Messaging interface
+    * This sub-block runs protocols to communicate with the information mediator Building Block for exposing scheduler services to external Building Blocks and applications.
+    * It also provides specific calls to APIs of information mediator Building Block to access services of external applications and Building Blocks.&#x20;
+    * It also handles any errors and failures in data exchange between the Scheduler and other Building Blocks/Apps (such as backoff and retries, etc.).
+    * It routes error information if any to the logger sub-block.&#x20;
+    * It maintains a list of endpoint addresses of Information Mediator, other Building Blocks, and Applications.
+    * These are dedicated  API interfaces defined in the Information mediator building block and hence not defined here
+2.  **PubSUb Interface:**
 
-* The messaging interface SHOULD provides the necessary protocol, data format, and information and interface to interact with the Messaging Building Block for sending notifications to specific target users/applications through a variety of channels (SMS/email/etc.)&#x20;
-* This sub-block SHOULD also route response messages coming through the Messaging Building Block from participant users/devices/applications for updating of the status/ attendance/etc. of specific events. The scheduler should publish an endpoint for receiving notifications from messaging building block and a log-list to log all messages received.
-* It SHOULD send relevant information to the logging sub-block to maintain history of all messages sent from this Building Block, which are useful for audit purposes.
-* These are dedicated API interfaces defined the messaging building block and hence not defined here
 
-### 12. Entity management
+
+    * These are dedicated API interfaces defined in the Pub-sub (Informediator building block ) and hence not defined here&#x20;
+    * This Block Should maintain endpoint address of specific rooms dedicated to the scheduler Building Block to publish Alert notifications.
+    * It MUST also use the logging sub-block to maintain history of Pub/Sub transactions handled by the Scheduler Building Block.
+    * It MUST enable the Scheduler to subscribe with Pub/Sub rooms of other Building Blocks (such as messaging, Accounting, payments, etc,) for example, to receive status updates on the completion of an ongoing event).&#x20;
+    * This sub-block MUST provide a mechanism for the Scheduler Building Block to publish alerts and other messages to other Building Blocks through specific rooms in a Pub/Sub Building Block.
+
+    ****
+3.  **Messaging interface:**
+
+
+
+    * These are dedicated API interfaces defined in the messaging building block and hence not defined here
+    * It SHOULD send relevant information to the logging sub-block to maintain history of all messages sent from this Building Block, which are useful for audit purposes.
+    * This sub-block SHOULD also route response messages coming through the Messaging Building Block from participant users/devices/applications for updating of the status/ attendance/etc. of specific events. The scheduler should publish an endpoint for receiving notifications from messaging building block and a log-list to log all messages received.
+    * The messaging interface SHOULD provides the necessary protocol, data format, and information and interface to interact with the Messaging Building Block for sending notifications to specific target users/applications through a variety of channels (SMS/email/etc.)&#x20;
+
+### 10. Entity management
 
 * This sub-block MUST enable registration of new entities that may host events using the Scheduler.&#x20;
 * When a new resource/alert/event is registered, if the Scheduler finds that the associated host is not specified, it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity. For subscribers, the entity is an optional field and may be left blank without a specific affiliation
 * When a new resource/alert/subscriber event is registered, if the scheduler finds that a specified host entity is not found in the entity list. it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity.
+
+### 11. Appointment management:&#x20;
+
+* This sub block MUST enable booking specific participants into specific predefined Events.
+* The scheduler MUST validate that specified resources, subscribers and events are  pre-registered in the system before they are bound together.
+* Participants can be of two types - resource and subscriber. Once a resource or a subscribers registered with a unique id in the scheduler, same id is used as Participant Id in whichever events that the given resource/subscriber is booked into.&#x20;
+* Appointments may be created/updated/listed/viewed. Each new appointment will be on an individual participant basis with a unique appointment id. All subscribers and organizer must be intimated after booking/cancellation of appointments.&#x20;
+* Participants of an event must send ids of the event and appointment in headers of their responses/updates sent to the scheduler through any channel (IM/PUBSUB/Messaging)
