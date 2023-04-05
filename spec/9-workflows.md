@@ -36,7 +36,7 @@ This section captures the example workflows that may take place between internal
 * Affiliating an existing resource to a new entity;
 * Registering a new subscriber.
 
-### Workflow sequence diagrams
+### 9.1 Workflow sequence diagrams
 
 The workflows mentioned above are represented in sequence diagrams as illustrated as examples below. As defined earlier, the scheduler responds to four types of actors:
 
@@ -47,7 +47,7 @@ The workflows mentioned above are represented in sequence diagrams as illustrate
 
 ****
 
-1. **Event Creation**
+**9.1.1.  Event Creation**
 
 An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students. Optionally, a deadline may be fed in for participants to log attendance to the event (else marked as absent). This workflow allows organizer to feed in a list of resources and subscribers  already registered (old members) for enrollment into the new event. The Scheduler avoids duplication of given event but checking if it is already registered in its Event\_List. It then returns either an error code or success status along with a unique event id to host application of organizer.&#x20;
 
@@ -67,7 +67,7 @@ else
 end
 ```
 
-#### 2. Finding resources of a host entity that are available in a given date-time range&#x20;
+#### 9.1.2. Finding resources of a host entity that are available in a given date-time range&#x20;
 
 An organizer may need to find availability of resources (personnel, equipment, vehicles, facilities, etc.) of a specific entity to enroll into a specific event.  The organizer seeks the scheduler through a host application, free time zones of specific list of resources of a specific entity, within a date range. The Scheduler fetches from its Resource\_List the workdays-hours of specified resources in a given entity. Alternatively the organizer may feed resource category instead of specific resource Id. In that case, the Scheduler fetches resources of given category and entity along with respective workdays-hours from its Resource\_List.  Then for each resource, the Scheduler then fetches in the Appointment\_List a list of events that the given resource is booked into. It then finds the periods of those events falling within the given date-time range. The Scheduler further calculates available free time zones within the workdays-hours affiliated to each resource. Finally, the Scheduler returns a list of resources with respective unallocated date-time slots. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
 
@@ -99,7 +99,7 @@ end
 end
 ```
 
-#### 3. Finding events of a given category and resource in a given date-time range&#x20;
+#### 9.1.3. Finding events of a given category and resource in a given date-time range&#x20;
 
 In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event type, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its appointment\_List for the details of matching events . The scheduler then checks the status of those events and filters out events with status not = "open" for subscription. The Event List returns a list of matching events with details or any other error condition. This is returned to the host app which will publish results to the Organizer.
 
@@ -116,7 +116,7 @@ Scheduler->>Host_App: return list of <br>matching events
 Host_App->> Organizer: publish <br>resource list
 ```
 
-#### 5.  Appointment Scheduling for resource or subscriber to a specific event
+#### 9.1.4.  Appointment Scheduling for resource or subscriber to a specific event
 
 An organizer may enroll a subscriber or resource to a specific event through a host app by giving resource or subscriber and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type and participant id, the scheduler first checks its subscriber\_list or Resource list if participant\_id exists and returns an error code if it is not found. .  In the normal course, the Scheduler will find the type of event for given event\_id add add that information along with the participant type as subscriber or resource, participant id as the given resource or subscriber id, affiliated entity of the participant (can be individual as well) to the appointment list and confirm successful enrolment to the user through the host app and publish a unique appointment id for that participant back to the organizer and the participant.
 
@@ -163,7 +163,7 @@ else
 end      
 ```
 
-**6. Cancellation of appointment:**&#x20;
+**9.1.5. Cancellation of appointment:**&#x20;
 
 An organizer may cancel an existing appointment of a resource or a subscriber for an event using the Host App. The user may submit the participant id or participant type (subscriber/resource) and the event id to the Scheduler through the host app, requesting for cancellation of respective enrollment for the event. If the Scheduler finds the given event id and subscriber/resource id in the appointment\_list it will delete the enrolment entry of the given resource in the given event, else it will return an appropriate error message. The Host-app confirms success or error condition to the user. The Scheduler also emits a notification through Messaging Building Block to inform the canceled participant only (in different implementations one can also inform all participants). It should be noted that the deletion of the enrolment of a subscriber does not remove subscriber/resource details stored in the subscriber/resource list, but it removes only the allocation to the specific event.&#x20;
 
@@ -180,7 +180,7 @@ else
 end
 ```
 
-#### 7. Registering new Alert Message Template
+#### 9.1.6. Registering new Alert Message Template
 
 Several predefined templates of alert messages can be stored in a Message List so that they can be reused in different alerts and events (for example appointment reminders, triggers to devices and s/w applications, etc.  Using a host app an organizer may submit a new message and request the Scheduler to register the message. The Scheduler tries to store a new entry in its message list and returns a success or error code in response.
 
@@ -193,7 +193,7 @@ Scheduler->>Host_App:Return new template ID
 Host_App->>Organizer: confirm template registration
 ```
 
-#### 8.  Scheduling Alerts for a given event
+#### 9.1.7.  Scheduling Alerts for a given event
 
 An organizer may schedule different alert messages to be sent to subscribers and resources before, during, and after a prescheduled event. It is assumed here that the alert messages are borrowed from a list of messaging templates within the Scheduler that have been pre-registered and affiliated with a specific entity. The Organizer may use a host app to request the Scheduler to create a new alert schedule by choosing the alert message template, date-time of when the alert is to be sent, type of targets to receive the message (subscriber/resource/both). If the Scheduler finds all inputs valid it will store the details against a unique Alert Schedule id in the Alert\_schedile\_list and returns success status and the unique id, otherwise, it will return an appropriate error code. This workflow assumes that the message templates created by the organizer of one entity should not be accessible to organizers affiliated to host entity. Also, it is assumed that all participants of a given type (resource/subscriber/both) will receive the alert. If a specific implementation needs to define individual participants who should receive a specific alert, it will require further refining of the steps laid out here and is out of scope for current workflow.
 
@@ -213,7 +213,7 @@ Host_App->>Organizer: confirm success
 end
 ```
 
-#### 9. Tracking and Alerting as per schedule
+#### 9.1.8. Tracking and Alerting as per schedule
 
 Scheduler's internal tracker keeps fetching (with a predefined interval) a list of all alerts for which the scheduled date time has arrived (within the interval). For each alert that is ready to go and based on the given target type (resource/ subscriber/ both) it will list participants of that associated event from the appointment list and send the alert message to them . The alert message will be sent using the preferred channel (sms/URL/mail) registered in the resources /subscribers list. It should be noted that the Scheduler does not wait for confirmation of the delivery of the message. In the current context, a recipient of an alert may asynchronously send back a delivery acknowledgement to the log update (see log update workflow) of the Scheduler.&#x20;
 
@@ -262,7 +262,7 @@ end
 
 ```
 
-#### 9. Cancellation of scheduled event <a href="#_heading-h.3fwokq0" id="_heading-h.3fwokq0"></a>
+#### 9.1.9. Cancellation of scheduled event <a href="#_heading-h.3fwokq0" id="_heading-h.3fwokq0"></a>
 
 Organizer can request the cancellation of a prescheduled event through host app by supplying the event id. The Scheduler first removes dependent alert\_schedules and appointments empaneled in the event. It then deletes the event from the event list and returns success to the host app for confirmation to the organizer. Optionally it can send out event cancellation message through preferred channels to all subscribers and resources of the event, before deleting the event from the event list.
 
@@ -302,7 +302,7 @@ Host_App->>Organizer:confirm deletion <br>or error information
 
 ```
 
-#### 10. Log reporting
+#### 9.1.10. Log reporting
 
 In this workflow, a simple case of extracting chosen type of log in a given time range is described. The Organizer requests the scheduler through a host app to report logs of a chosen category within a chosen date range. The scheduler fetches a list of matching logs found from its Log\_List, or null if nothing is found. The scheduler publishes the logs or null to the user through the host app. This function can be extended in different implementations to generate more complex types of reports based on information in the log.&#x20;
 
@@ -316,7 +316,7 @@ Scheduler->>Host_App:Return error or <br> list of logs
 Host_App->>Organizer: Publish Logs or <br> error message
 ```
 
-**11.Registering a new entity**
+**9.1.11.Registering a new entity**
 
 An new entity can use the scheduler MUST be registered by the administrator of the Scheduler Building Block. The Administrator requests entity registration in the scheduler through Scheduler's administrative front-end user interface by supplying relevant entity details. The Scheduler after verifying the requestor's credentials will store the entity information against a new entity id it generates. In case it finds that the entity details match any of earlier registered entities it returns an error code and avoids duplication. In the normal course, the entity id is returned to the Administrator along with prompt to register an Organizer resource for that entity, to use the Scheduler further.
 
@@ -329,7 +329,7 @@ Entity_List->>Scheduler: Return new template id<br> or error(if entity<br> exist
 Host_App->>Adminstrator: confirm template<br> registration and prompt<br> for registration of <br>"organizer" resource
 ```
 
-**12. Registering a new resource**
+**9.1.12. Registering a new resource**
 
 An organizer MUST register into the scheduler various categories of resources {people, equipment, vehicles, facility, etc.) into a specific entity before the resource can be used in different events. An organizer is also a resource of an entity but can be registered only by Administrator of the Building Block. An organizer can register resources of other categories only into his/her affiliated entity only. The registration process begins with the submission of resource details with the request to scheduler for registration of resource. The Scheduler internally stores details of the resource into a resource\_list and generates a new resource id.&#x20;
 
@@ -345,7 +345,7 @@ Host_App->>Adminstrator/Organizer: confirm registration
 
 ```
 
-**13. Affiliating a resource to an entity**
+**9.1.13. Affiliating a resource to an entity**
 
 A registered resource MUST be affiliated with at least one entity. A resource MAY be affiliated to different entities only in non-overlapping day-time zones(e.g. doctor may give consultation in multiple hospitals).  An organizer can be affiliated only by an administrator. All other categories of resources can be affiliated by an Organizer. The affiliation request may be submitted through the host-App to the scheduler along with affiliation details (resource\_id,entity\_id, affiliated days and time zones in that entity, etc.). The scheduler will add a new affiliation of that resource to the new entity in the Affiliation List and generate a new affiliation id. The Scheduler flags an error if it finds a duplicate entry.
 
@@ -360,7 +360,7 @@ Host_App->>Adminstrator/Organizer: confirm affiliation of <br>resource to specif
 
 ```
 
-**14. Registering a new Subscriber**
+**9.1.14. Registering a new Subscriber**
 
 &#x20;An organizer can register into the scheduler a new subscriber's details into a specific entity. A subscriber must be registered into the scheduler before they are allowed to book appointments for various events. This example considers that Organizer can register resources of other categories only into his/her affiliated entity only. The organizer submits subscriber details through Host\_App to Scheduler requesting registration.  The Scheduler internally stores details of the subscriber into its subscriber\_list and generates a new resource id. The Scheduler returns the new subscriber id or a duplication error if it finds the subscriber profile is already existing. The Host app confirms registration or duplication error to the Organizer.
 

@@ -16,18 +16,18 @@ The [GovStack non-functional requirements document](https://govstack.gitbook.io/
 
 A Set of microservices are defined to provide all functionalities as services of this Building Block, considering the use cases discussed.  These microservices are through RESTful API endpoints to other GovStack Building Blocks and applications to receive requests with relevant inputs and return processed results.  A summary of the services of this Building Block is summarized in the table below.
 
-## API standards <a href="#_heading-h.3o7alnk" id="_heading-h.3o7alnk"></a>
+## 8.1  API standards <a href="#_heading-h.3o7alnk" id="_heading-h.3o7alnk"></a>
 
 * The microservice interfaces are defined as per [OPENAPI Ver3.0 standards](https://swagger.io/specification/).&#x20;
 * For implementation purposes, it is suggested to refer [TMF630\_REST\_API\_Design\_Guidelines](https://www.tmforum.org/resources/standard/tmf630-rest-api-design-guidelines-4-2-0/).
 
-## &#x20;Summary of Scheduler microservices
+## &#x20;8.2  Summary of Scheduler microservices
 
 In common for all microservices of the Scheduler Building Block, the API expects the calling application has already authenticated the user's functional ID and sent it as part of the service request from the calling application. Listed below are various servic apis grouped according to the Key digital functionalities that they help orchastrate. Also an interactive graphical representation of the APIs and underlying datasets exchanged are shown below the tables. However for detailed API schemas written in JSON that define REST API endpoints for each of the services mentioned above are available on GitHub located at
 
 {% embed url="https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f25360e34ba029cc8c68d1f6cd752da30e06928a/api/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" %}
 
-### Service Group: Event management&#x20;
+### 8.3.1  Service Group: Event management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/event/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -45,7 +45,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Appointment management&#x20;
+### 8.3.2  Service Group: Appointment management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/appointment/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -63,7 +63,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Entity management
+### 8.3.3  Service Group: Entity management
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/entity/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -81,7 +81,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Resource management&#x20;
+### 8.3.4  Service Group: Resource management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/resource/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -103,7 +103,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Subscriber management
+### 8.3.5  Service Group: Subscriber management
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/subscriber/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -121,7 +121,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### &#x20;Service Group: Alert Message management&#x20;
+### &#x20;8.3.6  Service Group: Alert Message management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/message/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -139,7 +139,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Affiliation management&#x20;
+### 8.3.7 Service Group: Affiliation management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/affiliation/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -157,7 +157,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Alert Schedule management&#x20;
+### 8.3.8  Service Group: Alert Schedule management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/alert_schedule/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
@@ -175,7 +175,7 @@ In common for all microservices of the Scheduler Building Block, the API expects
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
 {% endswagger %}
 
-### Service Group: Log management&#x20;
+### 8.3.9  Service Group: Log management&#x20;
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json" path="/log/new" method="post" %}
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack-scheduler-building_block-apis.json)
