@@ -19,11 +19,10 @@ In current scope, example drawn from user-journey steps of use-cases of Post-Par
 * Event schedule with a unique ID already exists in Scheduler before seeking cancellation update;
 * Scheduler can also call some of its APIs from inside for operations that do not need external interaction in a particular workflow if the information is already available internally.
 
-This section captures the analyzed workflows that take place within these key functionalities for a minimum viable product as follows&#x20;
+This section captures the example workflows that may take place between internal functional blocks to orchastrate key functionalities for a minimum viable product as follows . The exact workflows may decided depending on implementation time considerations.
 
 * Event creation;
 * Finding resources of a host entity which are available in a given date-time range;
-* Allocating resources to a specific event;
 * Finding event slots of a given category and resource Id in a given date-time range;
 * Appointment Scheduling for resource or subscriber to a specific event;
 * Cancellation of appointment;
@@ -50,7 +49,7 @@ The workflows mentioned above are represented in sequence diagrams as illustrate
 
 1. **Event Creation**
 
-An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students. Optionally, a deadline may be fed in for participants to log attendance to the event (else marked as absent). This workflow allows organizer to feed in a list of resources and subscribers  already registered (old members) for enrollment into the new event. The Scheduler checks for non-duplication of given event and that the given entity/resource/subscriber ids are already registered members before registering the event details in its Event\_List. It then returns either an error code or success status along with a unique event id to host application of organizer.&#x20;
+An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students. Optionally, a deadline may be fed in for participants to log attendance to the event (else marked as absent). This workflow allows organizer to feed in a list of resources and subscribers  already registered (old members) for enrollment into the new event. The Scheduler avoids duplication of given event but checking if it is already registered in its Event\_List. It then returns either an error code or success status along with a unique event id to host application of organizer.&#x20;
 
 ```mermaid
 sequenceDiagram
@@ -70,7 +69,7 @@ end
 
 #### 2. Finding resources of a host entity that are available in a given date-time range&#x20;
 
-An organizer may need to find availability of resources (personnel, equipment, vehicles, facilities, etc.) of a specific entity to enroll into a specific event.  The organizer seeks the scheduler through a host application, free time zones of specific list of resources of a specific entity, within a date range. The Scheduler fetches from its Resource\_List the workdays-hours of specified resources in a given entity. Alternatively the organizer may feed resource category instead of specific resource Id. In that case, the Scheduler fetches resources of given category and entity along with respective workdays-hours from its Resource\_List.  Then for each resource, the Scheduler then fetches in the Event\_List the periods of various events having the resource falling within the given date-time range. The Scheduler further calculates available free time zones within the workdays-hours affiliated to each resource. Finally, the Scheduler returns a list of resources with respective unallocated date-time slots. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
+An organizer may need to find availability of resources (personnel, equipment, vehicles, facilities, etc.) of a specific entity to enroll into a specific event.  The organizer seeks the scheduler through a host application, free time zones of specific list of resources of a specific entity, within a date range. The Scheduler fetches from its Resource\_List the workdays-hours of specified resources in a given entity. Alternatively the organizer may feed resource category instead of specific resource Id. In that case, the Scheduler fetches resources of given category and entity along with respective workdays-hours from its Resource\_List.  Then for each resource, the Scheduler then fetches in the Appointment\_List a list of events that the given resource is booked into. It then finds the periods of those events falling within the given date-time range. The Scheduler further calculates available free time zones within the workdays-hours affiliated to each resource. Finally, the Scheduler returns a list of resources with respective unallocated date-time slots. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
 
 ```mermaid
 sequenceDiagram
@@ -88,58 +87,43 @@ alt if error
   Host_App->>Organizer: Notify that <br>entity/category was invalid
 else
   Loop for each resource:
-    Scheduler->>Event_List:Get:/event/list_details<br>{period}in {entity_id,resource_id} 
-    Event_List->>Scheduler: return start and end<Br> date-time of matching events
-    note over Scheduler:calculate free_slots <br>within given datetime range
-  end
+    Scheduler->>Appointment_List:Get:/appointment/list_details<br>{event_ids}in {resource_id,<br> from_datetime,to_datetime}
+    Loop for each event:
+      Scheduler->>Event_List:Get:/event/list_details<br>{from_datetime,to_datetime}<br>in {event_id} 
+      Event_List->>Scheduler: return start and end<Br> date-time of matching event
+      note over Scheduler:calculate free_slots <br>within given datetime range
+    end
+end
   Scheduler->>Host_App: Return Array{resource id,<br> resource name, free_slots}
   Host_App->>Organizer: Publish available slots<br> of each resource
 end
 ```
 
-#### 3. Allocating resource\[s] to an Event
+#### 3. Finding events of a given category and resource in a given date-time range&#x20;
 
-An Organizer may allocate multiple chosen resources into a predefined event by request to the Scheduler through the host application with specific resource\_ids and event\_id.  If the event period falls outside of the work-days-hours of the resource in the associated host entity, it will return an error code. In the normal course, the Scheduler returns generates an appointment id for each resource bound into the given entity and returns success and adds the resource id as a participant of specific event in event list. The Host application will publish the status to the Organizer accordingly.
-
-```mermaid
-sequenceDiagram
-Organizer->>Host_App: Submit chosen resources<br> for allocation to event
-loop for each chosen resource
-    Host_App->>Scheduler:Post/event/new_appointment<br>(Event_Id,partipant_type=<br>'resource',resource id)
-    Scheduler->>Resource_list: Get/resource/list_details<br>{work_days_hours}in <br>{resource_id,event_id}
-    Scheduler->>Event_list: Get/event/list_details<br>{period}in{event_id}
-    alt if day and timezone of period lies outside <br>affiliated work_days_hours
-      Scheduler->>Host_App: return error code
-      Host_App->>Organizer: publish error
-    else
-      Scheduler->>Host_App: return success code<br> with unique appointment id
-      Host_App->>Organizer: Confirmation allocation<br>and appoinemnt id
-    end
-end
-```
-
-#### 4. Finding events of a given category and resource in a given date-time range&#x20;
-
-In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event category, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its Event\_List for the details of matching events which are open for subscription. The Event List returns a list of matching events with details or any other error condition. This is returned to the host app which will publish results to the Organizer.
+In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event type, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its appointment\_List for the details of matching events . The scheduler then checks the status of those events and filters out events with status not = "open" for subscription. The Event List returns a list of matching events with details or any other error condition. This is returned to the host app which will publish results to the Organizer.
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App:Submit category,<br> resource_id,datetime_range <br> seeking matching<br> open events 
-Host_App->>Scheduler:Get/event/list_details<br>{ in {entity_id,resource category)
-  Scheduler->>Resource_List: fetch details<br>(entity, resource category)
-  Resource_List->>Scheduler: return details of <br>matching resources<br> including respective<br> allocated events<br>of given entity
-  Scheduler->>Host_App: return resource<br> list for selection<br> of resource
+Host_App->>Scheduler:Get/appointment/list_details<br>{event_id} in {entity_id, <br>event_type,resource_id,<br>paticipant_type='resource',<br>from_datetime,<br>to_datetime)
+Resource_List->>Scheduler: return ids of<br> matching events
+Loop for each event_id:
+   Host_App->>Scheduler:Get/event/list_details<br>{status} in {event_id}  
+   note over Scheduler: if status='open' <br>add to list of<br> selected events
+end
+Scheduler->>Host_App: return list of <br>matching events 
 Host_App->> Organizer: publish <br>resource list
 ```
 
 #### 5.  Appointment Scheduling for resource or subscriber to a specific event
 
-An organizer may enroll a subscriber or resource to a specific event through a host app by giving selecting the participant and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type, the scheduler first checks its subscriber\_list or Resrouce list if participant\_id exists and returns an error code if it is not found. The host app may then prompt the organizer to first register the Subscriber/Resource details.  In the normal course, the Scheduler will add a registered participant as subscriber or resource to the event list and confirm successful enrolment to the user through the host app and issue a unique appointment id for the particular participant and event.
+An organizer may enroll a subscriber or resource to a specific event through a host app by giving resource or subscriber and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type and participant id, the scheduler first checks its subscriber\_list or Resource list if participant\_id exists and returns an error code if it is not found. .  In the normal course, the Scheduler will find the type of event for given event\_id add add that information along with the participant type as subscriber or resource, participant id as the given resource or subscriber id, affiliated entity of the participant (can be individual as well) to the appointment list and confirm successful enrolment to the user through the host app and publish a unique appointment id for that participant back to the organizer and the participant.
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App:request enrollment<br> of chosen participant<br> to chosen event
-Host_App->>Scheduler:Post/event/new/participant:<br>{participant_id<br>,participant_type,<br>Event Id}
+Host_App->>Scheduler:Post/appointment/new:<br>{participant_id<br>,participant_type,Event Id,<br> participant entity_id}
 alt if participant type is "subscriber"
   Scheduler->>Subscriber_List: Get/subscriber/list_details<br>{name} in {Subscriber_id=<br>participant_id}
   Subscriber_List->>Scheduler:return nameof<br> subscriber or error<br>if participant not found 
@@ -152,7 +136,8 @@ alt if participant type is "subscriber"
         Scheduler->>Host_App:report error condition
         Host_App->>Organizer: inform subscriber <br> event is closed
      else
-         Scheduler->> Event_List: add participant <br>to subscriber list
+         
+Scheduler->> appointment_List: add participant <br> to appointment list
          Event_List->>Scheduler:return new appointment id 
          Scheduler->>Host_App: return success <br>with appointment id 
          Scheduler->>Messaging BB: send appointment details<br> to subscriber
@@ -161,12 +146,14 @@ alt if participant type is "subscriber"
 else
   alt if participant type is "resource"
     Scheduler->>Resource_List: Get/Resource/list_details<br>{name} in {Resouce_id=<br>participant_id}
-    Resource_List->>Scheduler:return nameof<br> Resource or error<br>if participant not found 
-    alt if Resource not found:
+    Resource_List->>Scheduler:return nameof<br> Resource or error
+    alt if Resource not found error:
       Scheduler->>Host_App:report error condition
       Host_App->>Organizer: Request participant<br> registration
     else  
-      Scheduler->> Event_List: add participant <br>to subscriber list
+      Scheduler->> Event_List: get/event/list_details<br>{event_type}in{event_id}
+      Event_List->>Scheduler:return event type
+      Scheduler->> Appointment_List:save event type,<br> event id, <br>paricipant type <br> and id, status<br> as 'confirmed'<br> in appointment_list
       Event_List->>Scheduler:return new appointment id 
       Scheduler->>Host_App: return success <br>with appointment ID
       Scheduler->>Messaging BB: confirm appointment<br> details to resource
@@ -178,13 +165,13 @@ end
 
 **6. Cancellation of appointment:**&#x20;
 
-An organizer may cancel an existing appointment of a resource or a subscriber for an event using the Host App. The user may submit the participant id or participant type (subscriber/resource) and the event id to the Scheduler through the host app, requesting for cancellation of respective enrollment for the event. If the Scheduler finds the given event id and subscriber/resource id in the event\_list it will delete the enrolment entry of the given resource in the given event, else it will return an appropriate error message. The Host-app confirms success or error condition to the user. The Scheduler also emits a notification through Messaging Building Block to inform the canceled participant only (in different implementations one can also inform all participants). It should be noted that the deletion of the enrolment of a subscriber does not remove subscriber/resource details stored in the subscriber/resource list, but it removes only the allocation to the specific event.&#x20;
+An organizer may cancel an existing appointment of a resource or a subscriber for an event using the Host App. The user may submit the participant id or participant type (subscriber/resource) and the event id to the Scheduler through the host app, requesting for cancellation of respective enrollment for the event. If the Scheduler finds the given event id and subscriber/resource id in the appointment\_list it will delete the enrolment entry of the given resource in the given event, else it will return an appropriate error message. The Host-app confirms success or error condition to the user. The Scheduler also emits a notification through Messaging Building Block to inform the canceled participant only (in different implementations one can also inform all participants). It should be noted that the deletion of the enrolment of a subscriber does not remove subscriber/resource details stored in the subscriber/resource list, but it removes only the allocation to the specific event.&#x20;
 
 ```mermaid
 sequenceDiagram
-
-Host_App->>Scheduler: Request appointment <br> cancellation of <br>specific resource/subscriber <br> in spceific event
-Scheduler->>Event_List: Delete /event/appointment<br>{event_Id,participant_type<br>, participant_id}
+Organizer->>Host_App: request deletion <br>of appointment <br> of selected <br>resource/subscriber <br>in selected event<br> required details
+Host_App->>Scheduler: Delete/appointment<br> <br>{event_Id,participant_type<br>, participant_id}
+Scheduler->>Appointment_List: mark matching appointment as cancelled
 alt If event or participant not found 
   Scheduler->>Host_App: publish error
 else 
@@ -208,7 +195,7 @@ Host_App->>Organizer: confirm template registration
 
 #### 8.  Scheduling Alerts for a given event
 
-An organizer may schedule different alert messages to be sent to subscribers and resources before, during, and after a prescheduled event. It is assumed here that the alert messages are borrowed from a list of messaging templates within the Scheduler that have been pre-registered and affiliated with a specific entity. The Organizer may use a host app to request the Scheduler to create a new alert schedule by choosing the alert message template, date-time of when the alert is to be sent, what channel the messages need to be sent through (SMS/Email/URL/etc.) and type of targets to receive the message (subscriber/resource/both). If the Scheduler finds all inputs valid it will store the details against a unique Alert Schedule id in the Alert\_schedile\_list and returns success status and the unique id, otherwise, it will return an appropriate error code. This workflow assumes that the message templates created by the organizer of one entity should not be accessible to organizers of another entity. Also, it is assumed that all participants of a given type (resource/subscriber/both) will receive the alert. If a specific implementation needs to define individual participants who should receive a specific alert, it will require further refining of the steps laid out here and is out of scope for current workflow.
+An organizer may schedule different alert messages to be sent to subscribers and resources before, during, and after a prescheduled event. It is assumed here that the alert messages are borrowed from a list of messaging templates within the Scheduler that have been pre-registered and affiliated with a specific entity. The Organizer may use a host app to request the Scheduler to create a new alert schedule by choosing the alert message template, date-time of when the alert is to be sent, type of targets to receive the message (subscriber/resource/both). If the Scheduler finds all inputs valid it will store the details against a unique Alert Schedule id in the Alert\_schedile\_list and returns success status and the unique id, otherwise, it will return an appropriate error code. This workflow assumes that the message templates created by the organizer of one entity should not be accessible to organizers affiliated to host entity. Also, it is assumed that all participants of a given type (resource/subscriber/both) will receive the alert. If a specific implementation needs to define individual participants who should receive a specific alert, it will require further refining of the steps laid out here and is out of scope for current workflow.
 
 ```mermaid
 sequenceDiagram
@@ -228,7 +215,7 @@ end
 
 #### 9. Tracking and Alerting as per schedule
 
-Scheduler's internal tracker keeps fetching (with a predefined interval) a list of all alerts for which the scheduled date time has arrived (within the interval). For each alert that is ready to go, it will send the alert message to all participants of the respective event, based on the given target type (resource/ subscriber/ both). The alert message will be sent using the preferred channel (sms/URL/mail) registered in the resources /subscribers list. It should be noted that the Scheduler does not wait for confirmation of the delivery of the message. In the current context, a recipient of an alert may asynchronously send back a delivery acknowledgement to the log update (see log update workflow) of the Scheduler.&#x20;
+Scheduler's internal tracker keeps fetching (with a predefined interval) a list of all alerts for which the scheduled date time has arrived (within the interval). For each alert that is ready to go and based on the given target type (resource/ subscriber/ both) it will list participants of that associated event from the appointment list and send the alert message to them . The alert message will be sent using the preferred channel (sms/URL/mail) registered in the resources /subscribers list. It should be noted that the Scheduler does not wait for confirmation of the delivery of the message. In the current context, a recipient of an alert may asynchronously send back a delivery acknowledgement to the log update (see log update workflow) of the Scheduler.&#x20;
 
 ```mermaid
 sequenceDiagram
@@ -240,8 +227,8 @@ loop for each interval(x minutes)
     Scheduler->>message_list:Get/message/list_details<br><{message}in{message_id}: 
     message_list->Scheduler: return message<br> to be sent
     alt if target_category is resource or both
-      Scheduler->>event_list:Get/event/list_details<br><{participant_id}in{event_id,<br>partipant_type=resource} 
-      event_list->>Scheduler:return resource_ids of event
+      Scheduler->>appointment_list:Get/appintment/list_details<br><{participant_id}in{event_id,<br>partipant_type=resource} 
+      appointment_list->>Scheduler:return resource_ids of event
       loop for each resource
         Scheduler->>Resource_list:/resource/list_details<br>{phone,url,email,<br>preffered channel}in<br>{resource_id}
         Resource_list->>Scheduler:return {phone,url,email,<br>preffered channel}
@@ -257,7 +244,7 @@ loop for each interval(x minutes)
         note over Scheduler: append resource <br>info to target list
       end
     end
-    loop for each <Br> target
+    loop for each target
        note over Scheduler: generate unique token
        alt if prefered channel <br> = "messaging":
          Scheduler->>messaging BB: Send Alert<br>(phone_no,message,token)
@@ -277,27 +264,27 @@ end
 
 #### 9. Cancellation of scheduled event <a href="#_heading-h.3fwokq0" id="_heading-h.3fwokq0"></a>
 
-Organizer can request the cancellation of a prescheduled event through host app by supplying the event id. The Scheduler first removes dependent alert\_schedules and obtains the list of resources and subscribers empaneled in the event. It then deletes the event from the event list and returns success to the host app for confirmation to the organizer. Optionally it can send out event cancellation message through preferred channels to all subscribers and resources of the event, before deleting the event from the event list.
+Organizer can request the cancellation of a prescheduled event through host app by supplying the event id. The Scheduler first removes dependent alert\_schedules and appointments empaneled in the event. It then deletes the event from the event list and returns success to the host app for confirmation to the organizer. Optionally it can send out event cancellation message through preferred channels to all subscribers and resources of the event, before deleting the event from the event list.
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App:Request Cancellation <br> of selected event
 Host_App->>Scheduler: Delete/event{event_Id}
-Scheduler->>Alert_Schedule_lisL: Delete/alert_schedule/<br>{event_id}
-Scheduler->>Event_List: get/events/details{resource_ids} in {event_id}
-opt
- loop for each resource_id
-   Scheduler->>Resource_list:/resource/list_details<br>{phone,url,email,<br>preffered channel}in<br>{resource_id}
-   Resource_list->>Scheduler:return {phone,url,email,<br>preffered channel}
-   note over Scheduler: append resource <br>info to target list
- end
- Scheduler->>Event_List: get/events/details{resource_ids}
- loop for each subscriber_id
-   Scheduler->>subscriber_list:/subscriber/list_details<br>{phone,url,email,<br>preffered channel}in<br>{subscriber_id}
-   subscriber_list->>Scheduler:return {phone,url,email,<br>preffered channel}
-   note over Scheduler: append subscriber <br>info to target list
- end
+Scheduler->>Alert_Schedule_List: Get/Alert_Schedule/List_details<br>{Alert_Schedule_id}<br>in {event_id}
+loop for each Alert_Schedule_id:
+  Scheduler->>Alert_Schedule_List: Delete/Alert_Schedule/{event_id}
+end
+Scheduler->>Appointment_List: Get/appointment/List_details<br>{appointment_id}in<br> {event_id}
+loop for each appointment id:
+  Scheduler->>Appointment_List: Delete/appointment/<br>{event_id}
+end
+
  loop for each target
+   alt if participant type = resource:
+       Scheduler->>Resource_List: Get/Resource/List_Details{Resource_id}
+   else if participant type = Subscriber:
+       Scheduler->>Subscriber_List: Get/Subscriber/List_Details{Subscriber_id}
+   end
    opt if  prefered channel= "direct"
        Scheduler->>Target_BB/App: notify cancellation[url] 
     end
@@ -308,7 +295,7 @@ opt
        Scheduler->>messaging BB: notify cancellation[messaging BB]
     end
  end
-end
+
 Scheduler->>Event_List: delete/event in {event_id}
 Scheduler->>Host_App: return success or error
 Host_App->>Organizer:confirm deletion <br>or error information

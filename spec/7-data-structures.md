@@ -33,8 +33,18 @@ Typical data structure requirements and format representations relevant to this 
 | Subscriber\_Limit | String                                           | Maximum number of subscribers allowed                                                                                                                                                                                   |
 | Terms             | String                                           | Any conditions and instructions for to subscribers for participation in an event                                                                                                                                        |
 | Category          | string                                           | category of the event (e.g. consultation, training, salary payments, etc.)                                                                                                                                              |
-| Subscriber\_ids   | array\[integer]                                  | ids of subscribers enrolled for event                                                                                                                                                                                   |
-| Resource\_ids     | array\[integer]                                  | ids of resources enrolled for event                                                                                                                                                                                     |
+
+**Group: Appointment LIst**
+
+| Data Element            | Default format | Description                      |
+| ----------------------- | -------------- | -------------------------------- |
+| Appointment\_id         | String         | unique id of entity              |
+| Event \_id              | String         | name of entity                   |
+| Participant\_type       | String         | hospital/clinic/bank/etc.        |
+| Participant\_id         | String         | default phone number             |
+| Status                  | String         | default email id                 |
+| Event\_Type             | String         | example "consultation/training"  |
+| Participant\_entity\_id | String         | affliated entity of participant  |
 
 #### Group: Entity\_List
 
@@ -73,7 +83,7 @@ Typical data structure requirements and format representations relevant to this 
 | Alert preference | String         | which channels (sms/email/webhook/etc) are preffered for alerting this resource in order of priority |
 | Name             | String         | proper name of the Resource (person/facility/vehicle/equipment)                                      |
 
-#### Data Group: Affiliation
+#### Data Group: Affiliation List
 
 | Data Element       | Default format | Description                                                                                                 |
 | ------------------ | -------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -112,7 +122,7 @@ Typical data structure requirements and format representations relevant to this 
 | Target\_Type | String         | If the alert target is Resource or Subscriber        |
 | Target\_Id   | Integer        | Id of specific resource/subscriber to sent the alert |
 
-**Group: Message\_templates**
+**Group: Message\_List**
 
 | Data Element | Default format | Description                                        |
 | ------------ | -------------- | -------------------------------------------------- |
@@ -120,7 +130,7 @@ Typical data structure requirements and format representations relevant to this 
 |  Category    | String         | (e.g. info/status/acknowledgement/ emergency/etc.) |
 | Message      | String         | content of alert message                           |
 
-**Group: Log**
+**Group: Log LIst**
 
 | Data Element     | Default format  | Description                                                       |
 | ---------------- | --------------- | ----------------------------------------------------------------- |
