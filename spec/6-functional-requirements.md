@@ -6,7 +6,7 @@ description: This section lists the technical capabilities of this Building Bloc
 
 ## Internal functional components
 
-A common set of unique internal functional components are required to orchestrate the services of the Scheduler Building Block as shown below. The REST API's interfaces route service requests to/from external Building Blocks and appropriate internal blocks in appropriate formats. A brief description of the generic functionality of each of these components has been given below from a minimum viable product perspective. Detailed design and feature lists of these blocks can be customized by developers to optimally match specific target implementation needs.
+A common set of unique internal functional components are required to orchestrate the services of the Scheduler Building Block as shown below. The REST API's interfaces route service requests to/from external Building Blocks and appropriate internal blocks in appropriate formats. A brief description of the generic functionality of each of these components has been given below from a minimum viable product perspective. Detailed design and feature lists of these blocks can be customized by developers to optimally match specific target implementation needs. It is left to the application consuming the response to present it appropriately (e.g. as an Event list or calendar) and provision for associated user interface interactions.
 
 <table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td>     Event Management</td><td></td><td></td><td></td></tr><tr><td></td><td>   Appointment Management</td><td></td><td></td><td></td></tr><tr><td></td><td>   Resource Management</td><td></td><td></td><td></td></tr><tr><td></td><td>  Subscriber Management</td><td></td><td></td><td></td></tr><tr><td></td><td>Alert message Management</td><td></td><td></td><td></td></tr><tr><td></td><td>          Affiliation Management</td><td></td><td></td><td></td></tr><tr><td></td><td>          Affiliation Management</td><td></td><td></td><td></td></tr><tr><td></td><td>       Pub/Sub Interface</td><td></td><td></td><td></td></tr><tr><td></td><td>      Messaging Interface</td><td></td><td></td><td></td></tr><tr><td>Information Mediator Interface</td><td></td><td></td><td></td><td></td></tr><tr><td>Entity Management</td><td></td><td></td><td></td><td></td></tr><tr><td>logging and reporting</td><td></td><td></td><td></td><td></td></tr><tr><td>Administration</td><td></td><td></td><td></td><td></td></tr></tbody></table>
 
@@ -28,7 +28,7 @@ A common set of unique internal functional components are required to orchestrat
 
 6.2.3  Each Resource MUST be defined with a specific category (doctors/nurses/ambulance/meeting room/ etc.) that helps in the grouping, searching, and selection of the resource.
 
-6.2.4  Contact details of Resource (email/SMS/webhook/etc. along with a default option) MUST be registered along with the Resource.  ****&#x20;
+6.2.4  Contact details of Resource (email/SMS/webhook/etc. along with a default option) MUST be registered along with the Resource.  &#x20;
 
 6.2.5  The Scheduler MUST generate a unique id for each new resource registered, which is independent of which events the resources participates in. This is need to uniquely find and reuse details of the resource for various events as needed.
 
@@ -42,7 +42,7 @@ A common set of unique internal functional components are required to orchestrat
 
 6.3.3  A Resource MUST be affiliated with at least one entity with specific working hours during registration. Subsequently, the same Resource may be affiliated into multiple entities such that the weekdays and working hours allocated to affiliated entities do not overlap with each other.&#x20;
 
-6.3.4  The event slots for booking a resource MUST be restricted to the working hours of the resource in a specific entity the Resource is registered into. ****&#x20;
+6.3.4  The event slots for booking a resource MUST be restricted to the working hours of the resource in a specific entity the Resource is registered into. &#x20;
 
 6.3.5  A Resource MAY be booked into multiple entities with different affiliation ids as long as they have non-overlapping working hours and days for that resource. However, the Resource id shall be same in all such affiliations
 

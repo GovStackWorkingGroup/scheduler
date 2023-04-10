@@ -6,7 +6,7 @@ description: >-
 
 # 9 Workflows
 
-In current scope, example drawn from user-journey steps of use-cases of Post-Partum care and Unconditional Social Benefit transfer programs were considered to derive key digital functionalities required to orchestrate services from this Building Block. In this section we identify workflows to manifest some of the main services. These may be enhanced or customized as needed for specific implementation needs.The following common preconditions may be needed to be met before utilizing these services:
+In current scope, example drawn from user-journey steps of use-cases of Post-Partum care and Unconditional Social Benefit transfer programs were considered to derive key digital functionalities required to orchestrate services from this Building Block. In this section we identify workflows to manifest some of the main services. These may be enhanced or customized as needed for specific implementation needs. The following common preconditions may be needed to be met before utilizing these services:
 
 * Entities that Host an Event registered in the Scheduler before scheduling respective events;
 * Subscriber, Organizer, and Resources are registered in Scheduler before being used in Event;
@@ -19,7 +19,7 @@ In current scope, example drawn from user-journey steps of use-cases of Post-Par
 * Event schedule with a unique ID already exists in Scheduler before seeking cancellation update;
 * Scheduler can also call some of its APIs from inside for operations that do not need external interaction in a particular workflow if the information is already available internally.
 
-This section captures the example workflows that may take place between internal functional blocks to orchastrate key functionalities for a minimum viable product as follows . The exact workflows may decided depending on implementation time considerations.
+This section captures the example workflows that may take place between internal functional blocks to orchestrate key functionalities for a minimum viable product as follows . The exact workflows may decided depending on implementation time considerations.
 
 * Event creation;
 * Finding resources of a host entity which are available in a given date-time range;
@@ -38,28 +38,30 @@ This section captures the example workflows that may take place between internal
 
 ### 9.1 Workflow sequence diagrams
 
-The workflows mentioned above are represented in sequence diagrams as illustrated as examples below. As defined earlier, the scheduler responds to four types of actors:
+The example workflows mentioned above are represented in sequence diagrams as illustrated as examples below. As defined earlier, the scheduler responds to four types of actors:
 
 * Building Block admins who configure the Building Block's functional aspects, monitor and administer the performance of the Building Block in live environments. (This is an implementation detail and not discussed in the scope of the workflows below).
 * Resource who is affiliated to one or more entities and gets allocated to specific events to carry out some activities.
 * Subscribers who are enrolled in one or more events as a beneficiary of the event. Subscribers may be individuals or represent some entity.
 * Organizer who can manage the configuration of events, resources, alerts, and subscribers.
 
-****
+The sequence diagrams assume that in all services to the Scheduler building blocks the requestor's id (maybe auth token) and requestor's role will published along with the payload of the request, as a security requirement, although not displayed here for simplicity. All fields contained in exchanges between blocks are not shown for simplicity, the exact fields and formats can be found in API schemas described in APIs section
+
+
 
 **9.1.1.  Event Creation**
 
-An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students. Optionally, a deadline may be fed in for participants to log attendance to the event (else marked as absent). This workflow allows organizer to feed in a list of resources and subscribers  already registered (old members) for enrollment into the new event. The Scheduler avoids duplication of given event but checking if it is already registered in its Event\_List. It then returns either an error code or success status along with a unique event id to host application of organizer.&#x20;
+An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students). Optionally, a deadline may be specified for participants to log attendance to the event (else marked as absent).  The Scheduler avoids duplication of given event by checking if same properties already registered in its Event\_List. It then returns either success status along with a unique event id or an appropriate error code to host application of organizer.&#x20;
 
 ```mermaid
 sequenceDiagram
 
 Organizer->>Host_App: Submit details of <br>new event 
 Host_App->>Scheduler: Post/entity/new<br> {Event_Details}
-alt: if given entity/<br>resource/subscriber<br>is already registered <br>and event is<br> not duplicate
-  note over Scheduler: generate unique Event_Id
-Scheduler->>EventList:Add new event <br>{Details, unique Event_Id} 
-  Scheduler->>Host_App:return{success,Event_Id}
+alt: if given entity/<br>is already registered <br>and event is<br> not duplicate
+  note over Scheduler: Generate unique Event_Id
+  Scheduler->>EventList: Add new event <br>{Details, unique Event_Id} 
+  Scheduler->>Host_App:return{success,unique Event_Id}
   Host_App->>Organizer: Publish new Event_Id
 else 
   Scheduler->>Host_App: Return error code
@@ -67,99 +69,62 @@ else
 end
 ```
 
-#### 9.1.2. Finding resources of a host entity that are available in a given date-time range&#x20;
+#### 9.1.2. Finding resource availability in a given date-time range&#x20;
 
-An organizer may need to find availability of resources (personnel, equipment, vehicles, facilities, etc.) of a specific entity to enroll into a specific event.  The organizer seeks the scheduler through a host application, free time zones of specific list of resources of a specific entity, within a date range. The Scheduler fetches from its Resource\_List the workdays-hours of specified resources in a given entity. Alternatively the organizer may feed resource category instead of specific resource Id. In that case, the Scheduler fetches resources of given category and entity along with respective workdays-hours from its Resource\_List.  Then for each resource, the Scheduler then fetches in the Appointment\_List a list of events that the given resource is booked into. It then finds the periods of those events falling within the given date-time range. The Scheduler further calculates available free time zones within the workdays-hours affiliated to each resource. Finally, the Scheduler returns a list of resources with respective unallocated date-time slots. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
+An organizer may use a host application to seek the Scheduler for availability within a specific period (date-time range) of a chosen resource in a chosen entity. The Scheduler finds the affiliated workdays-hours of given resource in the given entity from its Affiliation\_List and calculates corresponding date-time slots that fall within the given date-time range. Then it finds from Appointments List the start and end date-time zones of all events booked for given resource id and entity, in given date time range.  From all this information it calculates the free time zones of the given resource, within the affiliated time zones of given entity and given date-time range. Finally, the Scheduler returns a list of free zones of the given resource within the given datetime range and affiliated work day hours in given entity. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App: Request resource availability
-Host_App->>Scheduler: Get /resource/available:<br>{event_details_required=period}<br> in{Entity_id,Resource Category,<br>DateTime_range}<br>Option:Array[Resource_Ids]}
-alt if resource_list is specified
-  Scheduler->>Event_List:Get:/affiliation/list_details<br>{resource_id,resource_name,<br>work_days_hours} in<br>{entity_id,resource_Id} 
-  Event_List->>Scheduler:list of matching<br>resources with details<br> or error code
-else
-  Scheduler->>Event_List:Get:/affiliation/list_details<br>{resource_id,resource_name,<br>work_days_hours} in<br>{entity_id,resource_category} 
-  Event_List->>Scheduler:list of matching<br>resources with details<br> or error code
-end
-alt if error
-  Scheduler->>Host_App: Return error code
-  Host_App->>Organizer: Notify that <br>entity/category was invalid
-else
-  Loop for each resource:
-    Scheduler->>Appointment_List:Get:/appointment/list_details<br>{event_ids}in {resource_id,<br> from_datetime,to_datetime}
-    Loop for each event:
-      Scheduler->>Event_List:Get:/event/list_details<br>{from_datetime,to_datetime}<br>in {event_id} 
-      Event_List->>Scheduler: return start and end<Br> date-time of matching event
-      note over Scheduler:calculate free_slots <br>within given datetime range
-    end
-end
-  Scheduler->>Host_App: Return Array{resource id,<br> resource name, free_slots}
+Host_App->>Scheduler: Get/resource/availablity:<br>{free_resource_details}<br> in{Entity_id,Resource_Id<br>from_datetime,<br>to_date_time}
+Scheduler->>Affiliation_List: Get/affiliation/list_details<br>{Workdays_hours}<br>in{resource_id, Entity_id}
+Affiliation_List->>Scheduler: returns workdays_hours 
+note over Scheduler: calculate affiliated<br> dates in given <br>date-time range.
+Scheduler->>Appointment_List: Get/appointment/list_details<br>{start,end}in{participant_id=<br>resource_id, participant_type='resource,<br>Entity_id,Event_type,datetime range}
+Appointment_List->>Scheduler: returns starting<br> and ending time<br> of appointments
+note over Scheduler: calculate free slots<br> (affiliated time <br>zones - booked slots)
+  Scheduler->>Host_App: Return Array{resource id,free_slots}
   Host_App->>Organizer: Publish available slots<br> of each resource
-end
 ```
 
-#### 9.1.3. Finding events of a given category and resource in a given date-time range&#x20;
+#### 9.1.3. Finding events of a given type and status having specific resource in a given date-time range&#x20;
 
-In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event type, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its appointment\_List for the details of matching events . The scheduler then checks the status of those events and filters out events with status not = "open" for subscription. The Event List returns a list of matching events with details or any other error condition. This is returned to the host app which will publish results to the Organizer.
+In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event type, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its appointment\_List for the event\_ids of events with given type, resource and entity, within given time range . For each event, the Scheduler gets details of event if event status is = "open". The Schedulre returns details of selected open events or returns appropriate error code (e.g. if specified category/resource not found, etc.) . The Host app will presents the results or error appropriately to the Organizer.
 
 ```mermaid
 sequenceDiagram
-Organizer->>Host_App:Submit category,<br> resource_id,datetime_range <br> seeking matching<br> open events 
-Host_App->>Scheduler:Get/appointment/list_details<br>{event_id} in {entity_id, <br>event_type,resource_id,<br>paticipant_type='resource',<br>from_datetime,<br>to_datetime)
-Resource_List->>Scheduler: return ids of<br> matching events
-Loop for each event_id:
-   Host_App->>Scheduler:Get/event/list_details<br>{status} in {event_id}  
-   note over Scheduler: if status='open' <br>add to list of<br> selected events
-end
-Scheduler->>Host_App: return list of <br>matching events 
-Host_App->> Organizer: publish <br>resource list
+Organizer->>Host_App:Submit category,<br> resource_id,<br>datetime_range,<br> event_type
+Host_App->>Scheduler:Get/appointment/list_details<br>{event_id} in {entity_id,event_type,<br>paticipant_id=resource_id,<br>paticipant_type='resource',<br>from_datetime,to_datetime)
+Scheduler-->Host_app: return ids of<br> matching events
+Host_App->>Scheduler:Get/event/list_details<br> in {event_ids, status='open'}  
+Scheduler->>Host_App: return details of <br>specific events with<br> status=open
+Host_App->> Organizer: Publish event details 
+
 ```
 
 #### 9.1.4.  Appointment Scheduling for resource or subscriber to a specific event
 
-An organizer may enroll a subscriber or resource to a specific event through a host app by giving resource or subscriber and event id. The host app will request the scheduler to enroll the candidate into the given event by giving the participant type (resource or subscriber), id of the participant, and event id. Based on the participant type and participant id, the scheduler first checks its subscriber\_list or Resource list if participant\_id exists and returns an error code if it is not found. .  In the normal course, the Scheduler will find the type of event for given event\_id add add that information along with the participant type as subscriber or resource, participant id as the given resource or subscriber id, affiliated entity of the participant (can be individual as well) to the appointment list and confirm successful enrolment to the user through the host app and publish a unique appointment id for that participant back to the organizer and the participant.
+An organizer may enroll a subscriber or resource to a specific event through a host app. The host-application first finds out detils of a chosen event\_id. Then the host application requests a new appointment booking by giving participant details, event details as needed. The scheduler stores appointment details against a unique appointment id in its Appointment List. The Scheduler then confirms successful enrolment to the user through the host app and publishes the unique appointment id for that participant.&#x20;
 
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App:request enrollment<br> of chosen participant<br> to chosen event
-Host_App->>Scheduler:Post/appointment/new:<br>{participant_id<br>,participant_type,Event Id,<br> participant entity_id}
-alt if participant type is "subscriber"
-  Scheduler->>Subscriber_List: Get/subscriber/list_details<br>{name} in {Subscriber_id=<br>participant_id}
-  Subscriber_List->>Scheduler:return nameof<br> subscriber or error<br>if participant not found 
-  alt if subscriber not found:
-     Scheduler->>Host_App:report error condition
-     Host_App->>Organizer: Request participant<br> registration
-  else  
-     Scheduler->>Event_List: Get/event/list_details<br>{status} in {event_id}
-     alt if event status is not "Open":
-        Scheduler->>Host_App:report error condition
-        Host_App->>Organizer: inform subscriber <br> event is closed
-     else
-         
-Scheduler->> appointment_List: add participant <br> to appointment list
-         Event_List->>Scheduler:return new appointment id 
-         Scheduler->>Host_App: return success <br>with appointment id 
-         Scheduler->>Messaging BB: send appointment details<br> to subscriber
-     end
-  end
-else
+Host_App->>Scheduler:Get/event/list_details<br>{event_type,from,to,<br>status} in {event_id}
+Scheduler->>Host_App: return requested <br>event details for<br> given event ids
+alt if subscriber_limit >0 and event_status = 'open'
+  Host_App->> Scheduler: put/event/modifications<br>{subscriber_limit-1}in{event_id}      
+  Scheduler->>Host_App: return success
+  Host_App->>Scheduler:Post/Appointment/new<br>{event_id,event_type,<br>participant_type,participant_id,<br>from,to,deadline}
   alt if participant type is "resource"
-    Scheduler->>Resource_List: Get/Resource/list_details<br>{name} in {Resouce_id=<br>participant_id}
-    Resource_List->>Scheduler:return nameof<br> Resource or error
-    alt if Resource not found error:
-      Scheduler->>Host_App:report error condition
-      Host_App->>Organizer: Request participant<br> registration
-    else  
-      Scheduler->> Event_List: get/event/list_details<br>{event_type}in{event_id}
-      Event_List->>Scheduler:return event type
-      Scheduler->> Appointment_List:save event type,<br> event id, <br>paricipant type <br> and id, status<br> as 'confirmed'<br> in appointment_list
-      Event_List->>Scheduler:return new appointment id 
-      Scheduler->>Host_App: return success <br>with appointment ID
-      Scheduler->>Messaging BB: confirm appointment<br> details to resource
-
-    end    
-  end
+    Scheduler->>Resource_List: Get/Resource/list_details<br>{resource_details} in {Resouce_id=<br>participant_id}
+    Resource_List->>Scheduler:return target details <br> Resource or error
+    else if participant type is "subscriber"
+    Scheduler->>Subscriber_List: Get/Resource/list_details<br>{subcriber_details} in {Resouce_id=<br>participant_id}
+    Subscriber_List->>Scheduler:return target details <br> subscriber or error
+  end 
+  Scheduler->>Messaging_BB: send appointment id<br> with event details<br> to subscriber
+  Scheduler->>Host_App: return success <br>with unique appointment id 
+  Host_App->> Organizer: publish appointment<br> id with event details
 end      
 ```
 
@@ -187,7 +152,7 @@ Several predefined templates of alert messages can be stored in a Message List s
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App:Request addition of<br> given alert template
-Host_App->>Scheduler:Post:/Alert_Template/new{category,message}
+Host_App->>Scheduler:Post:/Alert_Template/new{message_details}
 Scheduler->>message_List:Store new template<br> and generate <br>new template id
 Scheduler->>Host_App:Return new template ID
 Host_App->>Organizer: confirm template registration
@@ -200,7 +165,7 @@ An organizer may schedule different alert messages to be sent to subscribers and
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App: request new alert <br>schedule with chosen<br> message, epoch<br>,target type,event 
-Host_App->>Scheduler:Post/alert_schedule/new<br>{event_id,message_id,<br>target_category,datetime}
+Host_App->>Scheduler:Post/alert_schedule/new<br>{alert_schedule_details}
 Scheduler->>Event_List: Get/event/list_details<br>{period} in {event_id}
 alt if entity not found<br> or event has ended
   Scheduler->>Host_App: return error code
@@ -276,7 +241,7 @@ loop for each Alert_Schedule_id:
 end
 Scheduler->>Appointment_List: Get/appointment/List_details<br>{appointment_id}in<br> {event_id}
 loop for each appointment id:
-  Scheduler->>Appointment_List: Delete/appointment/<br>{event_id}
+  Scheduler->>Appointment_List: Delete/appointment/<br>{appointment_id}
 end
 
  loop for each target
