@@ -28,7 +28,7 @@ Typical data structure requirements and format representations relevant to this 
 
 ## 7.2 Scheduler Building Block Data Model
 
-<figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model.png" alt=""><figcaption></figcaption></figure>
+<figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model (2).png" alt=""><figcaption></figcaption></figure>
 
 ### 7.3 Data elements
 
