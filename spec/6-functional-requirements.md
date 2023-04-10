@@ -6,23 +6,29 @@ description: This section lists the technical capabilities of this Building Bloc
 
 ## Internal functional components
 
-A common set of unique internal functional components are required to orchestrate the services of the Scheduler Building Block as shown below. The REST API's interfaces route service requests to/from external Building Blocks and appropriate internal blocks in appropriate formats. A brief description of the generic functionality of each of these components has been given below from a minimum viable product perspective. Detailed design and feature lists of these blocks can be customized by developers to optimally match specific target implementation needs. It is left to the application consuming the response to present it appropriately (e.g. as an Event list or calendar) and provision for associated user interface interactions.
+Considering the various key digital functionalities of this building block discussed in section 4, a common set of non-redundant internal functional components have been identified (shown below), as required to orchestrate the services of the Scheduler Building Block accordingly.  RESTful API interfaces exchange service requests and responses with associated data between external Building Blocks/Applications and appropriate internal blocks in appropriate formats.&#x20;
 
 <table data-view="cards"><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td></td><td>     Event Management</td><td></td><td></td><td></td></tr><tr><td></td><td>   Appointment Management</td><td></td><td></td><td></td></tr><tr><td></td><td>   Resource Management</td><td></td><td></td><td></td></tr><tr><td></td><td>  Subscriber Management</td><td></td><td></td><td></td></tr><tr><td></td><td>Alert message Management</td><td></td><td></td><td></td></tr><tr><td></td><td>          Affiliation Management</td><td></td><td></td><td></td></tr><tr><td></td><td>          Affiliation Management</td><td></td><td></td><td></td></tr><tr><td></td><td>       Pub/Sub Interface</td><td></td><td></td><td></td></tr><tr><td></td><td>      Messaging Interface</td><td></td><td></td><td></td></tr><tr><td>Information Mediator Interface</td><td></td><td></td><td></td><td></td></tr><tr><td>Entity Management</td><td></td><td></td><td></td><td></td></tr><tr><td>logging and reporting</td><td></td><td></td><td></td><td></td></tr><tr><td>Administration</td><td></td><td></td><td></td><td></td></tr></tbody></table>
 
+A brief description of the functional requirements for each of these components has been given below considering a minimum viable product perspective. Detailed design and more elaborate feature lists of these blocks can be customized by developers to optimally match respective  implementation needs. It is also left to the application consuming the response to present it appropriately (e.g. as an Event list or calendar) and provision for associated user interface interactions.
+
 ### 6.1. Event management&#x20;
 
-6.1.1  The Scheduler MUST enable an event organizer to create/update/delete/modify/list schedule details of multiple events. The Scheduler MUST enable setting up in advance with minimum of a specified starting and ending date-time of an event, an event name and category and placeholders for other details that can be populated later on.&#x20;
+6.1.1  The Scheduler MUST enable an event organizer to create/update/delete/modify/search and list schedule details of multiple events. The Scheduler MUST enable setting up in advance with minimum of a specified starting and ending date-time of an event, an event name and category and placeholders for other details that can be populated later on.&#x20;
 
-6.1.2  It MUST be possible to also feed any details already known during the creation of the new event schedule.
+6.1.2  It MUST be possible to also modification of event details after registration of the new event schedule in Scheduler's Event List.
 
 6.1.3  The Scheduler MUST not allow the addition/modification of any details of an event after the scheduled event is over.
 
 6.1.4  In case of events such as workshops, training sessions, medical camps, marketplace exhibitions, etc., that may host repeated events at different places by different resources for different subscribers, the Events could have the same name, but each instance would have a unique ID. The scheduler MUST not allow events with the same name and same host entity to overlap at the same date-time epochs.
 
-### 6.2. Resource management
+6.1.5 It MUST be possible to find details of all events in a chosen date-time range, filtered by a given category, having specific resource and still open for subscription
 
-6.2.1  The Scheduler MUST enable an event organizer to create/update/modify/list multiple Resources (persons/facilities/equipment/vehicles/etc.) as needed for taking part in various events.&#x20;
+
+
+### &#x20;6.2. Resource management
+
+6.2.1  The Scheduler MUST enable an event organizer to create/update/modify/search and list multiple Resources (persons/facilities/equipment/vehicles/etc.) as needed for taking part in various events.&#x20;
 
 6.2.2  All the details about the Resource MUST be stored in a common internal repository so that the resources may be affiliated with multiple entities and booked into multiple events as needed.
 
@@ -33,6 +39,8 @@ A common set of unique internal functional components are required to orchestrat
 6.2.5  The Scheduler MUST generate a unique id for each new resource registered, which is independent of which events the resources participates in. This is need to uniquely find and reuse details of the resource for various events as needed.
 
 6.2.6  the preferred mode of communication (mail/sms/url) with the resource must be captured along with corresponding contact details
+
+6.2.7  It must be possible to identify free(unallocated) time zones  in a given date-time range for a chosen resource limited by the resource's affiliated work day/hours in a given host entity.
 
 ### **6.3. Affiliation Management:**
 
@@ -50,7 +58,7 @@ A common set of unique internal functional components are required to orchestrat
 
 ### 6.4. Subscriber management&#x20;
 
-6.4.1  The Scheduler MUST enable an event organizer to create/update/modify/list subscribers (persons/facilities/equipment/vehicles/etc.)  as needed for taking part in various events.&#x20;
+6.4.1  The Scheduler MUST enable an event organizer to create/update/modify/search and list subscribers (persons/facilities/equipment/vehicles/etc.)  as needed for taking part in various events.&#x20;
 
 6.4.2  All the details about the subscriber MUST be stored in a common internal repository so that the subscribers may be enrolled into multiple events as their contact details be reused to send alerts as needed.
 
