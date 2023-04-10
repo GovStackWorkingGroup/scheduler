@@ -72,9 +72,11 @@ A brief description of the functional requirements for each of these components 
 
 6.5.1  The Scheduler MUST enable an event organizer to create/update/delete/modify/list Alert message templates that can be used to communicate with participants of events. ( e.g. appointment reminders to various patients, triggering periodic transfer of salaries, etc.). &#x20;
 
-6.5.2  All the details about the message MUST be stored in a common internal repository so that the messages may be reused into multiple events in high throughput environments
+6.5.2  Alert messages must be tagged to a specific host entity and is not accessible to other entities. Each entity must retain its own stack of alert message templates.
 
-6.5.3  The Scheduler MUST generate a unique id for each new message registered, which is independent of which events the message is used in. This is need to uniquely find and reuse details of the message for various events as needed.
+6.5.3  All the details about the message MUST be stored in a common internal repository so that the messages may be reused into multiple events in high throughput environments
+
+The Scheduler MUST generate a unique id for each new message registered, which is independent of which events the message is used in. This is need to uniquely find and reuse details of the message for various events as needed.
 
 6.5.4  In current scope only textual messages are considered as content of the templates.&#x20;
 
@@ -82,7 +84,7 @@ A brief description of the functional requirements for each of these components 
 
 ### 6.6.  Alert Schedule Management <a href="#_heading-h.3j2qqm3" id="_heading-h.3j2qqm3"></a>
 
-6.6.1 The Scheduler MUST enable an organizer to create/update/delete/list alert\_schedules for sending of alert messages in association with a specific event. A single alert schedule specifies details of only one epoch of sending a specific message to a specific category of participants of a single event.&#x20;
+6.6.1 The Scheduler MUST enable an organizer to create/update/delete/search and list alert\_schedules for sending of alert messages in association with a specific event. A single alert schedule specifies details of only one epoch of sending a specific message to a specific category of participants of a single event.&#x20;
 
 6.1.2  Each alert schedule MUST enable sending of the same message to multiple targets (resources / subscribers / both) of a specific event. &#x20;
 
@@ -160,15 +162,17 @@ A brief description of the functional requirements for each of these components 
 
 ### 6.12. Entity management
 
-6.12.1  This sub-block MUST enable registration of new entities that may host events using the Scheduler.&#x20;
+6.12.1  This sub-block MUST enable an event administrators to create/update/delete/search and list entities that host various event schedules using the scheduler. &#x20;
 
-6.12.2  When a new resource/alert/event is registered, if the Scheduler finds that the associated host is not specified, it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity. For subscribers, the entity is an optional field and may be left blank without a specific affiliation
+6.3.2  All the details about the entity MUST be stored in a common internal repository so that the resources may be affiliated with multiple entities and booked into multiple events as needed.
 
-6.12.3  When a new resource/alert/subscriber event is registered, if the scheduler finds that a specified host entity is not found in the entity list. it MUST prompt the user to register the entity first before trying to enroll alert/event/resource under an entity.
+6.3.3  An entity must have at least one affiliated resource in the Organizer role to manage event scheduling on behalf of the entity. An entity may affiliate with multiple registered resources.
+
+6.12.2  When a new resource or alert or event is registered, if the Scheduler finds that the entity is already registered,  it MUST prompt the user and avoid duplication of the registration. An Entity MUST have a unique single id against its registration in the scheduler
 
 ### 6.13. Appointment management:&#x20;
 
-6.13.1 This sub block MUST enable  an event organizer to add/modify/delete/list specific participants (resources and subscribers) into specific predefined events.&#x20;
+6.13.1 This sub block MUST enable  an event organizer to add/modify/delete/search and list specific participants (resources and subscribers) into specific predefined events.&#x20;
 
 6.13.2  All resources MUST have been registered in scheduler and MUST have been affiliated to specific entities before they can be enrolled in different events
 

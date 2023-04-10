@@ -59,7 +59,7 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * search and list details of events of chosen category, host entity in a specified date-time range
 * log status/attendance updates related to events they are enrolled into
 
-**The scheduler MUST enable Resources to**
+**The scheduler MUST enable Subscribers to**
 
 * search and extract their own registration details in the scheduler
 * search and list details of events with a chosen category, host entity and resource which are open for subscription in a specified date-time range

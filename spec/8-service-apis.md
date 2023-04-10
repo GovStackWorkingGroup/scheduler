@@ -29,168 +29,166 @@ In common for all microservices of the Scheduler Building Block, the API expects
 
 ### 8.3.1  Service Group: Event management&#x20;
 
-
-
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/event/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/event/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/event/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/event/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/event" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/event" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/event/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/event/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.2  Service Group: Appointment management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/appointment/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/appointment/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/appointment/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/appointment/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/appointment" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/appointment" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/appointment/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/appointment/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.3  Service Group: Entity management
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/entity/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/entity/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/entity/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/entity/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/entity" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/entity" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/entity/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/entity/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.4  Service Group: Resource management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/resource/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/resource/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/resource/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/resource/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/resource" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/resource" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/resource/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/resource/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/resource/availability" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/resource/availability" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.5  Service Group: Subscriber management
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/subscriber/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/subscriber/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/subscriber/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/subscriber/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/subscriber" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/subscriber" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/subscriber/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/subscriber/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### &#x20;8.3.6  Service Group: Alert Message management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/message/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/message/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/message/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/message/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/message" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/message" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/message/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/message/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.7 Service Group: Affiliation management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/affiliation/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/affiliation/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/affiliation/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/affiliation/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/affiliation" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/affiliation" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/affiliation/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/affiliation/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.8  Service Group: Alert Schedule management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/alert_schedule/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/alert_schedule/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/alert_schedule/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/alert_schedule/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/alert_schedule" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/alert_schedule" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/alert_schedule/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/alert_schedule/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
 ### 8.3.9  Service Group: Log management&#x20;
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/log/new" method="post" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/log/new" method="post" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/log/modifications" method="put" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/log/modifications" method="put" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/log" method="delete" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/log" method="delete" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
-{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json" path="/log/list_details" method="get" %}
-[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_Scheduler_Building_Block_APIs.json)
+{% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/log/list_details" method="get" %}
+[https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
