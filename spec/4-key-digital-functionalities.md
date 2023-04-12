@@ -8,7 +8,12 @@ description: >-
 
 ## 4.1 Overview of Scheduler Building Block Functionality
 
-The functional requirements to cover the services required from the Scheduler Building Block currently have considered specific use cases of Post-Partum Child Care program and Unconditional Social Cash Transfer program. However, the considerations can be generalized for different types of events involving one or more participants.&#x20;
+The functional requirements to cover the services required from the Scheduler Building Block currently have considered specific use cases of&#x20;
+
+* Post-Partum Child Care program ([https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/hltc-1-postpartum-and-infant-care](http://localhost:5000/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/hltc-1-postpartum-and-infant-care)).
+* Unconditional Social Cash Transfer program. [https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/inst-1-unconditional-social-cash-transfer](http://localhost:5000/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/inst-1-unconditional-social-cash-transfer).&#x20;
+
+These use cases bring forth the need for example implementations of events such as scheduling doctor appointment for patients, scheduling payroll computation for health workers, and disbursement of salaries and incentives for health workers and beneficiaries of the programs. However, the considerations can be generalized for different types of events involving one or more participants.&#x20;
 
 The internal storage of the Scheduler Building Block MUST hold configuration, status, and logged information of all scheduled events. It MUST also maintain a repository of details of resources and subscribers affiliated with various events.
 
