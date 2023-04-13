@@ -6,7 +6,7 @@ description: >-
 
 # 4 Key Digital Functionalities
 
-## 4.1 Overview of Scheduler Building Block Functionality
+## 4.1 **Current scope**
 
 The functional requirements to cover the services required from the Scheduler Building Block currently have considered specific use cases of&#x20;
 
@@ -114,16 +114,3 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * monitor and log internal metrics (e.g. latency/capacity utilization/communication failures/etc.) to help in maintenance and capacity management depending on needs of implementation.  Associated implementation specific details that are not specified here.
 * detect communication failure with other building blocks and applications and perform retries according to configured rules before logging a communication failure. Associated implementation specific details that are not specified here.&#x20;
 * monitor the logs and mark the participant as absent an attendance log did not arrive within a specified deadline. Associated implementation specific details that are not specified here.
-
-## **4.3 Out of scope** <a href="#_heading-h.qsh70q" id="_heading-h.qsh70q"></a>
-
-The Scheduler Building Block will provide the following key digital functionalities to support the automation of event management in different phases:
-
-* The Scheduler can be used to trigger activities based on time only. Evaluation of any criteria other than time-based evaluations for the generation of a trigger is out of scope.&#x20;
-* Alerts based purely on human decision are out of scope.
-* Any logical evaluations prior to the onset of alerting applications or building blocks are out of scope.&#x20;
-* An event participant MUST implement own logic to evaluate other conditions as needed before taking action based on an alert. (e.g., an accounts application alerted to initiate salary payments may check if a payroll has been approved before initiating payments).&#x20;
-
-1. The Scheduler can be used to trigger activities based on time only. Evaluation of any criteria other than time-based evaluations for the generation of a trigger is out of scope.&#x20;
-2. Alerts based purely on human decision are out of scope.
-3. Any logical evaluations prior to the onset of alerting applications or Building Blocks are out of scope. The application/Building Block MUST implement its own logic to evaluate other conditions before taking action based on an alert. (e.g. the accounts application may check whether a payroll has been approved before initiating payments when alerted by the Scheduler to initiate salary payments).&#x20;
