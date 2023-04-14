@@ -17,34 +17,6 @@ These use cases bring forth the need for example implementations of events such 
 
 The internal storage of the Scheduler Building Block MUST hold configuration, status, and logged information of all scheduled events. It MUST also maintain a repository of details of resources and subscribers affiliated with various events.
 
-## 4.2 Design and Components of Scheduler Building Block <a href="#docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258" id="docs-internal-guid-d85f59a4-7fff-1564-6ae2-86d67f36a258"></a>
-
-**4.2.1 Event Management:**  Authorized organizers of a host entity (such as health workers/admins/etc.)must be able to create and manage schedules of events involving several resources, subscribers, and activities that have to be reminded/triggered/informed through alerts at appropriate times before/during/after the event. Each event schedule will contain under a unique Event\_Id, details such as a description of the event, which entity is hosting the event, when is the event starting and ending, how many subscribers are allowed, terms of subscription, the current status of the event, deadlines for getting attendance from participants, etc. Schedules of multiple events can be configured, tracked, and managed, avoiding any duplication.&#x20;
-
-**4.2.2 Entity Management:**  The Scheduler must enable the administrator of the Building Block to register multiple entities that will use the Scheduler. Each entity will have at least one person registered under "resources" as an Organizer of various events hosted by that entity. An entity may have multiple affiliated resources that can be allocated to different events hosted by the entity. The Scheduler must enable the registration of details about registered entities with duplication avoidance.
-
-**4.2.3 Alert\_Schedule Management:** Authorized organizers of a host entity may schedule one or more alert messages to be sent to specific resources/subscribers of an event before, during, or after an event. It also provides for the mechanism to send alert messages according to the preferred Alerting mode (through Information Mediator to a target Building block/application URL endpoint, or publish it in its local Information Mediator + Pub/Sub module or through Messaging Building Block. Every alert sent is tagged for tracking status updates from alerted parties (for example an event started/ended/no show/etc.).  Each alert sent is tagged with a unique token from Scheduler that can be used to relate responses from recipients of the alerts. The alerted Building Block/app can take appropriate actions based on the alert message and may send attendance/status to an endpoint on the scheduler along with the token. The Scheduler can also poll for status updates, by giving the unique token of a specific alert it sent.
-
-**4.2.4 Alert\_Message Management:** It must be possible for an entity to have its own stack of ready-made message templates that be reused in one or more notifications in multiple events hosted by that entity. Typically organizers of the event are maintain this stack of alert templates (reminders/updates/etc.) under specific categories aligned to their business needs. The alerts may further be tagged with a category (appointment reminders/ activity triggers/ etc.) for easy search and identification purposes.
-
-**4.2.5 Resource management:** Authorized organizers of a host entity may enrol different resources resource (persons, facilities, equipment, vehicle, etc.)into respective entities. This scheduler retains the Resource details such as its name, category (doctor/nurse/teacher/health worker/admin/etc.), contact details (phone/mail/URL), etc., as needed for communication, against a unique event id for each Resource. Organizers may search for resources that are free (unallocated) together in a chosen date-time range, or look for time zones when chosen resources are free together. The Scheduler allows multiple entities to register the same resource supported by a de-duplication filter from the Scheduler to avoid replicas in storage.
-
-**4.2.6 Subscriber management:** The subscriber is details of a person/equipment/facility identified by a name and contact details. The Scheduler enables registration of new subscribers by storing their profile and contact information against a unique Id in such a way the same subscriber details can be reused for subscription to several events. Subscribers may also be tagged to a category such as a student/ patient /beneficiary/etc.
-
-**4.2.7 Affiliation Management:** The Scheduler must enable the same resource to be affiliated with multiple entities with non-overlapping weekdays and working hours. (e.g. a doctor may work at different hospitals on specific days and time spans). The organizer may allocate resources of their entity into multiple non-overlapping events within the affiliated time zone of their entity for that resource. (e.g. a doctor could provide consultation to a series of patients during their work hours at a specific hospital).&#x20;
-
-**4.2.8 Appointment management:** This key digital functionality enables the enrolment of registered subscribers into a specific event.  The same subscriber may be enrolled with different token ids into different events. In case the subscriber is a person, the person can subscribe to a chosen event or take assistance from an authorized third party (e.g. health worker or a call-center admin) to subscribe him/her self or their application/device that represents them as a participant subscriber into a chosen event.&#x20;
-
-**4.2.9 Status Logging and Reporting:** This key digital functionality maintains logs of user-driven transactions, activities originating from this Building Block as well as status updates coming from external sources. All logs contain a date time stamp, an optional location stamp, details of the information source, and the status of transaction. For example, the Scheduler can log all alerts it generates and all events that are created/updated/cancelled. It can also log status updates from external Building Blocks or applications (e.g. completion of an event) coming through Information Mediator, Pub/Sub, or Messaging Building Block interfaces. The scheduler must enable an authorized administrator to get report of logged information in a chosen category and date range and category across events. The Scheduler does not retain any reports. The Scheduler may also monitor and log internal metrics (e.g. latency/capacity utilization/communication failures/etc.) to help in maintenance and capacity management depending on needs of implementation.  For example, if an alert recipient does not acknowledge within a fixed duration the scheduler may be designed to resend the trigger/notification for a given number of retries before logging a communication success or failure. In another implementation, the Scheduler may be designed to monitor the logs and mark the participant as absent if an attendance log did not arrive within a certain duration after the alert was sent. These are implementation-specific details that are not specified here.
-
-**4.2.10 Information Mediator interface:**  This interface handles protocols to interact with the Information Mediator Building Block in order to securely expose Scheduler services to other Building Blocks and also enables scheduler access services of other Building Blocks and applications through the Information Mediator Building Block.
-
-**4.2.11 Messaging interface:** The interface handles protocols to interact with the messaging Building Block for sending alerts to event participants and receiving incoming messages through the Messaging Building Block. This maintains an internal queue of messages until they are passed on to the Messaging Building Block.
-
-**4.2.12 Pub-Sub Interface:**  The interface handles protocols to interact with Pub/Sub messaging rooms assigned to publish asynchronous messages to event participants and receive incoming messages published by participants in the Pub/Sub rooms of the host application.&#x20;
-
-**4.2.13 Building block administration:** This key digital functionality enables the setting up of internal configuration requirements that define the technical behaviour of the Building Block. It also provides for a Building Block administrator to monitor and take actions that regulate the usage and performance of the Building Block. This also provides functionalities for the registration of new entities and Event Organizers within those entities.
-
 Currently the following actors have been identified as "users" of the scheduler building block:
 
 * "Building Block Admin"  who manages the building block's implementation settings. A building block admin is also responsible to enrolment of entitles and Organizers of those entities that use the scheduler building block.&#x20;
@@ -54,7 +26,7 @@ Currently the following actors have been identified as "users" of the scheduler 
 
 The Scheduler MUST have several key digital functionalities to enable these actors perform their roles in events. A scheduled event by definition should have pre-determined start and ending date time, venue, participant resources (which carry out some activity when alerted) and subscribers which consume activities of the resource in an event. For example  a doctor( resource) may provide consultation (event) to a patient(subscriber) at a specific hospital (host-entity) on appointment (schedule). Similarly, the scheduler may alert a payroll application (Resource) to calculate salary payments (event) on last day of the month (schedule). The scheduler may also alert a payment building block (Resource) to transfer  as per statements the salaries to health workers in Post-Partum Care program or subsidies to beneficiaries in USCT program on first day of month (schedule).&#x20;
 
-**The Scheduler MUST enable Building Block Admins to**
+**4.1.1. The Scheduler MUST enable Building Block Admins to**
 
 * register without duplication an entity, into its Entity List with details (e.g. name, phone, email, website, etc.) The entities host various "events" involving their affiliated resources.
 * categorize entities for easy searching and sorting. In current scope, "Hospital",  "Health ministry", "Social welfare ministry" may be example entities.&#x20;
@@ -62,7 +34,7 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * configure rules for performance, security and communication management between the scheduler and other building blocks, applications and event participants. The exact parameters may be decided at implementation time&#x20;
 * extract log reports from the system as needed for monitoring and administering the building block operations.
 
-**The scheduler MUST enable Organizers to**
+**4.1.2  The scheduler MUST enable Organizers to**
 
 * register resources (persons, facilities, equipment, s/w building blocks/apps, vehicles, etc.) without duplication into Scheduler's resource list with contact details (phone/mail/URL/),  as needed for communication and reuse for enrolment to multiple events.&#x20;
 * categorize resources for easy searching and sorting. In current scope, "doctor",  'payroll app" and "Payments app" are example resource categories.&#x20;
@@ -84,7 +56,7 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * to extract logs related to events that help in continuous improvement in event management
 * search and extract details of one or more events, resources, subscribers, alert messages templates and logs associated with entities where the Organizer is also affiliated with.
 
-**The scheduler MUST enable Resources to**
+**4.1.3  The scheduler MUST enable Resources to**
 
 * search and extract their own registration details in the scheduler
 * search and extract their own affiliation details across associated entities
@@ -94,7 +66,7 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * search and list details of events of chosen category, host entity in a specified date-time range
 * log status/attendance updates related to events they are enrolled into
 
-**The scheduler MUST enable Subscribers to**
+**4.1.4  The scheduler MUST enable Subscribers to**
 
 * search and extract their own registration details in the scheduler
 * search and list details of events with a chosen category, host entity and resource which are open for subscription in a specified date-time range
@@ -103,7 +75,7 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * receive scheduled alert messages from events they are enrolled into
 * log status/attendance updates related to events they are enrolled into
 
-#### The Scheduler must automated internal functionality to
+#### 4.1.5  The Scheduler must automated internal functionality to
 
 * track all alert schedules and send corresponding alert messages with unique tokens to relevant participants at appropriate times
 * Log each alert sent with date-time stamp and a unique token in Scheduler's log that can be used later to relate responses from recipients of the alerts.&#x20;
@@ -114,3 +86,14 @@ The Scheduler MUST have several key digital functionalities to enable these acto
 * monitor and log internal metrics (e.g. latency/capacity utilization/communication failures/etc.) to help in maintenance and capacity management depending on needs of implementation.  Associated implementation specific details that are not specified here.
 * detect communication failure with other building blocks and applications and perform retries according to configured rules before logging a communication failure. Associated implementation specific details that are not specified here.&#x20;
 * monitor the logs and mark the participant as absent an attendance log did not arrive within a specified deadline. Associated implementation specific details that are not specified here.
+
+## 4.2 Out of Scope
+
+The Scheduler Building Block will provide the following key digital functionalities to support the automation of event management in different phases:
+
+* Evaluation of any criteria other than time-based evaluations for the generation of a trigger is out of scope. The Scheduler can be used to trigger activities based on time only.
+* Alerts based on human decision are out of scope. The Scheduler is intended for automation of time-based alerting process.
+* Any logical evaluations prior to the onset of alerting applications or building blocks are out of scope. (e.g. repeating an alert if acknowledgement is not received for previous alert)
+* An event participant MUST implement own logic to evaluate other conditions as needed before taking action based on an alert. (e.g. if an accounts application is alerted to initiate salary payments but it must check if a payroll has been approved before initiating payments).
+
+1.

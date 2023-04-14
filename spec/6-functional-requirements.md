@@ -26,7 +26,7 @@ A brief description of the functional requirements for each of these components 
 
 6.1.6  If an event is deleted, the Scheduler must remove all dependent appointments of resources and subscribers and all scheduled alerts associated with an event and notify the organizer of the host entity.&#x20;
 
-6.1.7. The Scheduler should sent notifications to all resources and subscribers when an associated event is deleted.
+6.1.7 The Scheduler should sent notifications to all resources and subscribers when an associated event is deleted.
 
 
 
@@ -184,11 +184,11 @@ The Scheduler MUST generate a unique id for each new message registered, which i
 
 6.12.1  This sub-block MUST enable event administrators to create/update/delete/search and list entities that host various event schedules using the scheduler. &#x20;
 
-6.3.2  All the details about the entity MUST be stored in a common internal repository so that the resources may be affiliated with multiple entities and booked into multiple events as needed.
+6.12.2  All the details about the entity MUST be stored in a common internal repository so that the resources may be affiliated with multiple entities and booked into multiple events as needed.
 
-6.3.3  An entity must have at least one affiliated resource in the Organizer role to manage event scheduling on behalf of the entity. An entity may affiliate with multiple registered resources.
+6.12.3  An entity must have at least one affiliated resource in the Organizer role to manage event scheduling on behalf of the entity. An entity may affiliate with multiple registered resources.
 
-6.12.2  When a new resource or alert or event is registered, if the Scheduler finds that the entity is already registered,  it MUST prompt the user and avoid duplication of the registration. An Entity MUST have a unique single id against its registration in the scheduler
+6.12.4  When a new resource or alert or event is registered, if the Scheduler finds that the entity is already registered,  it MUST prompt the user and avoid duplication of the registration. An Entity MUST have a unique single id against its registration in the scheduler
 
 ### 6.13. Appointment management:&#x20;
 
