@@ -12,12 +12,6 @@ Scheduler must expose its microservices through RESTful API interfaces as define
 
 The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/v/1.0/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here.
 
-## Summary of Scheduler Microservices
-
-In common for all microservices of the Scheduler Building Block, the API expects the calling application has already authenticated the user's functional ID and sent it as part of the service request from the calling application. Listed below are various service APIs grouped according to the Key digital functionalities they help orchestrate. Also, an interactive graphical representation of the APIs and underlying datasets exchanged are shown below the tables. However, detailed API schemas written in JSON that define REST API endpoints for each of the services mentioned above are available on GitHub located at
-
-{% embed url="https://github.com/GovStackWorkingGroup/bb-scheduler/blob/f25360e34ba029cc8c68d1f6cd752da30e06928a/api/psramkumar-govstack-scheduler_api-1.0.0-resolved.json" %}
-
 ### 8.1 Event Management
 
 {% swagger src="https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json" path="/event/new" method="post" %}
