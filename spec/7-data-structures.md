@@ -22,17 +22,17 @@ Support of polymorphic data sets and data types is provided by means of a list o
 
 The proposed resource model showing the relationship between data objects that are used by this Building Block is illustrated in the diagram below. The Scheduler Building Block stores details of Events in Event\_List, Resources in a Resource\_List, Subscribers in Subscriber\_List, Alert message templates in an ALERT List, alert schedules in an Alert Schedule list, entities in Entity\_List and Affiliations of resources in entities in the Affiliation\_List. Entries in this list include properties of respective items and linkages between them Apart from these, the Scheduler has several "internal" registers that are used to log information arising from transactions, from the system, from communications, etc., and metrics/indicators as needed for housekeeping, audit, and administration of the Building Block. The archival and retrieval mechanisms for data generated or received in the Scheduler Building Block are left to implementation time considerations of IT infrastructure planning.
 
-## 7.1 Standards
+## Standards
 
 Typical data structure requirements and format representations relevant to this Building Block have been [TMF646\_Appointment\_API\_Specification\_R19.0.0\_fixed](https://es.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed). However, the schema and data elements are optimized for minimizing footprint and external dependencies, given that this Building Block handles time-critical alerts. The common minimum datasets have been illustrated in the schema below and described in the table below.
 
-## 7.2 Scheduler Building Block Data Model
+## 7.1 Resource Model
 
 <figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model (2).png" alt=""><figcaption><p><a href="https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520&#x26;page=0_0">Schema Source</a></p></figcaption></figure>
 
-### 7.3 Data elements
+### 7.2 Data elements
 
-**7.3.1 Group: Event\_List**
+**7.2.1 Group: Event\_List**
 
 | Data Element      | Default format            | description                                                                                                                                                                                                            |
 | ----------------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,7 +50,7 @@ Typical data structure requirements and format representations relevant to this 
 | Terms             | String                    | Any conditions and instructions for to subscribers for participation in an event                                                                                                                                       |
 | Category          | string                    | category of the event (e.g. consultation, training, salary payments, etc.)                                                                                                                                             |
 
-**7.3.2 Group: Appointment LIst**
+**7.2.2 Group: Appointment LIst**
 
 | Data Element            | Default format              | Description                     |
 | ----------------------- | --------------------------- | ------------------------------- |
@@ -65,7 +65,7 @@ Typical data structure requirements and format representations relevant to this 
 | To                      | String - (dd/mm/yyyy/hh/mm) | when appointment ends           |
 | Deadline                | String - (dd/mm/yyyy/hh/mm) | for logging attendance          |
 
-#### 7.3.3 Group: Entity\_List
+#### 7.2.3 Group: Entity\_List
 
 | Data Element | Default format | Description               |
 | ------------ | -------------- | ------------------------- |
@@ -76,7 +76,7 @@ Typical data structure requirements and format representations relevant to this 
 | Email        | String         | default email id          |
 | Website      | String: URL    | URL of website of entity  |
 
-#### 7.3.4 Group: Address
+#### 7.2.4 Group: Address
 
 | Building name | String | Unique ID of a specific event                                                                                                           |
 | ------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,7 +88,7 @@ Typical data structure requirements and format representations relevant to this 
 | Country       | String | List of IDs linked to respective alert configuration details of all notifications scheduled for a specific event                        |
 | PinCode       | String | List of resource IDs that have been allocated for this Event                                                                            |
 
-#### 7.3.5 Group: Resource\_List
+#### 7.2.5 Group: Resource\_List
 
 | Data Element     | Default format | Description                                                                                          |
 | ---------------- | -------------- | ---------------------------------------------------------------------------------------------------- |
@@ -101,7 +101,7 @@ Typical data structure requirements and format representations relevant to this 
 | Alert preference | String         | which channels (sms/email/webhook/etc) are preffered for alerting this resource in order of priority |
 | Name             | String         | proper name of the Resource (person/facility/vehicle/equipment)                                      |
 
-#### 7.3.6. Data Group: Affiliation List
+#### 7.2.6. Data Group: Affiliation List
 
 | Data Element       | Default format                  | Description                                                                                                 |
 | ------------------ | ------------------------------- | ----------------------------------------------------------------------------------------------------------- |
@@ -111,7 +111,7 @@ Typical data structure requirements and format representations relevant to this 
 | resource\_category | string                          | doctor/healthworker/application/device/etc.                                                                 |
 | work\_days\_hours  | array\[weekday,start, end time] | weekly days and time zones a resource is affiliated to work in a given entity                               |
 
-#### 7.3.7 Group: Subscriber List
+#### 7.2.7 Group: Subscriber List
 
 | Data Element     | Default format | Description                                                                                             |
 | ---------------- | -------------- | ------------------------------------------------------------------------------------------------------- |
@@ -124,7 +124,7 @@ Typical data structure requirements and format representations relevant to this 
 | Name             | String         | proper name of the Subscriber                                                                           |
 | Category         | String         | (person/facility/vehicle/equipment)                                                                     |
 
-#### 7.3.8 Group: Alert\_Schedule\_List
+#### 7.2.8 Group: Alert\_Schedule\_List
 
 | Data Element        | Default format | Description                                       |
 | ------------------- | -------------- | ------------------------------------------------- |
@@ -134,7 +134,7 @@ Typical data structure requirements and format representations relevant to this 
 | Alert\_dateTime     | String         | Date time at which this alert is to be sent       |
 | Target\_category    | String         | who should be alerted Subscribers/resources/both  |
 
-**7.3.9 Group: Message\_List**
+**7.2.9 Group: Message\_List**
 
 | Data Element  | Default format | Description                                        |
 | ------------- | -------------- | -------------------------------------------------- |
@@ -143,7 +143,7 @@ Typical data structure requirements and format representations relevant to this 
 | Entity\_Id    | String         | Host Entity which owns this message template       |
 | Message\_body | String         | content of alert message                           |
 
-**7.3.10 Group: Log LIst**
+**7.2.10 Group: Log LIst**
 
 | Data Element  | Default format              | Description                                                       |
 | ------------- | --------------------------- | ----------------------------------------------------------------- |
@@ -155,7 +155,7 @@ Typical data structure requirements and format representations relevant to this 
 | Log\_Category | String                      | parameter which is logged (e.g. latency/communication error/etc.) |
 | Log\_Data     | String                      | content of Log                                                    |
 
-**7.3.11 Group: Free\_Resources**
+**7.2.11 Group: Free\_Resources**
 
 | Data Element   | Default format                       | Description                                                                |
 | -------------- | ------------------------------------ | -------------------------------------------------------------------------- |
@@ -163,7 +163,7 @@ Typical data structure requirements and format representations relevant to this 
 | Resource\_name | String                               | name of resource                                                           |
 | free\_slots    | array(start\_datetime,end\_datetime) | list of free slots of this resource (start and end date-time of all slots) |
 
-### Venue details
+#### 7.2.12 Venue details
 
 | Data Element | Default format | Description                    |
 | ------------ | -------------- | ------------------------------ |
