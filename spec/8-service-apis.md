@@ -178,6 +178,22 @@ The [GovStack non-functional requirements document](https://govstack.gitbook.io/
 [https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json](https://raw.githubusercontent.com/GovStackWorkingGroup/bb-scheduler/main/api/Govstack_scheduler_BB_APIs.json)
 {% endswagger %}
 
+## **4.10 Information Mediator Interface**&#x20;
+
+This Services APIs is not yet specified, but it should be the purpose of a next iteration of the Scheduler Building Block Specification.
+
+## **4.11 PubSub Interface**&#x20;
+
+This Services APIs is not yet specified, but it should be the purpose of a next iteration of the Scheduler Building Block Specification.
+
+## **4.12 Messaging interface**&#x20;
+
+This Services APIs is not yet specified, but it should be the purpose of a next iteration of the Scheduler Building Block Specification.
+
+## **4.13 Scheduler Administration**&#x20;
+
+This Services APIs is not yet specified, but it should be the purpose of a next iteration of the Scheduler Building Block Specification.
+
 ## API standards <a href="#_heading-h.3o7alnk" id="_heading-h.3o7alnk"></a>
 
 * The microservice interfaces are defined as per [OPENAPI Ver3.0 standards](https://swagger.io/specification/).
