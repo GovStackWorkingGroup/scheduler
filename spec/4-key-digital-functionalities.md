@@ -57,7 +57,7 @@ This interface handles protocols to interact with the Information Mediator Build
 
 The interface handles protocols to interact with Pub/Sub messaging rooms assigned to publish asynchronous messages to event participants and receive incoming messages published by participants in the Pub/Sub rooms of the host application.
 
-## **4.12 Messaging interface**&#x20;
+## **4.12 Messaging Interface**&#x20;
 
 The interface handles protocols to interact with the messaging Building Block for sending alerts to event participants and receiving incoming messages through the Messaging Building Block. This maintains an internal queue of messages until they are passed on to the Messaging Building Block.
 
