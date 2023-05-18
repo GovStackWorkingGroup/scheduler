@@ -112,7 +112,7 @@ A brief description of the functional requirements for each of these components 
 
 ### **6.11 Pub/Sub Interface**
 
-* This Block Should maintain the endpoint address of specific rooms dedicated to the Scheduler Building Block to publish Alert notifications. These are dedicated API interfaces defined in the Pub/Sub (Information Mediator Building Block) and hence are not defined here (REQUIRED)
+* This Block must maintain the endpoint address of specific rooms dedicated to the Scheduler Building Block to publish Alert notifications. These are dedicated API interfaces defined in the Pub/Sub (Information Mediator Building Block) and hence are not defined here (REQUIRED)
 * It must also use the logging sub-block to maintain the history of Pub/Sub transactions handled by the Scheduler Building Block (REQUIRED)
 * It must enable the Scheduler to subscribe with Pub/Sub rooms of other Building Blocks (such as Messaging, Accounting, Payments, etc.) (for example, to receive status updates on the completion of an ongoing event) (REQUIRED)
 * This sub-block must provide a mechanism for the Scheduler Building Block to publish alerts and other messages to other Building Blocks through specific rooms in a Pub/Sub Building Block (REQUIRED)
