@@ -10,7 +10,11 @@ A Set of microservices are defined to receive requests from other GovStack-compa
 
 Scheduler must expose its microservices through RESTful API interfaces as defined by OpenAPI v3+ standards. The Scheduler must have any response data payload it returns through its API only in the form of JSON formatted datasets. A summary of the APIS exposed by this Building Block is summarized in the table below. The Scheduler Building Block can be used also as an internal sub-block of another Building Block. In such a case the same services APIs will be used to embed the Scheduler Building Block (without having to pass through the Information Mediator).
 
-The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/v/1.0/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here.
+The [GovStack non-functional requirements document](https://govstack.gitbook.io/specification/v/1.0/architecture-and-nonfunctional-requirements/6-onboarding) provides additional information on how 'adaptors' may be used to translate an existing API to the patterns described here. This section also provides guidance on how candidate products are tested and how GovStack validates a product's API against the API specifications defined here.&#x20;
+
+The tests for the Scheduler Building Block can be found in [this GitHub repository](https://github.com/GovStackWorkingGroup/bb-scheduler/tree/main/test).
+
+
 
 ### 8.1 Event Management
 
