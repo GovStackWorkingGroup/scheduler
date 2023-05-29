@@ -135,8 +135,8 @@ An organizer may cancel an existing appointment of a resource or a subscriber fo
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App: request deletion <br>of appointment <br> of selected <br>resource/subscriber <br>in selected event<br> required details
-Host_App->>Scheduler: Delete/appointment<br> <br>{event_Id,participant_type<br>, participant_id}
-Scheduler->>Appointment_List: mark matching appointment as cancelled
+Host_App->>Scheduler: Delete/appointment<br>{event_Id,participant_type<br>, participant_id}
+Scheduler->>Appointment_List: mark matching appointment <br> as cancelled
 alt If event or participant not found 
   Scheduler->>Host_App: publish error
 else 
@@ -236,31 +236,29 @@ sequenceDiagram
 Organizer->>Host_App:Request Cancellation <br> of selected event
 Host_App->>Scheduler: Delete/event{event_Id}
 Scheduler->>Alert_Schedule_List: Get/Alert_Schedule/List_details<br>{Alert_Schedule_id}<br>in {event_id}
-loop for each Alert_Schedule_id:
-  Scheduler->>Alert_Schedule_List: Delete/Alert_Schedule/{event_id}
+loop for each <br>Alert_Schedule_id:
+  Scheduler->>Alert_Schedule_List: Delete/Alert_Schedule<br>{event_id}
 end
 Scheduler->>Appointment_List: Get/appointment/List_details<br>{appointment_id}in<br> {event_id}
-loop for each appointment id:
-  Scheduler->>Appointment_List: Delete/appointment/<br>{appointment_id}
+loop for each <br>appointment id:
+  Scheduler->>Appointment_List: Delete/appointment<br>{appointment_id}
 end
-
- loop for each target
-   alt if participant type = resource:
-       Scheduler->>Resource_List: Get/Resource/List_Details{Resource_id}
-   else if participant type = Subscriber:
-       Scheduler->>Subscriber_List: Get/Subscriber/List_Details{Subscriber_id}
-   end
-   opt if  prefered channel= "direct"
-       Scheduler->>Target_BB/App: notify cancellation[url] 
-    end
-    opt if prefered channel = "pubsub"
-       Scheduler->>Pubsub: notify cancellation <br>[Event Id] 
-    end
-    opt if prefered channel = "messaging":
-       Scheduler->>messaging BB: notify cancellation[messaging BB]
-    end
- end
-
+loop for each <br>target
+  alt if participant type = resource:
+      Scheduler->>Resource_List: Get/Resource/List_Details<br>{Resource_id}
+  else if participant type = Subscriber:
+      Scheduler->>Subscriber_List: Get/Subscriber/List_Details{Subscriber_id}
+  end
+  opt if prefered channel = "pubsub"
+     Scheduler->>Pubsub: notify cancellation <br>[Event Id] 
+  end
+  opt if prefered channel = "messaging":
+     Scheduler->>messaging BB: notify cancellation[messaging BB]
+  end
+  opt if prefered channel = "direct":
+     Scheduler->>Target_BB_App: notify cancellation[url] 
+  end
+end
 Scheduler->>Event_List: delete/event in {event_id}
 Scheduler->>Host_App: return success or error
 Host_App->>Organizer:confirm deletion <br>or error information
