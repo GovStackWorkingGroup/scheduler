@@ -152,8 +152,6 @@ The Scheduler MUST generate a unique id for each new message registered, which i
 
 6.9.5  It maintains a list of endpoint addresses of Information Mediator, other Building Blocks, and Applications.
 
-6.9.6  These are dedicated  API interfaces defined in the Information mediator building block and hence not defined here
-
 ### **6.10. PubSub Interface:**
 
 6.10.1  These are dedicated API interfaces defined in the Pub-sub (Informediator building block ) and hence not defined here&#x20;
