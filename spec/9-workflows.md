@@ -331,7 +331,7 @@ Host_App->>Adminstrator/Organizer: confirm affiliation of <br>resource to specif
 sequenceDiagram
 Organizer->>Host_App:Request addition of<br> given Subscriberas<br> Organizer in given entity
 Host_App->>Scheduler:Post:/Subscriber/new<br>{entity_id,Subscriber_details}
-Scheduler->>Subscriber_List: Store new Subscriber profile<br>
+Scheduler->>Subscriber_List: Store new Subscriber profile
 note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id,<br> else store deteails and<br> generate new id 
 Subscriber_List->>Scheduler: return Subscriber_Id
 Scheduler->>Host_App: return Subscriber_Id
