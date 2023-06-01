@@ -300,7 +300,7 @@ An organizer MUST register into the scheduler various categories of resources {p
 sequenceDiagram
 Adminstrator/Organizer->>Host_App:Request addition of<br> given Resource as<br> Organizer in given entity
 Host_App->>Scheduler:Post:/resource/new<br>{entity_id,resouce_details}
-Scheduler->>Resource_List: Store new resource profile<br>
+Scheduler->>Resource_List: Store new resource profile
 note over Resource_List: if matching resource<br> exists fetch resource_id,<br> else store deteails and<br> generate new id 
 Resource_List->>Scheduler: return Resource_Id
 Scheduler->>Host_App: return Resource_Id
