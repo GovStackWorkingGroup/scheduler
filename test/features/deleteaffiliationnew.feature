@@ -1,3 +1,4 @@
+@method=DELETE   @endpoint=/affiliation
 Feature: Delete an Affiliation of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
