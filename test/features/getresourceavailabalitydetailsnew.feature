@@ -12,10 +12,6 @@ Examples:
   | requestor_id| requestor_role | resource_id|
   | healthngo1  | healthworker   | 1          |
 
-
-
-
-
 @unit @happyregression  
 Scenario Outline: Get Resource Availabality Details of Scheduler API Unit and Regression Happy Testing
 
@@ -36,8 +32,6 @@ Given the invalid inputs for the requestor Id is "<requestor_id>" with role as "
 When a GET request for an endpoint /resource/availabality/ is triggered to get details of a resource availabality list
 Then response code of negative testing GET request for invalid data is "<status_code>"
  
-
-
 Examples:
   | requestor_id | requestor_role | resource_id | Entity_id | category    | From                | To                     | status_code |
   | healthngo1   | healthworker   | myresource  | 4524453535| lawyer      | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 400         |
