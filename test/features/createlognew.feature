@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/log/new/
 Feature: Create a new Log of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new Log of Scheduler API Smoke Test   
+Scenario: Create a new Log of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new log
 When a POST request for an endpoint /log/new/ is triggered to create new log for scheduler block      
