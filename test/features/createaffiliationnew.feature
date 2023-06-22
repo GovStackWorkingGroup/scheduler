@@ -1,9 +1,10 @@
+@method=POST @endpoint=/affiliation/new/
 Feature: Create a new affiliation of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new affiliation for Scheduler API Smoke Test   
+Scenario: Create a new affiliation for Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new affiliation
 When a POST request for an endpoint /affiliation/new/ is triggered to create new affiliation for scheduler block      
