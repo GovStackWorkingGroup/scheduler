@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/subscriber/new/
 Feature: Create a new Subscriber of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new Subscriber of Scheduler API Smoke Test   
+Scenario: Create a new Subscriber of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new subscriber
 When a POST request for an endpoint /subscriber/new/ is triggered to create new subscriber for scheduler block      
