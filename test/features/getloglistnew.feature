@@ -1,22 +1,15 @@
+@method=GET  @endpoint=/log/list_details/
 Feature: Get Log List Details of Scheduler API
-
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
 Scenario Outline: Get Log List Details of Scheduler API Smoke Test   
 
 Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for an log_id "<log_id>" for smoke testing
 When a GET request for an endpoint /log/list_details/ is triggered to get details of a log list
 Then response code of GET request is "200" for smoke testing
-
-
-
 Examples:
-  | requestor_id     | requestor_role | log_id    |
-  | healthngo1       | healthworker   |     1     |
-
-
-
+  | requestor_id | requestor_role | log_id |
+  | healthngo1   | healthworker   |     1  |
 
 
 @unit @happyregression  
