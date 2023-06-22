@@ -1,7 +1,6 @@
+@method=GET  @endpoint=/resource/availabality/
 Feature: Get Resource Availabality Details of Scheduler API
-
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
 Scenario Outline: Get Resource Availabality Details of Scheduler API Smoke Test   
 
@@ -9,11 +8,9 @@ Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for a
 When a GET request for an endpoint /resource/availabality/ is triggered to get details of a resource availabality list
 Then response code of GET request is "200" for smoke testing
 
-
-
 Examples:
-  | requestor_id     | requestor_role | resource_id    |
-  | healthngo1       | healthworker   | 1              |
+  | requestor_id| requestor_role | resource_id|
+  | healthngo1  | healthworker   | 1          |
 
 
 
@@ -42,10 +39,10 @@ Then response code of negative testing GET request for invalid data is "<status_
 
 
 Examples:
-  | requestor_id | requestor_role | resource_id | Entity_id | category | From                | To                     | status_code |
-  | healthngo1   | healthworker   | myresource  | 4524453535| lawyer   | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 400         |
-  | healthngo1   | healthworker   | 4524453535  | 4524453535| doctor   | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 403         |
-  | healthngo1   | healthworker   | 4524453535  | 4524453535| academician | 2018-02-18T13:30:00 | 2018-02-14T09:00:00 | 404         |
+  | requestor_id | requestor_role | resource_id | Entity_id | category    | From                | To                     | status_code |
+  | healthngo1   | healthworker   | myresource  | 4524453535| lawyer      | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 400         |
+  | healthngo1   | healthworker   | 4524453535  | 4524453535| doctor      | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 403         |
+  | healthngo1   | healthworker   | 4524453535  | 4524453535| academician | 2018-02-18T13:30:00 | 2018-02-14T09:00:00    | 404         |
 
 
 
