@@ -1,22 +1,17 @@
+@method=GET   @endpoint=/alert_schedule/list_details/
 Feature: Get Alert List Details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
 Scenario Outline: Get Alert List Details of Scheduler API Smoke Test   
-
 Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for an alert_schedule_id "<alert_schedule_id>" for smoke testing
 When a GET request for an endpoint /alert_schedule/list_details/ is triggered to get details of an alert schedule list
 Then response code of GET request is "200" for smoke testing
 
-
-
 Examples:
-  | requestor_id     | requestor_role | alert_schedule_id    |
-  | healthngo1       | healthworker   | 1                    |
-
-
-
+  | requestor_id | requestor_role | alert_schedule_id |
+  | healthngo1   | healthworker   | 1                 |
 
 
 @unit @happyregression  
@@ -42,9 +37,9 @@ Then response code of negative testing GET request for invalid data is "<status_
 
 Examples:
   | requestor_id | requestor_role | filter_alert_schedule_id | required_target_category | required_entity_id | required_alert_schedule_id  | required_message_id |  status_code  |
-  | healthngo1   | healthworker   | myresource               | true                     | false              | false                    | true                |  400          |
-  | healthngo1   | healthworker   | 4524453535               | false                    | true               | true                     | true                |  403          |
-  | healthngo1   | healthworker   | 4524453535               | no                       | true               | true                     | true                |  404          |
+  | healthngo1   | healthworker   | myresource               | true                     | false              | false                       | true                |  400          |
+  | healthngo1   | healthworker   | 4524453535               | false                    | true               | true                        | true                |  403          |
+  | healthngo1   | healthworker   | 4524453535               | no                       | true               | true                        | true                |  404          |
 
 
 
