@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/resource/new/
 Feature: Create a new resource of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new resource of Scheduler API Smoke Test   
+Scenario: Create a new resource of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new resource
 When a POST request for an endpoint /resource/new/ is triggered to create new resource for scheduler block      
