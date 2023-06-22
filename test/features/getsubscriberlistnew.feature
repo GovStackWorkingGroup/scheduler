@@ -1,7 +1,6 @@
+@method=GET  @endpoint=/subscriber/list_details/
 Feature: Get Subscriber List Details of Scheduler API
-
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
 Scenario Outline: Get Subscriber List Details of Scheduler API Smoke Test   
 
@@ -9,13 +8,9 @@ Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for a
 When a GET request for an endpoint /subscriber/list_details/ is triggered to get details of a subscribers list
 Then response code of GET request is "200" for smoke testing
 
-
-
 Examples:
-  | requestor_id     | requestor_role | subscriber_id    |
-  | healthngo1       | healthworker   | 12345            |
-
-
+  | requestor_id | requestor_role | subscriber_id |
+  | healthngo1   | healthworker   | 12345         |
 
 
 
@@ -29,7 +24,7 @@ And response code of GET request is "200"
 
 Examples:
   | requestor_id | requestor_role | subscriber_id | filter_subscriber_id | required_category | required_subscriber_id | required_name | required_email | required_phone |  name  | category | resource_id | phone      | email         |
-  | healthngo1   | healthworker   | 12345         | 12345              | true              | true                   | true          | true           | true           |abc     | patient  | 12345       | 9980555504 | abc@gmail.com | 
+  | healthngo1   | healthworker   | 12345         | 12345              | true              | true                     | true          | true           | true           |abc     | patient  | 12345       | 9980555504 | abc@gmail.com | 
   
 
 @unit @Negativeregression  
