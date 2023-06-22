@@ -1,7 +1,6 @@
+@method=GET   @endpoint=/event/list_details/
 Feature: Get Event List Details of Scheduler API
-
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
 Scenario Outline: Get Event List Details for Scheduler API Smoke Test   
 
@@ -9,11 +8,9 @@ Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for a
 When a GET request for an endpoint /event/list_details/ is triggered to get details of an event list
 Then response code of GET request is "200" for smoke testing
 
-
-
 Examples:
-  | requestor_id     | requestor_role | event_id    |
-  | healthngo1       | healthworker   | 4524453535   |
+  | requestor_id | requestor_role | event_id  |
+  | healthngo1   | healthworker   | 4524453535|
 
 
 
