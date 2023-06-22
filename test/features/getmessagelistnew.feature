@@ -1,7 +1,7 @@
+@method=GET   @endpoint=/message/list_details/
 Feature: Get Message List Details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
 Scenario Outline: Get Message List Details of Scheduler API Smoke Test   
 
@@ -9,14 +9,9 @@ Given the requestor Id is "<requestor_id>" with role as "<requestor_role>" for a
 When a GET request for an endpoint /message/list_details/ is triggered to get details of a messages list
 Then response code of GET request is "200" for smoke testing
 
-
-
 Examples:
-  | requestor_id     | requestor_role | message_id    |
-  | healthngo1       | healthworker   |     1         |
-
-
-
+  | requestor_id | requestor_role | message_id |
+  | healthngo1   | healthworker   |     1      |
 
 
 @unit @happyregression  
