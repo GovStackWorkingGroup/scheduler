@@ -1,3 +1,5 @@
+
+@method=DELETE   @endpoint=/appointment
 Feature: Delete an appointment of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -23,7 +25,7 @@ Then response code of Delete request is "200"
 
 Examples:
  | requestor_id          | requestor_role | appointment_id | 
- | healthngoadmin1       | Organizer      | 12345     | 
+ | healthngoadmin1       | Organizer      | 12345          | 
   
 
 @unit @Negativeregression  
