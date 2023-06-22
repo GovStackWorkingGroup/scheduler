@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/alert_schedule
 Feature: Delete an Alert Schedule for Management of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -23,7 +24,7 @@ Then response code of Delete request is "200"
 
 Examples:
  | requestor_id          | requestor_role | alert_schedule_id | 
- | healthngoadmin1       | Organizer      | 12345     | 
+ | healthngoadmin1       | Organizer      | 12345             | 
   
 
 @unit @Negativeregression  
