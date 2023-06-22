@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/log
 Feature: Delete a log details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -22,8 +23,8 @@ When a Delete request for an endpoint /log is triggered to delete a log for sche
 Then response code of Delete request is "200"
 
 Examples:
- | requestor_id          | requestor_role | log_id     | 
- | healthngoadmin1       | Organizer      | 12345       | 
+ | requestor_id          | requestor_role | log_id | 
+ | healthngoadmin1       | Organizer      | 12345  | 
   
 
 @unit @Negativeregression  
