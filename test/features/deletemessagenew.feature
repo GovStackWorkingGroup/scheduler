@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/message
 Feature: Delete a message of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -11,8 +12,8 @@ Then response code of Delete request is "200" for smoke testing
 
 
 Examples:
-  | requestor_id     | requestor_role | message_id    |
-  | healthngo1       | healthworker   | 1             |
+  | requestor_id     | requestor_role | message_id |
+  | healthngo1       | healthworker   | 1          |
 
 @unit @happyregression  
 Scenario Outline: Delete a message of Scheduler API Unit and Regression Happy Testing
@@ -22,8 +23,8 @@ When a Delete request for an endpoint /message is triggered to delete a message 
 Then response code of Delete request is "200"
 
 Examples:
- | requestor_id          | requestor_role | message_id | 
- | healthngoadmin1       | Organizer      | 12345       | 
+ | requestor_id      | requestor_role | message_id | 
+ | healthngoadmin1   | Organizer      | 12345      | 
   
 
 @unit @Negativeregression  
