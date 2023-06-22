@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/alert_schedule/new/
 Feature: Create a new Alert Schedule for Management of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new Alert Schedule for Management of Scheduler API Smoke Test   
+Scenario: Create a new Alert Schedule for Management of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new alert schedule
 When a POST request for an endpoint /alert_schedule/new/ is triggered to create new alert schedule for scheduler block      
