@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/appointment/new/
 Feature: Create a new appointment of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new appointment of Scheduler API Smoke Test   
+Scenario: Create a new appointment of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new appointment
 When a POST request for an endpoint /appointment/new/ is triggered to create new appointment for scheduler block      
