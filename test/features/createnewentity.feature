@@ -1,9 +1,11 @@
+
+@method=POST  @endpoint=/entity/new/
 Feature: Create a new entity of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new entity for Scheduler API Smoke Test   
+Scenario: Create a new entity for Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new entity
 When a POST request for an endpoint /entity/new/ is triggered to create new entity for scheduler block      
