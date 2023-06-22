@@ -1,3 +1,4 @@
+@method=GET  @endpoint=/affiliation/list_details/
 Feature: Get Affiliation List Details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -12,8 +13,8 @@ Then response code of GET request is "200" for smoke testing
 
 
 Examples:
-  | requestor_id     | requestor_role | affiliation_id    |
-  | healthngo1       | healthworker   |     1             |
+  | requestor_id | requestor_role | affiliation_id  |
+  | healthngo1   | healthworker   |     1           |
 
 
 
