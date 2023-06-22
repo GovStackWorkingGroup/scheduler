@@ -12,10 +12,6 @@ Examples:
   | requestor_id | requestor_role | event_id  |
   | healthngo1   | healthworker   | 4524453535|
 
-
-
-
-
 @unit @happyregression  
 Scenario Outline: Get Event List Details for Scheduler API Unit and Regression Happy Testing
 
@@ -36,8 +32,6 @@ Given the invalid inputs for the requestor Id is "<requestor_id>" with role as "
 When a GET request for an endpoint /event/list_details/ is triggered to get details of an event list
 Then response code of negative testing GET request for invalid data is "<status_code>"
  
-
-
 Examples:
   | requestor_id     | requestor_role | event_id    | filter_event_id | required_category | required_host_entity_id | required_name | required_venue | status_code |
   | healthngo1       | healthworker   | myresource  | 4524453535      | false             | yes                     | true          | true           | 400         |
