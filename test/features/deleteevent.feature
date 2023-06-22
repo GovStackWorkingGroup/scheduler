@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/event
 Feature: Delete an Event of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
