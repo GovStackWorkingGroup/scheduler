@@ -1,5 +1,5 @@
+@method=PUT   @endpoint=/resource/modifications/
 Feature: Update a resource of Scheduler API
-
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
@@ -8,8 +8,6 @@ Scenario Outline: Update a resource for Scheduler API Smoke Test
 Given the requestor id is "healthngo1" with role as "healthworker" to update a resource with its ID "54321"
 When an Update request for an endpoint /resource/modifications/ is triggered to update existing resource for scheduler block      
 Then response code of Update request is "200" for smoke testing
-
-
 
 @unit @happyregression  
 Scenario Outline: Update a resource for Scheduler API Unit and Regression Happy Testing
