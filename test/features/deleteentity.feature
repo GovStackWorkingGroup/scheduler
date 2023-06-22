@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/entity
 Feature: Delete an Entity of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
