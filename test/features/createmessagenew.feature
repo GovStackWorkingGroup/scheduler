@@ -1,9 +1,10 @@
+@method=POST  @endpoint=/message/new/
 Feature: Create a new message of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
 
 @smoke  
-Scenario Outline: Create a new message of Scheduler API Smoke Test   
+Scenario: Create a new message of Scheduler API Smoke Test   
 
 Given the requestor Id is "healthngo1" with role as "healthworker" to create a new message
 When a POST request for an endpoint /message/new/ is triggered to create new message for scheduler block      
