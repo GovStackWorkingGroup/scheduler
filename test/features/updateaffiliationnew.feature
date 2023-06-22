@@ -1,15 +1,13 @@
+@method=PUT  @endpoint=/affiliation/modifications/
 Feature: Update an affiliation details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
-
 @smoke  
-Scenario Outline: Update an affiliation details of Scheduler API Smoke Test   
+Scenario: Update an affiliation details of Scheduler API Smoke Test   
 
 Given the requestor id is "healthngo1" with role as "healthworker" to update an affiliation with its ID "1"
 When an Update request for an endpoint /affiliation/modifications/ is triggered to update existing affiliation details for scheduler block      
 Then response code of Update request is "200" for smoke testing
-
-
 
 @unit @happyregression  
 Scenario Outline: Update an affiliation details of Scheduler API Unit and Regression Happy Testing
