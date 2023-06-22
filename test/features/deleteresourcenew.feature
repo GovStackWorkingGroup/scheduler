@@ -1,3 +1,4 @@
+@method=DELETE  @endpoint=/resource
 Feature: Delete a resource of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -11,8 +12,8 @@ Then response code of Delete request is "200" for smoke testing
 
 
 Examples:
-  | requestor_id     | requestor_role | resource_id    |
-  | healthngo1       | healthworker   | 54321          |
+  | requestor_id  | requestor_role | resource_id |
+  | healthngo1    | healthworker   | 54321       |
 
 @unit @happyregression  
 Scenario Outline: Delete a resource of Scheduler API Unit and Regression Happy Testing
@@ -22,8 +23,8 @@ When a Delete request for an endpoint /resource is triggered to delete a resourc
 Then response code of Delete request is "200"
 
 Examples:
- | requestor_id          | requestor_role | resource_id | 
- | healthngoadmin1       | Organizer      | 12345       | 
+ | requestor_id     | requestor_role | resource_id | 
+ | healthngoadmin1  | Organizer      | 12345       | 
   
 
 @unit @Negativeregression  
