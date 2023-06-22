@@ -1,3 +1,4 @@
+@method=GET  @endpoint=/entity/list_details/
 Feature: Get Entity List Details of Scheduler API
 
 Gherkin feature files for GovStack Scheduler services
@@ -12,11 +13,8 @@ Then response code of GET request is "200" for smoke testing
 
 
 Examples:
-  | requestor_id     | requestor_role | entity_id    |
-  | healthngo1       | healthworker   | 4524453535   |
-
-
-
+  | requestor_id | requestor_role | entity_id  |
+  | healthngo1   | healthworker   | 4524453535 |
 
 
 @unit @happyregression  
