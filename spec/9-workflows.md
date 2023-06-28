@@ -262,8 +262,8 @@ An organizer may cancel an existing appointment of a resource or a subscriber fo
 ```mermaid
 sequenceDiagram
 Organizer->>Host_App: request deletion <br>of appointment <br> of selected <br>resource/subscriber <br>in selected event<br> required details
-Host_App->>Scheduler: Delete/appointment<br> <br>{event_Id,participant_type<br>, participant_id}
-Scheduler->>Appointment_List: mark matching appointment as cancelled
+Host_App->>Scheduler: Delete/appointment<br>{event_Id,participant_type<br>, participant_id}
+Scheduler->>Appointment_List: mark matching appointment <br> as cancelled
 alt If event or participant not found 
   Scheduler->>Host_App: publish error
 else 
@@ -348,5 +348,15 @@ The example workflows mentioned above are represented in sequence diagrams as il
 * Resource - who is affiliated with one or more entities and gets allocated to specific events to carry out some activities.
 * Subscribers - who are enrolled in one or more events as a beneficiary of the event. Subscribers may be individuals or represent some entity.
 * Organizer - who can manage the configuration of events, resources, alerts, and subscribers.
+
+```mermaid
+sequenceDiagram
+Organizer->>Host_App:Request addition of<br> given Subscriberas<br> Organizer in given entity
+Host_App->>Scheduler:Post:/Subscriber/new<br>{entity_id,Subscriber_details}
+Scheduler->>Subscriber_List: Store new Subscriber profile
+note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id,<br> else store deteails and<br> generate new id 
+Subscriber_List->>Scheduler: return Subscriber_Id
+Scheduler->>Host_App: return Subscriber_Id
+Host_App->>Organizer: confirm subscriber registration
 
 The sequence diagrams assume that in all services to the Scheduler Building Block, the requestor's ID (maybe authentication token) and requestor's role will be published along with the payload of the request, as a security requirement, although not displayed here for simplicity. All fields contained in exchanges between blocks are not shown for simplicity, the exact fields and formats can be found in API schemas described in the APIs section.
