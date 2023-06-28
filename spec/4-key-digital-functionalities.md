@@ -6,9 +6,12 @@ description: >-
 
 # 4 Key Digital Functionalities
 
-To facilitate various activities and different actors as described in section 2, the Scheduler building block MUST have specific key digital functionalities. A scheduled event by definition should have pre-determined start and ending date time, venue, resources (to carry out some activity associated with the event) and subscribers (to consume activities of an event). For example, a doctor (resource), may provide consultation (event), to a patient(subscriber), at a specific hospital (host-entity), on specific days and time (schedule) of which patient can book a specific day and time (Appointment). Similarly, the scheduler may be configured to alert a payroll application (Resource) to calculate salary payments (event) on last day of the month (schedule) and alert a payment building block (Resource) to transfer salaries to health workers (event) in Post-Partum Care program or subsidies to beneficiaries in USCT program on first day of month (schedule).
+The functional requirements to cover the services required from the Scheduler Building Block currently have considered specific use cases of
 
-The various actors and their activities described in section 2 must be supported by a set of non-redundant, Key Digital Functionalities listed below:
+* [Post-Partum Child Care program](https://govstack.gitbook.io/product-use-cases/v/product-use-cases-1.0/readme/hltc-1-postpartum-and-infant-care).
+* [Unconditional Social Cash Transfer program](https://govstack.gitbook.io/product-use-cases/v/product-use-cases-1.0/readme/inst-1-unconditional-social-cash-transfer).
+
+These use cases bring forth the need for an example implementation of events such as scheduling a doctor appointment for patients, scheduling payroll computation for health workers, and disbursement of salaries and incentives for health workers and beneficiaries of the programs. However, the considerations can be generalized for different types of events involving one or more participants.
 
 ## **4.1 Event Management**
 
@@ -50,7 +53,7 @@ This key digital functionality maintains logs of user-driven transactions, activ
 
 This interface handles protocols to interact with the Information Mediator Building Block in order to securely expose Scheduler services to other Building Blocks and also enables scheduler access services of other Building Blocks and applications through the Information Mediator Building Block.
 
-## **4.11 Pub-Sub Interface**&#x20;
+## **4.11 PubSub Interface**&#x20;
 
 The interface handles protocols to interact with Pub/Sub messaging rooms assigned to publish asynchronous messages to event participants and receive incoming messages published by participants in the Pub/Sub rooms of the host application.
 
@@ -60,4 +63,25 @@ The interface handles protocols to interact with the messaging Building Block fo
 
 ## **4.13 Scheduler Administration**&#x20;
 
-This key digital functionality enables the setting up of internal configuration requirements that define the technical behavior of the Scheduler Building Block. It also provides for an administrator to monitor and take actions that regulate the usage and performance of the Building Block. This also provides functionalities for the registration of new entities and Event Organizers within those entities.
+This key digital functionality enables the setting up of internal configuration requirements that define the technical behaviour of the Scheduler Building Block. It also provides for an administrator to monitor and take actions that regulate the usage and performance of the Building Block. This also provides functionalities for the registration of new entities and Event Organizers within those entities.
+
+Currently, the following actors have been identified as "users" of the Scheduler Building Block:
+
+* "Building Block Admin" manages the building block's implementation settings. A Building Block admin is also responsible for the enrollment of entitles and Organizers of those entities that use the Scheduler Building Block.
+* "Resources" who participate in events to perform various services. Resources MUST be registered in the Scheduler before they can be enrolled in events. Resources MAY provide services in multiple entities in time-shared mode (e.g. specialist doctors provide services in multiple hospitals). Hence a registered resource MUST also be affiliated in specific work days and hours to a Host entity, before participation in the events of that entity.
+* "Organizers" are resources who manage event schedules using the Scheduler. An Organizer must be registered and affiliated with a Host entity to manage the events of that entity.
+* "Subscribers" who participate in events to consume various activities. Subscribers must be registered in the Scheduler before they can be enrolled in events. Subscribers MAY be enrolled in multiple events.
+
+The Scheduler must have several key digital functionalities to enable these actors to perform their roles in events. A scheduled event by definition should have a pre-determined start and ending date time, venue, participant resources (which carry out some activity when alerted) and subscribers which consume activities of the resource in an event. For example, a doctor (resource) may provide consultation (event) to a patient (subscriber) at a specific hospital (host-entity) on an appointment (schedule). Similarly, the Scheduler may alert a payroll application (Resource) to calculate salary payments (event) on the last day of the month (schedule). The Scheduler may also alert a Payment Building Block (Resource) to transfer as per statements the salaries to health workers in the PostPartum Care program or subsidies to beneficiaries in the USCT program on the first day of the month (schedule).
+
+## Out-of-Scope Assumptions
+
+The Scheduler Building Block will provide the following key digital functionalities to support the automation of event management in future phases:
+
+* The Scheduler can be used to trigger activities based on time only. Evaluation of any criteria other than time-based evaluations for the generation of a trigger is out of scope.
+* Alerts based purely on human decision are out of scope.
+* Any logical evaluations prior to the onset of alerting applications or Building Blocks are out of scope.
+* An event participant MUST implement their own logic to evaluate other conditions as needed before taking action based on an alert. (e.g. an accounts application alerted to initiate salary payments may check if a payroll has been approved before initiating payments).
+* The Scheduler can be used to trigger activities based on time only. Evaluation of any criteria other than time-based evaluations for the generation of a trigger is out of scope.
+* Alerts based purely on human decision are out of scope.
+* Any logical evaluations prior to the onset of alerting applications or Building Blocks are out of scope. The application/Building Block MUST implement its own logic to evaluate other conditions before taking action based on an alert. (e.g. the accounts application may check whether a payroll has been approved before initiating payments when alerted by the Scheduler to initiate salary payments).
