@@ -44,4 +44,5 @@ workflows:
           filters:
             branches:
               only:
-                - main
+                - mock_example
+                
