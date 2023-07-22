@@ -14,7 +14,7 @@ services:
     # expose their services on well-known ports.
     # network_mode: host
     networks:
-      demo:
+      - demo:
 networks:
   demo:
-    driver: bridge 
+    external: true 
