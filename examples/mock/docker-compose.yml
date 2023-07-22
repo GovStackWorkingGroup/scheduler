@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - demo:
+      - demo
     volumes:
       - type: bind
         source: ../../api/Govstack_scheduler_BB_APIs.json    
