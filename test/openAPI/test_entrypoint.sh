@@ -12,7 +12,7 @@ docker container \
   --network demo \
   --rm \
   docker.io/jwilder/dockerize \
-  -wait tcp://myapi:3000 \
+  -wait tcp://localhost:3000 \
   -wait-retry-interval 2s \
   -timeout 20s \
 
