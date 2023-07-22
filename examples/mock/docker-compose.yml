@@ -10,16 +10,12 @@ services:
       demo:
     volumes:
       - type: bind
-        source: ../../api/Scheduler_OpenAPI_17042023_V3.json    
+        source: ../../api/Govstack_Scheduler_Updated_Latest_OpenAPI_Spec.json    
         target: /data 
-  pytest:
-   build:
-     context: ../../test/.
-   container_name: pytest
-   tty: true
-   stdin_open: true
-   networks:
-      demo:
+
+networks:
+  demo:
+    driver: bridge 
 
 
 networks:
