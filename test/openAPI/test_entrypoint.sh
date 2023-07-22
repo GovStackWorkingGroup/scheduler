@@ -1,5 +1,7 @@
 #!/bin/bash
-
+docker ps 
+docker network ls
+curl -X GET http://myapi:3000/appointment/list_details/
 set -e
 
 sleep 2s
