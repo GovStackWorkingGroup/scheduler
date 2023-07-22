@@ -9,10 +9,10 @@ sleep 2s
 # is know/specified about what being 'ready' means.
 docker container \
   run \
-  --network host \
+  --network demo \
   --rm \
   docker.io/jwilder/dockerize \
-  -wait tcp://localhost:3000 \
+  -wait tcp://myapi:3000 \
   -wait-retry-interval 2s \
   -timeout 20s \
 
