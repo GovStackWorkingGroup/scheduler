@@ -10,7 +10,7 @@ services:
       demo:
     volumes:
       - type: bind
-        source: ../../api/Scheduler_Updated_Latest_OpenAPI_Spec.json    
+        source: ../../api/Govstack_scheduler_BB_APIs.json    
         target: /data 
 
 networks:
