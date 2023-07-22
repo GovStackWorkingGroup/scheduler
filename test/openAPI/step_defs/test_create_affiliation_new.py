@@ -7,7 +7,7 @@ from pytest_bdd import scenarios, given, when, then, parsers
  
 #API_HOME = 'http://172.16.51.57:8000/home/'
 #API_HOME = 'http://myapi:3000/entity/create_entity/'
-API_HOME = 'http://localhost:3000/affiliation/new'
+API_HOME = 'http://myapi:3000/affiliation/new'
  
 # Scenarios
  
