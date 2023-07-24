@@ -29,7 +29,7 @@ docker-compose up --build
 docker ps 
 docker network ls
 docker ps 
-# docker logs pytest
+docker logs pytest
 docker inspect pytest
 # docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
