@@ -4,6 +4,7 @@ services:
   # Local test execution waits for API to be available and create test harness report
   gherkin-tests:
     image: gherkin-tests
+    container_name: pytest
     build:
       context: .
     volumes:
