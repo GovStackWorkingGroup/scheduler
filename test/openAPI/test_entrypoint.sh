@@ -30,7 +30,7 @@ docker exec pytest cat /etc/hosts
 docker ps 
 docker network ls
 docker ps 
-docker logs pytest
+docker network inspect demo
 docker inspect pytest
 # docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
