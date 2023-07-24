@@ -34,4 +34,4 @@ docker-compose up --build
 # docker inspect pytest
 # docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
-cp /data/results.json ./result/example_result.message
+cp ./test_data/results.json ./result/example_result.message
