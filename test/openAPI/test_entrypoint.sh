@@ -26,12 +26,12 @@ sleep 2s
 mkdir -p test-data-volume
 
 docker-compose up --build
-docker exec pytest cat /etc/hosts
+# docker exec pytest cat /etc/hosts
 docker ps 
-docker network ls
+# docker network ls
 docker ps 
-docker network inspect demo
-docker inspect pytest
+# docker network inspect demo
+# docker inspect pytest
 # docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
 cp ./test_data/results.json ./result/example_result.message
