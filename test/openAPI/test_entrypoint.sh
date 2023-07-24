@@ -28,6 +28,8 @@ mkdir -p test-data-volume
 docker-compose up --build
 docker ps 
 docker network ls
+docker ps -a
+docker logs pytest
 docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
 cp ./test_data/results.json ./result/example_result.message
