@@ -11,7 +11,7 @@ sleep 2s
 # is know/specified about what being 'ready' means.
 docker container \
   run \
-  --network demo \
+  --network host \
   --rm \
   docker.io/jwilder/dockerize \
   -wait tcp://localhost:3000 \
