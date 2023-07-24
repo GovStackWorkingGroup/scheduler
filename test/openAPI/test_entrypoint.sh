@@ -26,6 +26,7 @@ sleep 2s
 mkdir -p test-data-volume
 
 docker-compose up --build
+docker exec gherkin-tests cat /etc/hosts
 docker ps 
 docker network ls
 docker ps 
