@@ -14,6 +14,7 @@ services:
     # maps to the host machine where the application docker containers will
     # expose their services on well-known ports.
     # network_mode: host
+    network_mode: host
     networks:
       - demo
 networks:
