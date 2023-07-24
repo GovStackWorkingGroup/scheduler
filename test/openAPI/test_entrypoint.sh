@@ -30,6 +30,7 @@ docker ps
 docker network inspect demo
 docker ps -a
 docker inspect pytest
+docker logs pytest
 curl -X GET http://myapi:3000/appointment/list_details/
 mkdir -p ./result
 cp ./test_data/results.json ./result/example_result.message
