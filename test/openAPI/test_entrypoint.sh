@@ -26,7 +26,7 @@ sleep 2s
 mkdir -p test-data-volume
 
 docker-compose up --build
-dockr ps 
+docker ps 
 docker network ls
 docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
