@@ -17,10 +17,6 @@
     "description" : "Find out more about scheduler",
     "url" : "https://www.govstack.global/"
   },
-  "servers" : [ {
-    "url" : "http://ss2.egovstack.net/r1/eGovStack/COM/11222456/SchedulerBB/creg/",
-    "description" : "Scheduler BB Security server"
-  } ],
   "tags" : [ {
     "name" : "event",
     "description" : "event management API"
@@ -267,7 +263,7 @@
           "200" : {
             "description" : "success,event_list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -509,7 +505,7 @@
           "200" : {
             "description" : "success,appointment_list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -751,7 +747,7 @@
           "200" : {
             "description" : "success,entity list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -993,7 +989,7 @@
           "200" : {
             "description" : "success,resource list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -1056,7 +1052,7 @@
           "200" : {
             "description" : "success,resource  list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -1298,7 +1294,7 @@
           "200" : {
             "description" : "success,message list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -1540,7 +1536,7 @@
           "200" : {
             "description" : "success,message list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -1782,7 +1778,7 @@
           "200" : {
             "description" : "success,affiliation list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -2024,7 +2020,7 @@
           "200" : {
             "description" : "success,alert_schedule list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
@@ -2266,7 +2262,7 @@
           "200" : {
             "description" : "success,log list",
             "content" : {
-              "json" : {
+              "application/json" : {
                 "schema" : {
                   "type" : "array",
                   "items" : {
