@@ -26,6 +26,8 @@ sleep 2s
 mkdir -p test-data-volume
 
 docker-compose up --build
-
+docker ps
+docker network inspect demo
+curl -X GET http://myapi:3000/appointment/list_details/
 mkdir -p ./result
 cp ./test_data/results.json ./result/example_result.message
