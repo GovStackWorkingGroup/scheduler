@@ -24,7 +24,7 @@ docker container \
 sleep 2s
 
 mkdir -p test-data-volume
-curl -X GET http://localhost:3000/entity/list_details/
+# curl -X GET http://localhost:3000/entity/list_details/
 docker-compose up --build
 # docker exec pytest cat /etc/hosts
 # docker ps 
@@ -34,4 +34,4 @@ docker-compose up --build
 # docker inspect pytest
 # docker exec -i pytest pytest --cucumberjson=/data/results.json /tests
 mkdir -p ./result
-cp ./test_data/results.json ./result/example_result.message
+cp ./data/results.json ./result/example_result.message
