@@ -24,7 +24,7 @@ docker container \
 sleep 2s
 
 mkdir -p test-data-volume
-
+curl -X GET http://localhost:3000/entity/list_details/
 docker-compose up --build
 # docker exec pytest cat /etc/hosts
 # docker ps 
