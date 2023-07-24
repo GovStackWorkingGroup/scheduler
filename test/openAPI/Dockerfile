@@ -8,5 +8,5 @@ COPY . /tests
 
 WORKDIR /tests/
 
-#CMD pytest --cucumberjson=/data/results.json /tests
-CMD /bin/bash
+CMD pytest --cucumberjson=/data/results.json /tests
+#CMD /bin/bash
