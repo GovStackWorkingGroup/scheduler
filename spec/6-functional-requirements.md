@@ -58,3 +58,56 @@ The Scheduler can be visualized as a black box with all key digital functionalit
 * The Scheduler must convey resource ID to a specific resource upon registration (REQUIRED)
 * The Scheduler must delete all affiliations and future appointments of a resource that is deleted. In a real-world implementation, a resource may be just deactivated instead of actually deleted (REQUIRED)
 * If a Resource is deleted, the corresponding resource and Organizers of all affiliated entities must be notified about the deletion. In a real-world implementation, a resource may be de-affiliated in a particular entity, instead of deletion from the resource registry (REQUIRED)
+
+### 6.6 Subscriber management
+
+* The Scheduler must enable an event organizer to create/update/modify/search and list subscribers (persons/facilities/equipment/vehicles/etc.) as needed for taking part in various events (REQUIRED)
+* All the details about the subscriber must be stored in a common internal repository so that the subscribers may be enrolled into multiple events as their contact details be reused to send alerts as needed (REQUIRED)
+* A Subscriber may be affiliated with multiple Events that do not overlap with each other in date-time (OPTIONAL)
+* Contact details of the subscriber (email/sms/webhook/etc. along with default option) must be registered along with the subscriber (REQUIRED)
+* The Scheduler must generate a unique ID for each new subscriber registered, which is independent of which events the subscribers participate in. This is needed to uniquely find and reuse details of the subscriber for various events as needed (REQUIRED)
+* The Scheduler must convey subscriber ID to a specific subscriber upon registration (REQUIRED)
+* If a subscriber is deleted the Scheduler must delete all future appointments of the subscriber. In a real-world implementation, a subscriber may be just deactivated instead of actually deleted (REQUIRED)
+
+### **6.7 Affiliation Management**
+
+* The Scheduler must enable an event organizer to create/update/delete/list affiliation of the organizer's entity with multiple Resources (persons/facilities/equipment/vehicles/etc.) as needed for various events hosted by that entity (REQUIRED)
+* All the details about the Resource must be stored in a common internal repository so that the resources may be affiliated with multiple entities and booked into multiple events as needed (REQUIRED)
+* A Resource must be affiliated with at least one entity with specific working hours during registration. Subsequently, the same Resource may be affiliated into multiple entities such that the weekdays and working hours allocated to affiliated entities do not overlap with each other (REQUIRED)
+* The event slots for booking a resource must be restricted to the working hours of the resource in a specific entity the Resource is registered into (REQUIRED)
+* A Resource may be booked into multiple entities with different affiliation IDs as long as they have non-overlapping working hours and days for that resource. However, the Resource ID shall be the same in all such affiliations (OPTIONAL)
+* If an Affiliation is deleted, the corresponding resource and entity's Organizer must be notified about the deletion (REQUIRED)
+
+### 6.8 Appointment Management
+
+* This sub-block must enable an event organizer to add/modify/delete/search and list specific participants (resources and subscribers) into specific predefined events. Each new appointment will have a unique appointment ID (REQUIRED)
+* All resources must have been registered in Scheduler and MUST have been affiliated with specific entities before they can be enrolled in different events (REQUIRED)
+* All actors, except the super-admin, can access information from only entities that the actor is affiliated with in the Scheduler (RECOMMENDED)
+* The Scheduler must validate that specified resources, subscribers and events are pre-registered in the system before they are bound together (REQUIRED)
+* The Scheduler must map a single appointment to a single resource or subscriber as a participant for a single event and be given a unique appointment ID (REQUIRED)
+* The Scheduler must enable a single resource/subscriber that may have multiple appointments for different events with respective IDs (REQUIRED)
+* The Scheduler must not allow duplicate entries of the same resource or subscriber for the same event (REQUIRED)
+* Once a resource or a subscriber is registered in the scheduler (this is a unique ID independent of any event or appointment), the same ID is used as Participant Id in whichever appointments in which the given resource/subscriber participates (REQUIRED)
+* The respective participant (subscriber/resource) organizer of the host entity must be notified if an appointment is cancelled (REQUIRED)
+* Participants of an event must send IDs of the event and appointment in headers of their responses/updates sent to the scheduler through any channel (Information Mediator Building Block/PubSub/Messaging Building Block) (REQUIRED)
+* Recipients of alerts may send acknowledgements and participants, in general, may send status/attendance updates either directly to Scheduler or through respective Information Mediator Pub/Sub blocks or in response to a status polling request from the Scheduler to the alerted participant. The Scheduler must log all alerts sent and log updates received from participants of all events it handles and store them in a searchable indexed manner (REQUIRED)
+* This sub-block must periodically monitor and log specified internal metrics (e.g. latency, queue depth, errors, system resource consumption, number of retries, etc. from critical indicators of the performance of the Scheduler Building Block).(REQUIRED)
+* This sub-block must internally check logged indicators, detect anomalies and escalate reports to administrators for timely housekeeping, capacity management, backup, and audit purposes (REQUIRED)
+* This sub-block must enable organizers, auditors, and administrators to query specific metrics, trends, and statistics from the logged data and get reports accordingly (REQUIRED)
+* All logged messages should have information about their category, date-time and optionally location stamp, who from which entity is logging, etc. (RECOMMENDED)
+* The payload size and categories of logged messages may be specified based on the implementation needs and not specified here (OPTIONAL)
+* Recipients of alerts may send acknowledgements and participants, in general, may send status/attendance updates either directly to Scheduler or through respective Information Mediator Pub/Sub blocks or in response to a status polling request from the Scheduler to the alerted participant. The Scheduler must log all alerts sent and log updates received from participants of all events it handles and store them in a searchable indexed manner (REQUIRED)
+* This sub-block must periodically monitor and log specified internal metrics (e.g. latency, queue depth, errors, system resource consumption, number of retries, etc. from critical indicators of the performance of the Scheduler Building Block).(REQUIRED)
+* This sub-block must internally check logged indicators, detect anomalies and escalate reports to administrators for timely housekeeping, capacity management, backup, and audit purposes (REQUIRED)
+* This sub-block must enable organizers, auditors, and administrators to query specific metrics, trends, and statistics from the logged data and get reports accordingly (REQUIRED)
+* All logged messages should have information about their category, date-time and optionally location stamp, who from which entity is logging, etc. (RECOMMENDED)
+* The payload size and categories of logged messages may be specified based on the implementation needs and not specified here (OPTIONAL)
+
+### 6.9 Status Logging and Reporting
+
+* Recipients of alerts may send acknowledgements and participants, in general, may send status/attendance updates either directly to Scheduler or through respective Information Mediator Pub/Sub blocks or in response to a status polling request from the Scheduler to the alerted participant. The Scheduler must log all alerts sent and log updates received from participants of all events it handles and store them in a searchable indexed manner (REQUIRED)
+* This sub-block must periodically monitor and log specified internal metrics (e.g. latency, queue depth, errors, system resource consumption, number of retries, etc. from critical indicators of the performance of the Scheduler Building Block).(REQUIRED)
+* This sub-block must internally check logged indicators, detect anomalies and escalate reports to administrators for timely housekeeping, capacity management, backup, and audit purposes (REQUIRED)
+* This sub-block must enable organizers, auditors, and administrators to query specific metrics, trends, and statistics from the logged data and get reports accordingly (REQUIRED)
+* All logged messages should have information about their category, date-time and optionally location stamp, who from which entity is logging, etc. (RECOMMENDED)
+* The payload size and categories of logged messages may be specified based on the implementation needs and not specified here (OPTIONAL)
