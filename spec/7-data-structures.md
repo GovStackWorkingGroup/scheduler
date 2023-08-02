@@ -14,7 +14,7 @@ Typical data structure requirements and format representations relevant to this 
 
 ## 7.1 Resource Model
 
-<figure><img src="broken-reference" alt=""><figcaption><p><a href="https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520&#x26;page=0_0">Schema Source</a></p></figcaption></figure>
+<figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model.png" alt=""><figcaption><p><a href="https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520&#x26;page=0_0">Schema Source</a></p></figcaption></figure>
 
 ### 7.2 Data elements
 
