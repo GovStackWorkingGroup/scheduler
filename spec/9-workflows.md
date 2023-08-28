@@ -58,43 +58,41 @@ else
 end
 ```
 
-### 9.1.2 Cancellation of scheduled event  <a href="#_heading-h.3fwokq0" id="_heading-h.3fwokq0"></a>
+### 9.1.2 Cancellation of scheduled event <a href="#_heading-h.3fwokq0" id="_heading-h.3fwokq0"></a>
 
 Organizer can request the cancellation of a prescheduled event through the host app by supplying the event id. The Scheduler first removes dependent alert\_schedules and appointments empanelled in the event. It then deletes the event from the event list and returns success to the host app for confirmation to the organizer. Optionally it can send out an event cancellation message through preferred channels to all subscribers and resources of the event, before deleting the event from the event list.
 
 ```mermaid
 sequenceDiagram
-Organizer->>Host_App:Request Cancellation <br> of selected event
-Host_App->>Scheduler: Delete/event{event_Id}
-Scheduler->>Alert_Schedule_List: Get/Alert_Schedule/List_details<br>{Alert_Schedule_id}<br>in {event_id}
-loop for each Alert_Schedule_id:
-  Scheduler->>Alert_Schedule_List: Delete/Alert_Schedule/{event_id}
-end
-Scheduler->>Appointment_List: Get/appointment/List_details<br>{appointment_id}in<br> {event_id}
-loop for each appointment id:
-  Scheduler->>Appointment_List: Delete/appointment/<br>{appointment_id}
-end
-
- loop for each target
-   alt if participant type = resource:
-       Scheduler->>Resource_List: Get/Resource/List_Details{Resource_id}
-   else if participant type = Subscriber:
-       Scheduler->>Subscriber_List: Get/Subscriber/List_Details{Subscriber_id}
-   end
-   opt if  prefered channel= "direct"
-       Scheduler->>Target_BB/App: notify cancellation[url] 
+    Organizer->>Host_App: Request Cancellation of selected event
+    Host_App->>Scheduler: Delete/event{event_Id}
+    Scheduler->>Alert_Schedule_List: Get/Alert_Schedule/List_details {Alert_Schedule_id} in {event_id}
+    loop for each Alert_Schedule_id: 
+        Scheduler->>Alert_Schedule_List: Delete/Alert_Schedule/{event_id}
     end
-    opt if prefered channel = "pubsub"
-       Scheduler->>Pubsub: notify cancellation <br>[Event Id] 
+    Scheduler->>Appointment_List: Get/appointment/List_details {appointment_id} in  {event_id}
+    loop for each appointment id:
+        Scheduler->>Appointment_List: Delete/appointment/ {appointment_id}
     end
-    opt if prefered channel = "messaging":
-       Scheduler->>messaging BB: notify cancellation[messaging BB]
+    loop for each target
+        alt if participant type = resource:
+            Scheduler->>Resource_List: Get/Resource/List_Details{Resource_id}
+        else if participant type = Subscriber:
+            Scheduler->>Subscriber_List: Get/Subscriber/List_Details{Subscriber_id}
+        end
+        opt if prefered channel= "direct"
+            Scheduler->>Target_BB/App: notify cancellation[url] 
+        end
+        opt if prefered channel = "pubsub"
+            Scheduler->>Pubsub: notify cancellation [Event Id] 
+        end
+        opt if prefered channel = "messaging":
+            Scheduler->>messaging BB: notify cancellation[messaging BB]
+        end
     end
- end
-
-Scheduler->>Event_List: delete/event in {event_id}
-Scheduler->>Host_App: return success or error
-Host_App->>Organizer:confirm deletion <br>or error information
+    Scheduler->>Event_List: delete/event in {event_id}
+    Scheduler->>Host_App: return success or error
+    Host_App->>Organizer: confirm deletion or error information
 
 ```
 
@@ -182,7 +180,7 @@ end
 
 ```
 
-### **9.2.4 Registering a new entity**&#x20;
+### **9.2.4 Registering a new entity**
 
 A new entity that can use the Scheduler must be registered by the administrator of the Scheduler Building Block. The Administrator requests entity registration in the scheduler through Scheduler's administrative front-end user interface by supplying relevant entity details. The Scheduler after verifying the requestor's credentials will store the entity information against a new entity id it generates. In case it finds that the entity details match any of the earlier registered entities it returns an error code and avoids duplication. In the normal course, the entity id is returned to the Administrator along with a prompt to register an Organizer resource for that entity, to use the Scheduler further.
 
@@ -203,7 +201,7 @@ An organizer must register into the scheduler various categories of resources {p
 sequenceDiagram
 Adminstrator/Organizer->>Host_App:Request addition of<br> given Resource as<br> Organizer in given entity
 Host_App->>Scheduler:Post:/resource/new<br>{entity_id,resouce_details}
-Scheduler->>Resource_List: Store new resource profile<br>
+Scheduler->>Resource_List: Store new resource profile
 note over Resource_List: if matching resource<br> exists fetch resource_id,<br> else store deteails and<br> generate new id 
 Resource_List->>Scheduler: return Resource_Id
 Scheduler->>Host_App: return Resource_Id
@@ -219,7 +217,7 @@ An organizer can register into the scheduler a new subscriber's details into a s
 sequenceDiagram
 Organizer->>Host_App:Request addition of<br> given Subscriberas<br> Organizer in given entity
 Host_App->>Scheduler:Post:/Subscriber/new<br>{entity_id,Subscriber_details}
-Scheduler->>Subscriber_List: Store new Subscriber profile<br>
+Scheduler->>Subscriber_List: Store new Subscriber profile
 note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id,<br> else store deteails and<br> generate new id 
 Subscriber_List->>Scheduler: return Subscriber_Id
 Scheduler->>Host_App: return Subscriber_Id
@@ -229,7 +227,7 @@ Host_App->>Organizer: confirm subscriber registration
 
 ## 9.3 Appointment Management
 
-### 9.3.1 Appointment Scheduling for resource or subscriber to a specific event&#x20;
+### 9.3.1 Appointment Scheduling for resource or subscriber to a specific event
 
 An organizer may enrol a subscriber or resource to a specific event through a host app. The host application first finds out details of a chosen event\_id. Then the host application requests a new appointment booking by giving participant details, and event details as needed. The Scheduler stores appointment details against a unique appointment id in its Appointment List. The Scheduler then confirms successful enrolment to the user through the host app and publishes the unique appointment id for that participant.
 
@@ -255,7 +253,7 @@ alt if subscriber_limit >0 and event_status = 'open'
 end      
 ```
 
-### **9.3.2 Cancellation of appointment**&#x20;
+### **9.3.2 Cancellation of appointment**
 
 An organizer may cancel an existing appointment of a resource or a subscriber for an event using the Host App. The user may submit the participant id or participant type (subscriber/resource) and the event ID to the Scheduler through the host app, requesting for cancellation of respective enrollment for the event. If the Scheduler finds the given event id and subscriber/resource id in the appointment\_list it will delete the enrolment entry of the given resource in the given event, else it will return an appropriate error message. The Host-app confirms success or error condition to the user. The Scheduler also emits a notification through Messaging Building Block to inform the cancelled participant only (in different implementations one can also inform all participants). It should be noted that the deletion of the enrolment of a subscriber does not remove subscriber/resource details stored in the subscriber/resource list, but it removes only the allocation to the specific event.
 
@@ -309,7 +307,7 @@ end
 
 ## 9.5 Status Logging and Reporting
 
-### 9.5.1 Log reporting &#x20;
+### 9.5.1 Log reporting
 
 In this workflow, a simple case of extracting chosen type of log in a given time range is described. The Organizer requests the Scheduler through a host app to report logs of a chosen category within a chosen date range. The Scheduler fetches a list of matching logs found from its Log\_List, or null if nothing is found. The Scheduler publishes the logs or null to the user through the host app. This function can be extended in different implementations to generate more complex types of reports based on information in the log.
 
@@ -358,5 +356,8 @@ note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id
 Subscriber_List->>Scheduler: return Subscriber_Id
 Scheduler->>Host_App: return Subscriber_Id
 Host_App->>Organizer: confirm subscriber registration
+
+
+```
 
 The sequence diagrams assume that in all services to the Scheduler Building Block, the requestor's ID (maybe authentication token) and requestor's role will be published along with the payload of the request, as a security requirement, although not displayed here for simplicity. All fields contained in exchanges between blocks are not shown for simplicity, the exact fields and formats can be found in API schemas described in the APIs section.
