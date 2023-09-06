@@ -360,4 +360,3 @@ Host_App->>Organizer: confirm subscriber registration
 
 ```
 
-The sequence diagrams assume that in all services to the Scheduler Building Block, the requestor's ID (maybe authentication token) and requestor's role will be published along with the payload of the request, as a security requirement, although not displayed here for simplicity. All fields contained in exchanges between blocks are not shown for simplicity, the exact fields and formats can be found in API schemas described in the APIs section.

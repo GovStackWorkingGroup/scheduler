@@ -20,6 +20,10 @@ For mission-critical applications, it is recommended to use Scheduler as an embe
 
 Building Block must provide internal functionality to log and report indicators (such as latency, traffic density, queue depth, system resource consumption, service exceptions, and failures, etc.) provisioning and maintaining adequate Quality of Service (QOS). Building Block must provide internal functionality to configure rules to monitor, detect and notify QOS issues to Administrators.
 
+### 5.4 Service caller authentication (REQUIRED) <a href="#_heading-h.3rdcrjn" id="_heading-h.3rdcrjn"></a>
+
+In all service calls to the Scheduler Building Block, the requestor's token (maybe  JWT containing requestor's authentication and requesting application ID) will be published along with the payload of the request, as a security requirement. The BB must be able to independently verify the token with a central IAM server to make sure the service call is from an authenticated user and from an authenticated Application within Govstack.
+
 ### Exceptions to Architectural Cross-Cutting Specifications
 
 #### 5.4 SQL/NoSQL databases
