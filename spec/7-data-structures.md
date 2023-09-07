@@ -8,10 +8,6 @@ description: >-
 
 The proposed resource model showing the relationship between data objects that are used by this Building Block is illustrated in the diagram below. The Scheduler Building Block stores details of Events in EventList, Resources in a ResourceList, Subscribers in SubscriberList, Alert message templates in an AlertList, alert schedules in an AlertScheduleList, entities in EntityList and Affiliations of resources in entities in the AffiliationList. Entries in this list include properties of respective items and linkages between them Apart from these, the Scheduler has several "internal" registers that are used to log information arising from transactions, from the system, from communications, etc., and metrics/indicators as needed for housekeeping, audit, and administration of the Building Block. The archival and retrieval mechanisms for data generated or received in the Scheduler Building Block are left to implementation time considerations of IT infrastructure planning.
 
-## Standards
-
-Typical data structure requirements and format representations relevant to this Building Block have been [TMF646\_Appointment\_API\_Specification\_R19.0.0\_fixed](https://es.scribd.com/document/448516776/TMF646-Appointment-API-Specification-R19-0-0-Fixed). However, the schema and data elements are optimized for minimizing footprint and external dependencies, given that this Building Block handles time-critical alerts. The common minimum datasets have been illustrated in the schema below and described in the table below.
-
 ## 7.1 Resource Model
 
 <figure><img src=".gitbook/assets/Govstack_Scheduler_BB_Resource_Model.png" alt=""><figcaption><p><a href="https://lucid.app/lucidchart/309762a7-1c77-43ce-8f1f-d5f27be6c782/edit?invitationId=inv_51a931a4-75d0-441e-94f5-3f254d223520&#x26;page=0_0">Schema Source</a></p></figcaption></figure>
