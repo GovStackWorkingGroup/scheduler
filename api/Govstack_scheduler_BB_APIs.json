@@ -92,7 +92,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created event",
-                  "example" : "event_name:doctorconsultation,event_id:12345"
+                  "example" : "event_name:doctorconsultation,[event_id:12345]"
                 }
               }
             }
@@ -2805,6 +2805,65 @@
           }
         }
       },
+      "event_creation_details" : {
+        "type" : "object",
+        "properties" : {
+          "name" : {
+            "type" : "string",
+            "example" : "abc medical camp"
+          },
+          "description" : {
+            "type" : "string",
+            "example" : "medical camp for senior citizens"
+          },
+          "category" : {
+            "type" : "string",
+            "example" : "doctor_consultation"
+          },
+          "host_entity_id" : {
+            "type" : "string",
+            "example" : "67890"
+          },
+          "slots" : {
+            "type" : "array",
+            "items" : {
+              "type" : "object",
+              "properties" : {
+                "from" : {
+                  "type" : "string",
+                  "format" : "date-time",
+                  "example" : "2018-02-15T11:00:00"
+                },
+                "to" : {
+                  "type" : "string",
+                  "format" : "date-time",
+                  "example" : "2018-02-15T11:30:00"
+                }
+              }
+            }
+          },
+          "deadline" : {
+            "type" : "string",
+            "format" : "date-time",
+            "example" : "2018-02-15T11:10:00"
+          },
+          "subscriber_limit" : {
+            "type" : "string",
+            "example" : "1"
+          },
+          "terms" : {
+            "type" : "string",
+            "example" : "non refundable"
+          },
+          "status" : {
+            "type" : "string",
+            "example" : "open"
+          },
+          "venue" : {
+            "$ref" : "#/components/schemas/venue"
+          }
+        }
+      },
       "event_list" : {
         "type" : "array",
         "items" : {
@@ -3454,7 +3513,7 @@
         "type" : "object",
         "properties" : {
           "details" : {
-            "$ref" : "#/components/schemas/event_details"
+            "$ref" : "#/components/schemas/event_creation_details"
           }
         }
       },
