@@ -65,7 +65,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -92,7 +92,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created event",
-                  "example" : "event_name:doctorconsultation,[event_id:12345]"
+                  "example" : "event_id:12345"
                 }
               }
             }
@@ -127,7 +127,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -190,7 +190,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -244,7 +244,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -307,7 +307,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -334,7 +334,7 @@
                 "schema" : {
                   "type" : "string",
                   "description" : "ID of created appointment",
-                  "example" : "appointment_name:doctorconsultation,appointment_id:1"
+                  "example" : "[Event_id:12345,appointment_id:1]"
                 }
               }
             }
@@ -369,7 +369,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -432,7 +432,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -486,7 +486,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -549,7 +549,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -611,7 +611,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -674,7 +674,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -728,7 +728,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -791,7 +791,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -853,7 +853,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -916,7 +916,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -970,7 +970,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1033,7 +1033,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1096,7 +1096,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1158,7 +1158,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1221,7 +1221,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1275,7 +1275,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1338,7 +1338,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1400,7 +1400,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1463,7 +1463,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1517,7 +1517,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1580,7 +1580,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1642,7 +1642,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1705,7 +1705,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1759,7 +1759,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1822,7 +1822,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1884,7 +1884,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -1947,7 +1947,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2001,7 +2001,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2064,7 +2064,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2126,7 +2126,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2189,7 +2189,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2243,7 +2243,7 @@
             "example" : "healthngoadmin1"
           }
         }, {
-          "name" : "requestor_role",
+          "name" : "request_token",
           "in" : "query",
           "required" : true,
           "style" : "form",
@@ -2397,6 +2397,34 @@
           }
         }
       },
+      "appointment_creation_details" : {
+        "type" : "object",
+        "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
+          "event_ids" : {
+            "type" : "array",
+            "items" : {
+              "type" : "string"
+            },
+            "example" : "[1]"
+          },
+          "participant_type" : {
+            "type" : "string",
+            "example" : "subscriber"
+          },
+          "participant_id" : {
+            "type" : "string",
+            "example" : "12345"
+          },
+          "participant_entity_id" : {
+            "type" : "string",
+            "example" : "67890"
+          }
+        }
+      },
       "appointment_list" : {
         "type" : "array",
         "items" : {
@@ -2413,15 +2441,15 @@
         }
       },
       "appointment_details" : {
-        "type" : "object",
+  "type" : "object",
         "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
           "event_id" : {
             "type" : "string",
             "example" : "1"
-          },
-          "event_type" : {
-            "type" : "string",
-            "example" : "doctor_consultation"
           },
           "participant_type" : {
             "type" : "string",
@@ -2431,46 +2459,24 @@
             "type" : "string",
             "example" : "12345"
           },
+          "status_id" : {
+            "type" : "string",
+            "example" : "confirmed"
+          },
           "participant_entity_id" : {
             "type" : "string",
             "example" : "67890"
-          },
-          "status" : {
-            "type" : "string",
-            "example" : "attended"
-          },
-          "from" : {
-            "type" : "string",
-            "format" : "date-time",
-            "example" : "2018-02-15T11:00:00"
-          },
-          "to" : {
-            "type" : "string",
-            "format" : "date-time",
-            "example" : "2018-02-15T11:30:00"
-          },
-          "deadline" : {
-            "type" : "string",
-            "format" : "date-time",
-            "example" : "2018-02-15T11:10:00"
           }
         }
       },
       "appointment_filter" : {
         "type" : "object",
         "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
           "appointment_id" : {
-            "type" : "array",
-            "items" : {
-              "type" : "string"
-            },
-            "example" : "[1,2]"
-          },
-          "event_type" : {
-            "type" : "string",
-            "example" : "doctor_consultation"
-          },
-          "event_id" : {
             "type" : "string",
             "example" : "1"
           },
@@ -2505,15 +2511,15 @@
       "appointment_details_required" : {
         "type" : "object",
         "properties" : {
+          "exclusive" : {
+            "type" : "boolean",
+            "example" : "true"
+          },
           "appointment_id" : {
             "type" : "boolean",
             "example" : true
           },
-          "event_id" : {
-            "type" : "boolean",
-            "example" : true
-          },
-          "event_type" : {
+          "event_details" : {
             "type" : "boolean",
             "example" : true
           },
@@ -2530,18 +2536,6 @@
             "example" : true
           },
           "participant_entity_id" : {
-            "type" : "boolean",
-            "example" : true
-          },
-          "from" : {
-            "type" : "boolean",
-            "example" : true
-          },
-          "to" : {
-            "type" : "boolean",
-            "example" : true
-          },
-          "deadline" : {
             "type" : "boolean",
             "example" : true
           }
@@ -3737,7 +3731,7 @@
         "type" : "object",
         "properties" : {
           "appointment_details" : {
-            "$ref" : "#/components/schemas/appointment_details"
+            "$ref" : "#/components/schemas/appointment_creation_details"
           }
         }
       },
