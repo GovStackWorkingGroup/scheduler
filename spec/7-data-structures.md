@@ -34,18 +34,7 @@ The proposed resource model showing the relationship between data objects that a
 
 **7.2.2 Group: Appointment LIst**
 
-| Name                | Type                    | Description                      |
-| ------------------- | ----------------------- | -------------------------------- |
-| AppointmentId       | String                  | unique id of entity              |
-| EventId             | String                  | name of entity                   |
-| ParticipantType     | String                  | hospital/clinic/bank/etc.        |
-| ParticipantId       | String                  | default phone number             |
-| Status              | String                  | default email id                 |
-| EventType           | String                  | example "consultation/training"  |
-| ParticipantEntityId | String                  | affiliated entity of participant |
-| From                | Date (dd/mm/yyyy/hh/mm) | when appointment starts          |
-| To                  | Date (dd/mm/yyyy/hh/mm) | when appointment ends            |
-| Deadline            | Date (dd/mm/yyyy/hh/mm) | for logging attendance           |
+<table><thead><tr><th width="171">Name</th><th width="100">Type</th><th>Description</th></tr></thead><tbody><tr><td>Appointment_Id</td><td>String</td><td>unique id of entity</td></tr><tr><td>Exclusive</td><td>Boolean</td><td>if true, appointment date-time slot cannot overlap  with another appointment of same person (e.g. a machine may service multiple events at same time, but not a surgeon)</td></tr><tr><td>EventId</td><td>String</td><td>name of entity</td></tr><tr><td>Participant_Type</td><td>String</td><td>hospital/clinic/bank/etc.</td></tr><tr><td>Participant_Id</td><td>String</td><td>default phone number</td></tr><tr><td>Status</td><td>String</td><td>default email id</td></tr><tr><td>Participant_Entity_Id</td><td>String</td><td>affiliated entity of participant</td></tr></tbody></table>
 
 #### 7.2.3 Group: EntityList
 
