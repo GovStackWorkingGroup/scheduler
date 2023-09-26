@@ -40,7 +40,7 @@ This section captures the example workflows that may take place between internal
 
 ### **9.1.1 Event Creation**
 
-An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students). Optionally, a deadline may be specified for participants to log attendance to the event (else marked as absent). The Scheduler avoids duplication of a given event by checking if the same properties are already registered in its Event\_List. It then returns either success status along with a unique event id or an appropriate error code to host the application of the organizer.
+An organizer can use this workflow to create a new event in the system. The Organizer will need to feed in minimum details such as the event name, category, address, start and end date-time, host entity, terms for subscription, and subscription limit (e.g. a doctor consultation event is limited to one patient. In a training event the limit may include multiple students). Optionally, a deadline may be specified for participants to log attendance to the event (else marked as absent). The Scheduler avoids duplication of a given event by checking if the same properties are already registered in its Event\_List. The start and end date-time is an JSON array structure that enables scheduling the same event multiple times at different date-time slots.  It then returns either success status along with an array of unique event ids one for each requested slot, or an appropriate error code to host the application of the organizer.
 
 ```mermaid
 sequenceDiagram
@@ -96,27 +96,9 @@ sequenceDiagram
 
 ```
 
-## 9.2 Scheduler Administration
+####
 
-#### 9.2.1 Finding resource availability in a given date-time range
-
-An organizer may use a host application to seek the Scheduler for availability within a specific period (date-time range) of a chosen resource in a chosen entity. The Scheduler finds the affiliated workdays-hours of a given resource in the given entity from its Affiliation\_List and calculates corresponding date-time slots that fall within the given date-time range. Then it finds from Appointments List the start and end date-time zones of all events booked for a given resource id and entity, in a given date-time range. From all this information it calculates the free time zones of the given resource, within the affiliated time zones of the given entity and given date-time range. Finally, the Scheduler returns a list of free zones of the given resource within the given date-time range and affiliated workday hours in the given entity. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
-
-```mermaid
-sequenceDiagram
-Organizer->>Host_App: Request resource availability
-Host_App->>Scheduler: Get/resource/availablity:<br>{free_resource_details}<br> in{Entity_id,Resource_Id<br>from_datetime,<br>to_date_time}
-Scheduler->>Affiliation_List: Get/affiliation/list_details<br>{Workdays_hours}<br>in{resource_id, Entity_id}
-Affiliation_List->>Scheduler: returns workdays_hours 
-note over Scheduler: calculate affiliated<br> dates in given <br>date-time range.
-Scheduler->>Appointment_List: Get/appointment/list_details<br>{start,end}in{participant_id=<br>resource_id, participant_type='resource,<br>Entity_id,Event_type,datetime range}
-Appointment_List->>Scheduler: returns starting<br> and ending time<br> of appointments
-note over Scheduler: calculate free slots<br> (affiliated time <br>zones - booked slots)
-  Scheduler->>Host_App: Return Array{resource id,free_slots}
-  Host_App->>Organizer: Publish available slots<br> of each resource
-```
-
-### 9.2.2 Finding events of a given type and status having a specific resource in a given date-time range
+### 9.1.3 Finding events of a given type and status having a specific resource in a given date-time range
 
 In some scenarios, one may search for events of a specific category involving a specific resource of a specific host entity (e.g. consultation with a specific doctor in a particular hospital) that are open for subscription. The organizer can feed through a host app, a date range, event type, entity ID, and resource\_id seeking matching events with status=open. The Scheduler seeks its appointment\_List for the event\_ids of events with a given type, resource and entity, within a given time range. For each event, the Scheduler gets details of the event if the event status is = "open". The Schedule returns details of selected open events or returns the appropriate error code (e.g. if specified category/resource not found, etc.). The Host app will present the results or error appropriately to the Organizer.
 
@@ -131,7 +113,44 @@ Host_App->> Organizer: Publish event details
 
 ```
 
-### 9.2.3 Tracking and Alerting as per schedule
+## 9.2 Entity Management
+
+### **9.2.1 Registering a new entity**
+
+A new entity that can use the Scheduler must be registered by the administrator of the Scheduler Building Block. The Administrator requests entity registration in the scheduler through Scheduler's administrative front-end user interface by supplying relevant entity details. The Scheduler after verifying the requestor's credentials will store the entity information against a new entity id it generates. In case it finds that the entity details match any of the earlier registered entities it returns an error code and avoids duplication. In the normal course, the entity id is returned to the Administrator along with a prompt to register an Organizer resource for that entity, to use the Scheduler further.
+
+```mermaid
+sequenceDiagram
+Adminstrator->>Host_App:Request addition of<br> given Entity and<br> entity profile
+Host_App->>Scheduler:Post:/entity/new<br>{entity_details}
+Scheduler->>Entity_List: Store new entity profile<br> and generate new entity id
+Entity_List->>Scheduler: Return new template id<br> or error(if entity<br> exists already)
+Host_App->>Adminstrator: confirm template<br> registration and prompt<br> for registration of <br>"organizer" resource
+```
+
+## 9.3 Alert Schedule Management
+
+### 9.3.1 Scheduling Alerts for a given event
+
+An organizer may schedule different alert messages to be sent to subscribers and resources before, during, and after a prescheduled event. It is assumed here that the alert messages are borrowed from a list of messaging templates within the Scheduler that have been pre-registered and affiliated with a specific entity. The Organizer may use a host app to request the Scheduler to create a new alert schedule by choosing the alert message template, date-time of when the alert is to be sent, and type of targets to receive the message (subscriber/resource/both). If the Scheduler finds all inputs valid it will store the details against a unique Alert Schedule id in the Alert\_schedile\_list and returns success status and the unique id, otherwise, it will return an appropriate error code. This workflow assumes that the message templates created by the organizer of one entity should not be accessible to organizers affiliated with the host entity. Also, it is assumed that all participants of a given type (resource/subscriber/both) will receive the alert. If a specific implementation needs to define individual participants who should receive a specific alert, it will require further refining of the steps laid out here and is out of scope of the current workflow.
+
+```mermaid
+sequenceDiagram
+Organizer->>Host_App: request new alert <br>schedule with chosen<br> message, epoch<br>,target type,event 
+Host_App->>Scheduler:Post/alert_schedule/new<br>{alert_schedule_details}
+Scheduler->>Event_List: Get/event/list_details<br>{period} in {event_id}
+alt if entity not found<br> or event has ended
+  Scheduler->>Host_App: return error code
+  Host_App->>Organizer: publish error
+else
+Scheduler->> Alert_Schedule_Details: store alert schdeule
+Alert_Schedule_Details->>Scheduler: return new<br> Alert_schedule_id
+Scheduler->>Host_App:Return new alert_schedule_id
+Host_App->>Organizer: confirm success
+end
+```
+
+### 9.3.2 Tracking and Alerting as per schedule
 
 The Scheduler's internal tracker keeps fetching (with a predefined interval) a list of all alerts for which the scheduled date time has arrived (within the interval). For each alert that is ready to go and based on the given target type (resource/ subscriber/ both) it will list participants of that associated event from the appointment list and send the alert message to them. The alert message will be sent using the preferred channel (sms/URL/mail) registered in the resources /subscribers list. It should be noted that the Scheduler does not wait for confirmation of the delivery of the message. In the current context, a recipient of an alert may asynchronously send back a delivery acknowledgement to the log update (see log update workflow) of the Scheduler.
 
@@ -180,20 +199,24 @@ end
 
 ```
 
-### **9.2.4 Registering a new entity**
+## 9.4 Alert Message Management
 
-A new entity that can use the Scheduler must be registered by the administrator of the Scheduler Building Block. The Administrator requests entity registration in the scheduler through Scheduler's administrative front-end user interface by supplying relevant entity details. The Scheduler after verifying the requestor's credentials will store the entity information against a new entity id it generates. In case it finds that the entity details match any of the earlier registered entities it returns an error code and avoids duplication. In the normal course, the entity id is returned to the Administrator along with a prompt to register an Organizer resource for that entity, to use the Scheduler further.
+### 9.4.1 Registering new Alert Message Template
+
+Several predefined templates of alert messages can be stored in a Message List so that they can be reused in different alerts and events (for example appointment reminders, triggers to devices and software applications, etc. Using a host app an organizer may submit a new message and request the Scheduler to register the message. The Scheduler tries to store a new entry in its message list and returns a success or error code in response.
 
 ```mermaid
 sequenceDiagram
-Adminstrator->>Host_App:Request addition of<br> given Entity and<br> entity profile
-Host_App->>Scheduler:Post:/entity/new<br>{entity_details}
-Scheduler->>Entity_List: Store new entity profile<br> and generate new entity id
-Entity_List->>Scheduler: Return new template id<br> or error(if entity<br> exists already)
-Host_App->>Adminstrator: confirm template<br> registration and prompt<br> for registration of <br>"organizer" resource
+Organizer->>Host_App:Request addition of<br> given alert template
+Host_App->>Scheduler:Post:/Alert_Template/new{message_details}
+Scheduler->>message_List:Store new template<br> and generate <br>new template id
+Scheduler->>Host_App:Return new template ID
+Host_App->>Organizer: confirm template registration
 ```
 
-### **9.2.5 Registering a new resource**
+## **9.5** Resource management
+
+### **9.5.1 Registering a new resource**
 
 An organizer must register into the scheduler various categories of resources {people, equipment, vehicles, facility, etc.) into a specific entity before the resource can be used in different events. An organizer is also a resource of an entity but can be registered only by the Administrator of the Building Block. An organizer can register resources of other categories only into his/her affiliated entity only. The registration process begins with the submission of resource details with the request to the Scheduler for registration of the resource. The Scheduler internally stores details of the resource into a resource\_list and generates a new resource ID.
 
@@ -209,14 +232,34 @@ Host_App->>Adminstrator/Organizer: confirm registration
 
 ```
 
-### **9.2.6 Registering a new Subscriber**
+### 9.5.2 Finding resource availability in a given date-time range
 
-An organizer can register into the scheduler a new subscriber's details into a specific entity. A subscriber must be registered into the scheduler before they are allowed to book appointments for various events. This example considers that Organizer can register resources of other categories only into his/her affiliated entity only. The organizer submits subscriber details through Host\_App to Scheduler requesting registration. The Scheduler internally stores details of the subscriber into its subscriber\_list and generates a new resource ID. The Scheduler returns the new subscriber id or a duplication error if it finds the subscriber profile is already existing. The Host app confirms registration or duplication error to the Organizer.
+An organizer may use a host application to seek the Scheduler for availability within a specific period (date-time range) of a chosen resource in a chosen entity. The Scheduler finds the affiliated workdays-hours of a given resource in the given entity from its Affiliation\_List and calculates corresponding date-time slots that fall within the given date-time range. Then it finds from Appointments List the start and end date-time zones of all events booked for a given resource id and entity, in a given date-time range. From all this information it calculates the free time zones of the given resource, within the affiliated time zones of the given entity and given date-time range. Finally, the Scheduler returns a list of free zones of the given resource within the given date-time range and affiliated workday hours in the given entity. The host application presents this information to the Organizer. If any of the given criteria have invalid values, the scheduler notifies an appropriate error message to Host-App.
 
 ```mermaid
 sequenceDiagram
-Organizer->>Host_App:Request addition of<br> given Subscriberas<br> Organizer in given entity
-Host_App->>Scheduler:Post:/Subscriber/new<br>{entity_id,Subscriber_details}
+Organizer->>Host_App: Request resource availability
+Host_App->>Scheduler: Get/resource/availablity:<br>{free_resource_details}<br> in{Entity_id,Resource_Id<br>from_datetime,<br>to_date_time}
+Scheduler->>Affiliation_List: Get/affiliation/list_details<br>{Workdays_hours}<br>in{resource_id, Entity_id}
+Affiliation_List->>Scheduler: returns workdays_hours 
+note over Scheduler: calculate affiliated<br> dates in given <br>date-time range.
+Scheduler->>Appointment_List: Get/appointment/list_details<br>{start,end}in{participant_id=<br>resource_id, participant_type='resource,<br>Entity_id,Event_type,datetime range}
+Appointment_List->>Scheduler: returns starting<br> and ending time<br> of appointments
+note over Scheduler: calculate free slots<br> (affiliated time <br>zones - booked slots)
+  Scheduler->>Host_App: Return Array{resource id,free_slots}
+  Host_App->>Organizer: Publish available slots<br> of each resource
+```
+
+## 9.6 Subscriber Management
+
+### **9.6.1 Registering a new Subscriber**
+
+A subscriber can be registered into the scheduler with relevant details, either by organizer or by subscriber himself. A subscriber  must be registered into the scheduler before they are allowed to book appointments for various events. The user submits subscriber details through Host\_App to Scheduler requesting registration. The Scheduler internally stores details of the subscriber into its subscriber\_list and generates a new subscriber ID. The Scheduler returns the new subscriber id or a duplication error if it finds the subscriber profile is already existing. The Host app confirms registration or duplication error to the Organizer.
+
+```mermaid
+sequenceDiagram
+Organizer->>Host_App:Request addition of<br> given Subscriber
+Host_App->>Scheduler:Post:/Subscriber/new<br>{Subscriber_details}
 Scheduler->>Subscriber_List: Store new Subscriber profile
 note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id,<br> else store deteails and<br> generate new id 
 Subscriber_List->>Scheduler: return Subscriber_Id
@@ -225,9 +268,26 @@ Host_App->>Organizer: confirm subscriber registration
 
 ```
 
-## 9.3 Appointment Management
+## 9.7 Affiliation management
 
-### 9.3.1 Appointment Scheduling for resource or subscriber to a specific event
+### **9.7.1 Affiliating a resource to an entity**
+
+A registered resource must be affiliated with at least one entity. A resource may be affiliated with different entities only in non-overlapping day-time zones (e.g. doctor may give consultation in multiple hospitals). An organizer can be affiliated only by an administrator. All other categories of resources can be affiliated by an Organizer. The affiliation request may be submitted through the host-App to the scheduler along with affiliation details (resource\_id, entity\_id, affiliated days and time zones in that entity, etc.). The scheduler will add a new affiliation of that resource to the new entity in the Affiliation List and generate a new affiliation ID. The Scheduler flags an error if it finds a duplicate entry.
+
+```mermaid
+sequenceDiagram
+Adminstrator/Organizer->Host_App: request affiliation with details
+Host_App-->Scheduler: Post/affiliation/new:<br>{affiliation_details}
+Scheduler->>Affiliation_List: store new affiliation deetails
+Affiliation_List->>Scheduler: return Affiliation id<br> or duplication error 
+Scheduler->>Host_App: return Affiliation id <br> or error
+Host_App->>Adminstrator/Organizer: confirm affiliation of <br>resource to specified entity
+
+```
+
+## 9.8 Appointment Management
+
+### 9.8.1 Appointment Scheduling for resource or subscriber to a specific event
 
 An organizer may enrol a subscriber or resource to a specific event through a host app. The host application first finds out details of a chosen event\_id. Then the host application requests a new appointment booking by giving participant details, and event details as needed. The Scheduler stores appointment details against a unique appointment id in its Appointment List. The Scheduler then confirms successful enrolment to the user through the host app and publishes the unique appointment id for that participant.
 
@@ -253,7 +313,7 @@ alt if subscriber_limit >0 and event_status = 'open'
 end      
 ```
 
-### **9.3.2 Cancellation of appointment**
+### **9.8.2 Cancellation of appointment**
 
 An organizer may cancel an existing appointment of a resource or a subscriber for an event using the Host App. The user may submit the participant id or participant type (subscriber/resource) and the event ID to the Scheduler through the host app, requesting for cancellation of respective enrollment for the event. If the Scheduler finds the given event id and subscriber/resource id in the appointment\_list it will delete the enrolment entry of the given resource in the given event, else it will return an appropriate error message. The Host-app confirms success or error condition to the user. The Scheduler also emits a notification through Messaging Building Block to inform the cancelled participant only (in different implementations one can also inform all participants). It should be noted that the deletion of the enrolment of a subscriber does not remove subscriber/resource details stored in the subscriber/resource list, but it removes only the allocation to the specific event.
 
@@ -270,44 +330,9 @@ else
 end
 ```
 
-## 9.4 Alert Message Management
+## 9.9 Status Logging and Reporting
 
-### 9.4.1 Registering new Alert Message Template
-
-Several predefined templates of alert messages can be stored in a Message List so that they can be reused in different alerts and events (for example appointment reminders, triggers to devices and software applications, etc. Using a host app an organizer may submit a new message and request the Scheduler to register the message. The Scheduler tries to store a new entry in its message list and returns a success or error code in response.
-
-```mermaid
-sequenceDiagram
-Organizer->>Host_App:Request addition of<br> given alert template
-Host_App->>Scheduler:Post:/Alert_Template/new{message_details}
-Scheduler->>message_List:Store new template<br> and generate <br>new template id
-Scheduler->>Host_App:Return new template ID
-Host_App->>Organizer: confirm template registration
-```
-
-### 9.4.2 Scheduling Alerts for a given event
-
-An organizer may schedule different alert messages to be sent to subscribers and resources before, during, and after a prescheduled event. It is assumed here that the alert messages are borrowed from a list of messaging templates within the Scheduler that have been pre-registered and affiliated with a specific entity. The Organizer may use a host app to request the Scheduler to create a new alert schedule by choosing the alert message template, date-time of when the alert is to be sent, and type of targets to receive the message (subscriber/resource/both). If the Scheduler finds all inputs valid it will store the details against a unique Alert Schedule id in the Alert\_schedile\_list and returns success status and the unique id, otherwise, it will return an appropriate error code. This workflow assumes that the message templates created by the organizer of one entity should not be accessible to organizers affiliated with the host entity. Also, it is assumed that all participants of a given type (resource/subscriber/both) will receive the alert. If a specific implementation needs to define individual participants who should receive a specific alert, it will require further refining of the steps laid out here and is out of scope of the current workflow.
-
-```mermaid
-sequenceDiagram
-Organizer->>Host_App: request new alert <br>schedule with chosen<br> message, epoch<br>,target type,event 
-Host_App->>Scheduler:Post/alert_schedule/new<br>{alert_schedule_details}
-Scheduler->>Event_List: Get/event/list_details<br>{period} in {event_id}
-alt if entity not found<br> or event has ended
-  Scheduler->>Host_App: return error code
-  Host_App->>Organizer: publish error
-else
-Scheduler->> Alert_Schedule_Details: store alert schdeule
-Alert_Schedule_Details->>Scheduler: return new<br> Alert_schedule_id
-Scheduler->>Host_App:Return new alert_schedule_id
-Host_App->>Organizer: confirm success
-end
-```
-
-## 9.5 Status Logging and Reporting
-
-### 9.5.1 Log reporting
+### 9.9.1 Log reporting
 
 In this workflow, a simple case of extracting chosen type of log in a given time range is described. The Organizer requests the Scheduler through a host app to report logs of a chosen category within a chosen date range. The Scheduler fetches a list of matching logs found from its Log\_List, or null if nothing is found. The Scheduler publishes the logs or null to the user through the host app. This function can be extended in different implementations to generate more complex types of reports based on information in the log.
 
@@ -320,43 +345,3 @@ Log_List->>Scheduler:return error or <br>null or any <br> matching logs
 Scheduler->>Host_App:Return error or <br> list of logs
 Host_App->>Organizer: Publish Logs or <br> error message
 ```
-
-## **9.6** Resource management
-
-### **9.6.1 Affiliating a resource to an entity**
-
-A registered resource must be affiliated with at least one entity. A resource may be affiliated with different entities only in non-overlapping day-time zones (e.g. doctor may give consultation in multiple hospitals). An organizer can be affiliated only by an administrator. All other categories of resources can be affiliated by an Organizer. The affiliation request may be submitted through the host-App to the scheduler along with affiliation details (resource\_id,entity\_id, affiliated days and time zones in that entity, etc.). The scheduler will add a new affiliation of that resource to the new entity in the Affiliation List and generate a new affiliation ID. The Scheduler flags an error if it finds a duplicate entry.
-
-```mermaid
-sequenceDiagram
-Adminstrator/Organizer->Host_App: request affiliation with details
-Host_App-->Scheduler: Post/affiliation/new:<br>{affiliation_details}
-Scheduler->>Affiliation_List: store new affiliation deetails
-Affiliation_List->>Scheduler: return Affiliation id<br> or duplication error 
-Scheduler->>Host_App: return Affiliation id <br> or error
-Host_App->>Adminstrator/Organizer: confirm affiliation of <br>resource to specified entity
-
-```
-
-#### Workflow sequence diagrams
-
-The example workflows mentioned above are represented in sequence diagrams as illustrated as examples below. As defined earlier, the scheduler responds to four types of actors:
-
-* Building Block admins - who configure the Building Block's functional aspects, monitor and administer the performance of the Building Block in live environments. (This is an implementation detail and not discussed in the scope of the workflows).
-* Resource - who is affiliated with one or more entities and gets allocated to specific events to carry out some activities.
-* Subscribers - who are enrolled in one or more events as a beneficiary of the event. Subscribers may be individuals or represent some entity.
-* Organizer - who can manage the configuration of events, resources, alerts, and subscribers.
-
-```mermaid
-sequenceDiagram
-Organizer->>Host_App:Request addition of<br> given Subscriberas<br> Organizer in given entity
-Host_App->>Scheduler:Post:/Subscriber/new<br>{entity_id,Subscriber_details}
-Scheduler->>Subscriber_List: Store new Subscriber profile
-note over Subscriber_List: if matching Subscriber<br> exists fetch Subscriber_id,<br> else store deteails and<br> generate new id 
-Subscriber_List->>Scheduler: return Subscriber_Id
-Scheduler->>Host_App: return Subscriber_Id
-Host_App->>Organizer: confirm subscriber registration
-
-
-```
-
