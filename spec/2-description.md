@@ -40,8 +40,8 @@ Each event is identified by an ID field and has a specific name, date, time, and
 
 The functional requirements to cover the services required from the Scheduler Building Block currently have considered specific use cases of&#x20;
 
-* Post-Partum Child Care program ([https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/hltc-1-postpartum-and-infant-care](http://127.0.0.1:5000/s/YLLEfCKTnmzAMDSDzJJH/readme/hltc-1-postpartum-and-infant-care)).
-* Unconditional Social Cash Transfer program. [https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/inst-1-unconditional-social-cash-transfer](http://127.0.0.1:5000/s/YLLEfCKTnmzAMDSDzJJH/readme/inst-1-unconditional-social-cash-transfer).&#x20;
+* Post-Partum Child Care program ([https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/hltc-1-postpartum-and-infant-care](https://app.gitbook.com/s/YLLEfCKTnmzAMDSDzJJH/use-cases/hltc-1-postpartum-and-infant-care)).
+* Unconditional Social Cash Transfer program. [https://app.gitbook.com/o/pxmRWOPoaU8fUAbbcrus/s/YLLEfCKTnmzAMDSDzJJH/product-use-case/inst-1-unconditional-social-cash-transfer](https://app.gitbook.com/s/YLLEfCKTnmzAMDSDzJJH/use-cases/inst-1-unconditional-social-cash-transfer).&#x20;
 
 These use cases bring forth the need for example implementations of events such as scheduling doctor appointment for patients, scheduling payroll computation for health workers, and disbursement of salaries and incentives for health workers and beneficiaries of the programs. However, the considerations can be generalized for different types of events involving one or more participants.&#x20;
 
